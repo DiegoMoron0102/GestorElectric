@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestorElectric - Panel de Dispositivos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container my-5">
+        <h1 class="text-center text-primary mb-4">Panel de Dispositivos</h1>
+
+        <!-- Carrusel de productos -->
+        <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="producto1.jpg" class="d-block w-100" alt="Producto 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="producto2.jpg" class="d-block w-100" alt="Producto 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="producto3.jpg" class="d-block w-100" alt="Producto 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="producto4.jpg" class="d-block w-100" alt="Producto 4">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+
+        <!-- Botón para añadir dispositivos -->
+        <div class="text-center">
+            <a href="formulario.html" class="btn btn-primary btn-lg">Añadir/Eliminar Dispositivos</a>
+        </div>
+
+        <!-- Tabla de dispositivos -->
+        <div class="mt-5">
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Dispositivo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Medidor Inteligente</td>
+                        <td>Activo</td>
+                        <td>
+                            <button class="btn btn-warning">Editar</button>
+                            <button class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Panel de Control</td>
+                        <td>Inactivo</td>
+                        <td>
+                            <button class="btn btn-warning">Editar</button>
+                            <button class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!-- Más filas aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
