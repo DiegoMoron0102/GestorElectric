@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Transacciones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Gestión de Transacciones -->
+    <div class="container">
+        <h2>FLUJO DE CAJA</h2>
+
+        <!-- Formulario para agregar transacción -->
+        <form class="transaction-form">
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <input type="text" id="description" name="description" placeholder="Descripción">
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Monto:</label>
+                <input type="number" id="amount" name="amount" placeholder="Monto">
+            </div>
+
+            <div class="form-group">
+                <label for="date">Fecha:</label>
+                <input type="date" id="date" name="date">
+            </div>
+
+            <div class="form-group">
+                <label for="type">Tipo de transacción:</label>
+                <select id="type" name="type">
+                    <option value="ingreso">Ingreso</option>
+                    <option value="egreso">Egreso</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">AGREGAR TRANSACCIÓN</button>
+        </form>
+
+        <!-- Botón para exportar informe -->
+        <button class="btn export-btn">EXPORTAR INFORME</button>
+
+        <!-- Tabla de transacciones -->
+        <h3>Transacciones</h3>
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>05/01/2024</td>
+                    <td>Venta de productos</td>
+                    <td>$5000</td>
+                    <td>Ingreso</td>
+                    <td>
+                        <button class="btn modify-btn">Modificar</button>
+                        <button class="btn delete-btn">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>25/01/2024</td>
+                    <td>Pago de salarios</td>
+                    <td>$1500</td>
+                    <td>Egreso</td>
+                    <td>
+                        <button class="btn modify-btn">Modificar</button>
+                        <button class="btn delete-btn">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>05/02/2024</td>
+                    <td>Venta de servicios</td>
+                    <td>$3000</td>
+                    <td>Ingreso</td>
+                    <td>
+                        <button class="btn modify-btn">Modificar</button>
+                        <button class="btn delete-btn">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
