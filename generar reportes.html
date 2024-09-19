@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Informes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Evaluaciones</a></li>
+            <li class="dropdown">
+                <a href="#">Inicio de sesión</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Panel Orador</a></li>
+                    <li><a href="#">Panel Asistente</a></li>
+                    <li><a href="#">Panel Organizador</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        <h2>Generar Informes Personalizados</h2>
+        <form class="custom-report-form">
+            <div class="form-group">
+                <label for="report-type">Tipo de Informe:</label>
+                <select id="report-type" name="report-type">
+                    <option value="rendimiento">Rendimiento</option>
+                    <option value="seguridad">Seguridad</option>
+                    <option value="analitico">Analítico</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date-range">Rango de Fechas:</label>
+                <div class="date-group">
+                    <input type="date" id="start-date" name="start-date">
+                    <span>a</span>
+                    <input type="date" id="end-date" name="end-date">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="format">Formato de Archivo:</label>
+                <select id="format" name="format">
+                    <option value="pdf">PDF</option>
+                    <option value="excel">Excel</option>
+                    <option value="csv">CSV</option>
+                </select>
+            </div>
+
+            <!-- Botón para mostrar el modal de parametrización de informes -->
+            <a href="#" class="btn btn-secondary" id="openModalBtn">Parámetros</a>
+
+            <button type="submit" class="btn">Generar Informe</button>
+        </form>
+    </div>
+
+    <!-- Modal de Parametrización de Informes -->
+    <div id="paramModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Parametrización de Informes</h3>
+            <form class="param-report-form">
+                <div class="form-group">
+                    <label for="region">Región:</label>
+                    <select id="region" name="region">
+                        <option value="norte">Norte</option>
+                        <option value="sur">Sur</option>
+                        <option value="este">Este</option>
+                        <option value="oeste">Oeste</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="clients">Cantidad de Clientes:</label>
+                    <input type="number" id="clients" name="clients" min="1000" max="1900000">
+                </div>
+
+                <div class="form-group">
+                    <label for="metrics">Métricas a Incluir:</label>
+                    <select id="metrics" name="metrics" multiple>
+                        <option value="consumo">Consumo Energético</option>
+                        <option value="perdidas">Pérdidas</option>
+                        <option value="rendimiento">Rendimiento</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="system-status">Estado del Sistema:</label>
+                    <select id="system-status" name="system-status">
+                        <option value="operativo">Operativo</option>
+                        <option value="fallos">Con Fallos</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="device-type">Tipo de Dispositivo Monitorizado:</label>
+                    <select id="device-type" name="device-type">
+                        <option value="transformador">Transformador</option>
+                        <option value="medidor">Medidor</option>
+                        <option value="interruptor">Interruptor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sampling-frequency">Frecuencia de Muestreo:</label>
+                    <select id="sampling-frequency" name="sampling-frequency">
+                        <option value="5min">Cada 5 Minutos</option>
+                        <option value="1hora">Cada Hora</option>
+                        <option value="diario">Diariamente</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Aplicar Parámetros</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Maquetación de la sección de informes descargables -->
+    <div class="download-section container">
+        <h3>Informes Descargables</h3>
+        <ul class="report-list">
+            <li><a href="#">Informe Rendimiento - Enero 2024</a></li>
+            <li><a href="#">Informe Seguridad - Enero 2024</a></li>
+            <li><a href="#">Informe Analítico - Enero 2024</a></li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
