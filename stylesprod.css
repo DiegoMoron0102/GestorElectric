@@ -1,11 +1,15 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #ffffff; /* Fondo blanco */
-    color: #333;
+    color: #422f90;
 }
 
 h1 {
-    color: #243B4A; /* Color del título */
+    color: #36e46a; /* Color del título en verde */
+}
+
+h2, h3 {
+    color: #007bff; /* Color de subtítulos en azul */
 }
 
 table {
@@ -20,12 +24,12 @@ th, td {
 }
 
 th {
-    background-color: #806375; /* Color de fondo para encabezados */
+    background-color: #54b62d; /* Color de fondo para encabezados */
     color: white;
 }
 
 td {
-    background-color: #E8C7C7; /* Color de fondo para celdas */
+    background-color: #45aa4a; /* Color de fondo para celdas */
 }
 
 .carousel-item img {
@@ -42,17 +46,17 @@ button {
 }
 
 .btn-primary {
-    background-color: #dd8fd2; /* Color de fondo del botón primario */
-    border-color: #dd8fd2; /* Color de borde del botón primario */
+    background-color: #d1d335; /* Color de fondo del botón normal (amarillo) */
+    border-color: #e2af4f; /* Color de borde del botón normal */
 }
 
 .btn-primary:hover {
-    background-color: #C7B8B0; /* Color de fondo al pasar el ratón */
-    border-color: #C7B8B0; /* Color de borde al pasar el ratón */
+    background-color: #d1d335; /* Color de fondo al pasar el ratón */
+    border-color: #e2af4f; /* Color de borde al pasar el ratón */
 }
 
 .btn-danger {
-    background-color: #ef9a9a; /* Color de fondo del botón de peligro */
+    background-color: #ef9a9a; /* Color de fondo del botón de peligro (rojo) */
     border-color: #ef9a9a; /* Color de borde del botón de peligro */
 }
 
