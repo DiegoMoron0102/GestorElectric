@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #333;
+}
+
+h1 {
+    color: #243B4A; /* Color del título */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+}
+
+th {
+    background-color: #806375; /* Color de fondo para encabezados */
+    color: white;
+}
+
+td {
+    background-color: #E8C7C7; /* Color de fondo para celdas */
+}
+
+.carousel-item img {
+    width: 70%; /* Ajusta el ancho de la imagen */
+    height: auto; /* Mantén la proporción de la imagen */
+    margin: 0 auto; /* Centra la imagen */
+    max-height: 400px; /* Altura máxima para limitar el tamaño */
+    object-fit: cover; /* Asegura que la imagen no se deforme */
+    border-radius: 10px; /* Mantén el borde redondeado */
+}
+
+button {
+    margin: 0 5px;
+}
+
+.btn-primary {
+    background-color: #dd8fd2; /* Color de fondo del botón primario */
+    border-color: #dd8fd2; /* Color de borde del botón primario */
+}
+
+.btn-primary:hover {
+    background-color: #C7B8B0; /* Color de fondo al pasar el ratón */
+    border-color: #C7B8B0; /* Color de borde al pasar el ratón */
+}
+
+.btn-danger {
+    background-color: #ef9a9a; /* Color de fondo del botón de peligro */
+    border-color: #ef9a9a; /* Color de borde del botón de peligro */
+}
+
+.btn-danger:hover {
+    background-color: #e57373; /* Color de fondo al pasar el ratón */
+    border-color: #c10eb8; /* Color de borde al pasar el ratón */
+}

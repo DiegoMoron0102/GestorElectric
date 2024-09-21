@@ -16,7 +16,6 @@ document.getElementById('deviceForm').addEventListener('submit', function(event)
     })
     .then(response => response.json())
     .then(data => {
-        // Aquí puedes hacer algo con la respuesta de la API
         console.log('Dispositivo añadido:', data);
         // Refrescar la lista de dispositivos o mostrar una notificación
     })
