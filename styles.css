@@ -1,94 +1,114 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef;
     margin: 0;
     padding: 0;
 }
 
 .container {
     width: 80%;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h2, h3 {
-    color: #333;
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 label {
     font-weight: bold;
-    color: #555;
+    color: #495057;
 }
 
-input[type="date"], select, input[type="number"], input[type="email"], input[type="text"], input[type="password"], input[type="file"] {
+input[type="date"],
+select,
+input[type="number"],
+input[type="email"],
+input[type="text"],
+input[type="password"],
+input[type="file"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ced4da;
     border-radius: 5px;
     width: 100%;
     font-size: 1rem;
+    transition: border-color 0.3s;
 }
 
-button.btn, a.btn {
-    padding: 10px 20px;
+input[type="date"]:focus,
+select:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button.btn {
+    padding: 10px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    display: inline-block;
-    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
-button.btn:hover, a.btn:hover {
+button.btn:hover {
     background-color: #0056b3;
 }
 
-.download-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.download-section li {
-    margin: 10px 0;
-}
-
-.download-section a {
-    text-decoration: none;
+a {
     color: #007bff;
+    text-decoration: none;
 }
 
-.download-section a:hover {
+a:hover {
     text-decoration: underline;
 }
 
 /* Navbar Styles */
 .navbar {
-    background-color: #333;
-    padding: 10px;
+    background-color: #343a40;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-menu {
     list-style-type: none;
     padding: 0;
     display: flex;
+    justify-content: center;
     gap: 20px;
 }
 
@@ -99,12 +119,13 @@ button.btn:hover, a.btn:hover {
 .navbar-menu a {
     text-decoration: none;
     color: white;
-    padding: 10px;
+    padding: 10px 15px;
     display: block;
+    transition: background-color 0.3s;
 }
 
 .navbar-menu a:hover {
-    background-color: #444;
+    background-color: #495057;
     border-radius: 5px;
 }
 
@@ -114,9 +135,10 @@ button.btn:hover, a.btn:hover {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #333;
+    background-color: #343a40;
     padding: 10px;
     list-style: none;
+    border-radius: 5px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -129,5 +151,27 @@ button.btn:hover, a.btn:hover {
 }
 
 .dropdown-menu a:hover {
-    background-color: #444;
+    background-color: #495057;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
 }
