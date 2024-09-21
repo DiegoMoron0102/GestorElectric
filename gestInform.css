@@ -16,10 +16,13 @@ h1, h2 {
     color: #1DB954;
 }
 
-p {
-    color: #555;
+p1 {
+    color: #e4e4e4;
 }
 
+p {
+    color: #575757;
+}
 /* Hero Section */
 .hero {
     background-image: url('informe2.jpg');
