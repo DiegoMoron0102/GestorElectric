@@ -1,7 +1,6 @@
 function generarInforme() {
     const tipoInforme = document.getElementById('tipo-informe').value;
 
-    // Datos de muestra para el gráfico
     const datos = {
         consumo: [120, 130, 140, 150, 160, 170],
         costos: [200, 220, 250, 300, 320, 350],
@@ -9,10 +8,8 @@ function generarInforme() {
     };
 
     const etiquetas = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
-
     const ctx = document.getElementById('graficoInforme').getContext('2d');
 
-    // Destruir el gráfico anterior si existe
     if (window.graficoGenerado) {
         window.graficoGenerado.destroy();
     }

@@ -4,26 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Control - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="stylesPanelControl.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="PanelControl.css">
     <script defer src="PanelControl.js"></script>
 </head>
 <body>
+    <!-- Navbar -->
     <header>
         <div class="navbar-container">
-            <img src="logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <img src="imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
             <h1>Gestión Eléctrica</h1>
             <nav>
                 <ul class="nav-links">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="PanelControl.html">Panel de Control</a></li>
-                        <li><a href="GestionInventarios.html">Gestión de Inventarios</a></li>
-                        <li><a href="GeneracionInformes.html">Generación de Informes</a></li>
-                        <li><a href="VersionFreemium.html">Versión Freemium</a></li>
-                        <li><a href="Soporte.html">Soporte y Contacto</a></li>
-                        <li><a href="Login.html">Inicio Sesion</a></li>
-                    </ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="PanelControl.html">Panel de Control</a></li>
+                    <li><a href="GestionInventarios.html">Gestión de Inventarios</a></li>
+                    <li><a href="GeneracionInformes.html">Generación de Informes</a></li>
+                    <li><a href="VersionFreemium.html">Versión Freemium</a></li>
+                    <li><a href="Soporte.html">Soporte y Contacto</a></li>
+                    <li><a href="Login.html">Inicio Sesión</a></li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -61,7 +62,6 @@
                 </tr>
             </thead>
             <tbody id="network-table">
-                <!-- Fila de ejemplo con dispositivos -->
                 <tr class="network-row" data-network-id="SC152223">
                     <td>SC152223</td>
                     <td>21-03-2022</td>
@@ -74,8 +74,7 @@
                     <td><button class="btn btn-warning btn-sm">✎</button></td>
                     <td><button class="btn btn-danger btn-sm">🗑️</button></td>
                 </tr>
-                
-                <!-- Contenedor oculto para los dispositivos -->
+
                 <tr class="device-row" data-parent-network="SC152223" style="display: none;">
                     <td colspan="10">
                         <table class="table table-sm mb-0">
@@ -107,30 +106,24 @@
                                     <td>21-03-2022</td>
                                 </tr>
                             </tbody>
-                            
                         </table>
                         <button class="btn btn-primary mt-2">Aceptar</button>
                     </td>
                 </tr>
-                
-                <!-- Fin fila de ejemplo -->
 
-
-                <!-- Fila de ejemplo con dispositivos -->
                 <tr class="network-row" data-network-id="SC1522234">
-                    <td>SC152223</td>
-                    <td>21-03-2022</td>
+                    <td>SC1522234</td>
                     <td>22-03-2022</td>
-                    <td>1594</td>
-                    <td><a href="#">PLANO-SC152223</a></td>
-                    <td>u-241232</td>
-                    <td>25.1456 kw/mes</td>
+                    <td>23-03-2022</td>
+                    <td>1595</td>
+                    <td><a href="#">PLANO-SC1522234</a></td>
+                    <td>u-241233</td>
+                    <td>30.1456 kw/mes</td>
                     <td><button class="btn btn-primary btn-sm">Detalle</button></td>
                     <td><button class="btn btn-warning btn-sm">✎</button></td>
                     <td><button class="btn btn-danger btn-sm">🗑️</button></td>
                 </tr>
-                
-                <!-- Contenedor oculto para los dispositivos -->
+
                 <tr class="device-row" data-parent-network="SC1522234" style="display: none;">
                     <td colspan="10">
                         <table class="table table-sm mb-0">
@@ -146,23 +139,22 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>TV-LG-WF231</td>
-                                    <td>Entretenimiento</td>
-                                    <td>0.232 kwh</td>
+                                    <td>3</td>
+                                    <td>Refrigerador</td>
+                                    <td>Electrodoméstico</td>
+                                    <td>0.400 kwh</td>
                                     <td>Activo</td>
-                                    <td>21-03-2022</td>
+                                    <td>22-03-2022</td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
-                                    <td>Transformador</td>
-                                    <td>Eléctrico</td>
-                                    <td>0.054 kwh</td>
+                                    <td>4</td>
+                                    <td>Aire Acondicionado</td>
+                                    <td>Climatización</td>
+                                    <td>1.200 kwh</td>
                                     <td>Activo</td>
-                                    <td>21-03-2022</td>
+                                    <td>22-03-2022</td>
                                 </tr>
                             </tbody>
-                            
                         </table>
                         <button class="btn btn-primary mt-2">Aceptar</button>
                     </td>
@@ -178,8 +170,10 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <footer>
+        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
