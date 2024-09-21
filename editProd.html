@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Dispositivo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesProd.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container my-5">
+        <h1 class="text-center text-primary mb-4">Editar Dispositivo</h1>
+
+        <!-- Formulario para editar dispositivo -->
+        <form id="editDeviceForm">
+            <!-- Nombre del dispositivo -->
+            <div class="mb-3">
+                <label for="editDeviceName" class="form-label">Nombre del Dispositivo</label>
+                <input type="text" class="form-control" id="editDeviceName" placeholder="Introduce el nombre del dispositivo" required>
+            </div>
+
+            <!-- Estado del dispositivo -->
+            <div class="mb-3">
+                <label for="editDeviceStatus" class="form-label">Estado del Dispositivo</label>
+                <select class="form-control" id="editDeviceStatus" required>
+                    <option>Activo</option>
+                    <option>Inactivo</option>
+                </select>
+            </div>
+
+            <!-- Descripción del dispositivo -->
+            <div class="mb-3">
+                <label for="editDeviceDescription" class="form-label">Descripción del Dispositivo</label>
+                <textarea class="form-control" id="editDeviceDescription" rows="3" placeholder="Describe brevemente las características del dispositivo" required></textarea>
+            </div>
+
+            <!-- Fecha de instalación -->
+            <div class="mb-3">
+                <label for="editInstallationDate" class="form-label">Fecha de Instalación</label>
+                <input type="date" class="form-control" id="editInstallationDate" required>
+            </div>
+
+            <!-- Modelo del dispositivo -->
+            <div class="mb-3">
+                <label for="editDeviceModel" class="form-label">Modelo del Dispositivo</label>
+                <input type="text" class="form-control" id="editDeviceModel" placeholder="Introduce el modelo del dispositivo" required>
+            </div>
+
+            <!-- Número de serie del dispositivo -->
+            <div class="mb-3">
+                <label for="editDeviceSerialNumber" class="form-label">Número de Serie</label>
+                <input type="text" class="form-control" id="editDeviceSerialNumber" placeholder="Introduce el número de serie del dispositivo" required>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                <a href="index.html" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulación de carga de datos para edición
+        document.addEventListener('DOMContentLoaded', function() {
+            // Suponemos que se han obtenido los datos del dispositivo a editar
+            const device = {
+                name: "Dispositivo 1",
+                status: "Activo",
+                description: "Este es un dispositivo importante para la red eléctrica.",
+                installationDate: "2023-01-15",
+                model: "Modelo X123",
+                serialNumber: "SN123456789"
+            };
+
+            // Rellenar el formulario con los datos del dispositivo
+            document.getElementById('editDeviceName').value = device.name;
+            document.getElementById('editDeviceStatus').value = device.status;
+            document.getElementById('editDeviceDescription').value = device.description;
+            document.getElementById('editInstallationDate').value = device.installationDate;
+            document.getElementById('editDeviceModel').value = device.model;
+            document.getElementById('editDeviceSerialNumber').value = device.serialNumber;
+        });
+
+        // Función para manejar la edición (puedes integrar tu API aquí)
+        document.getElementById('editDeviceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Aquí puedes realizar la solicitud a la API para actualizar los datos
+            const updatedDevice = {
+                name: document.getElementById('editDeviceName').value,
+                status: document.getElementById('editDeviceStatus').value,
+                description: document.getElementById('editDeviceDescription').value,
+                installationDate: document.getElementById('editInstallationDate').value,
+                model: document.getElementById('editDeviceModel').value,
+                serialNumber: document.getElementById('editDeviceSerialNumber').value
+            };
+
+            console.log("Datos actualizados del dispositivo:", updatedDevice);
+            alert("Dispositivo actualizado correctamente.");
+            window.location.href = "index.html";  // Redirigir de vuelta al panel principal
+        });
+    </script>
+</body>
+</html>

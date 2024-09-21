@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Versión Freemium - Plataforma de Gestión de Redes Eléctricas</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylefreemium.css">
 </head>
 <body>
     <header>
@@ -25,18 +26,37 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="main-content">
-            <section id="version-freemium">
-                <h1>Versión Freemium</h1>
-                <h2>Características Gratis</h2>
-                <p>Lo que puedes hacer con la versión gratuita.</p>
-                <h2>Comparación con la Versión de Pago</h2>
-                <p>Diferencias entre la versión gratuita y la completa.</p>
-                <h2>Planes y Precios</h2>
-                <p>Información sobre los distintos planes y precios.</p>
-            </section>
+    
+    <section class="pricing-section">
+        <div class="pricing-table">
+            <div class="plan">
+                <h2>Plan Gratuito</h2>
+                <p class="price">$0.00 / mes</p>
+                <ul>
+                    <li><span>&#10003;</span> Monitorización básica de redes</li>
+                    <li><span>&#10007;</span> Sin soporte técnico prioritario</li>
+                    <li><span>&#10007;</span> Sin análisis predictivo</li>
+                    <li><span>&#10007;</span> Capacidad limitada de nodos de red</li>
+                    <li><span>&#10007;</span> Reportes básicos</li>
+                </ul>
+                <button class="btn-free">Obtener Gratis</button>
+            </div>
+
+            <div class="plan premium">
+                <h2>Plan Premium</h2>
+                <p class="price">$99.99 / mes</p>
+                <p class="trial">Empieza tu prueba gratuita de 30 días*</p>
+                <ul>
+                    <li><span>&#10003;</span> Monitorización avanzada de redes</li>
+                    <li><span>&#10003;</span> Soporte técnico 24/7</li>
+                    <li><span>&#10003;</span> Análisis predictivo</li>
+                    <li><span>&#10003;</span> Capacidad ilimitada de nodos</li>
+                    <li><span>&#10003;</span> Reportes avanzados y personalizables</li>
+                </ul>
+                <button class="btn-premium">Obtener Premium</button>
+            </div>
         </div>
+    </section>
         <footer>
             <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
         </footer>

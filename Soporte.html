@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soporte y Contacto - Plataforma de Gestión de Redes Eléctricas</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styleSoporte.css">
 </head>
 <body>
     <header>
@@ -25,18 +26,55 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="main-content">
-            <section id="soporte-contacto">
-                <h1>Soporte y Contacto</h1>
-                <h2>Ayuda Técnica</h2>
-                <p>Cómo contactar al soporte técnico (chat, correo electrónico, etc.).</p>
-                <h2>Formulario de Contacto</h2>
-                <p>Formulario para enviar preguntas o pedir más información.</p>
-                <h2>Sobre Nosotros</h2>
-                <p>Información sobre la empresa que desarrolla el software.</p>
-            </section>
+     <!-- Ayuda Técnica -->
+     <section class="ayuda-tecnica" id="ayuda-tecnica">
+        <div class="container">
+            <h2>Ayuda Técnica</h2>
+            <p>Para asistencia técnica, puedes contactar con nuestro equipo a través de:</p>
+            <ul>
+                <li>Chat en vivo (disponible 24/7)</li>
+                <li>Correo electrónico: soporte@gestorelectric.com</li>
+                <li>Teléfono: +34 900 123 456</li>
+            </ul>
         </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section class="formulario-contacto" id="contacto">
+        <div class="container">
+            <h2>Formulario de Contacto</h2>
+            <p>Envía tus preguntas o solicita más información mediante el siguiente formulario:</p>
+            <form action="#" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+                
+                <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section class="sobre-nosotros" id="sobre-nosotros">
+        <div class="container">
+            <h2>Sobre Nosotros</h2>
+            <p>GestorElectric es una empresa innovadora dedicada al desarrollo de software para la gestión eficiente de redes eléctricas. Nos apasiona la tecnología y buscamos hacer que la administración de la energía sea accesible para todos.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
         <footer>
             <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
         </footer>

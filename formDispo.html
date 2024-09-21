@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir/Eliminar Dispositivos</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylesProd.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <div class="navbar-container">
+            <img src="logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <h1>Gestión Eléctrica</h1>
+            <nav>
+                <ul class="nav-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="PanelControl.html">Panel de Control</a></li>
+                        <li><a href="GestionInventarios.html">Gestión de Inventarios</a></li>
+                        <li><a href="GeneracionInformes.html">Generación de Informes</a></li>
+                        <li><a href="VersionFreemium.html">Versión Freemium</a></li>
+                        <li><a href="Soporte.html">Soporte y Contacto</a></li>
+                        <li><a href="Login.html">Inicio Sesion</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container my-5">
+        <h1 class="text-center text-primary mb-4">Formulario de Dispositivos</h1>
+
+        <!-- Formulario para añadir/eliminar dispositivos -->
+        <form>
+            <!-- Nombre del dispositivo -->
+            <div class="mb-3">
+                <label for="deviceName" class="form-label">Nombre del Dispositivo</label>
+                <input type="text" class="form-control" id="deviceName" placeholder="Introduce el nombre del dispositivo" required>
+            </div>
+
+            <!-- Estado del dispositivo -->
+            <div class="mb-3">
+                <label for="deviceStatus" class="form-label">Estado del Dispositivo</label>
+                <select class="form-control" id="deviceStatus" required>
+                    <option>Activo</option>
+                    <option>Inactivo</option>
+                </select>
+            </div>
+
+            <!-- Descripción del dispositivo -->
+            <div class="mb-3">
+                <label for="deviceDescription" class="form-label">Descripción del Dispositivo</label>
+                <textarea class="form-control" id="deviceDescription" rows="3" placeholder="Describe brevemente las características del dispositivo" required></textarea>
+            </div>
+
+            <!-- Fecha de instalación -->
+            <div class="mb-3">
+                <label for="installationDate" class="form-label">Fecha de Instalación</label>
+                <input type="date" class="form-control" id="installationDate" required>
+            </div>
+
+            <!-- Modelo del dispositivo -->
+            <div class="mb-3">
+                <label for="deviceModel" class="form-label">Modelo del Dispositivo</label>
+                <input type="text" class="form-control" id="deviceModel" placeholder="Introduce el modelo del dispositivo" required>
+            </div>
+
+            <!-- Número de serie del dispositivo -->
+            <div class="mb-3">
+                <label for="deviceSerialNumber" class="form-label">Número de Serie</label>
+                <input type="text" class="form-control" id="deviceSerialNumber" placeholder="Introduce el número de serie del dispositivo" required>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar Dispositivo</button>
+                <button type="reset" class="btn btn-danger">Eliminar Dispositivo</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <footer>
+        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
