@@ -1,6 +1,14 @@
 /* Sección Hero */
+body {
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+    margin: 0;  
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
 .hero {
-    background-image: url('empresa.jpg');
+    background-image: url('imagenes/empresa.jpg');
     background-size: cover;
     background-position: center;
     height: 90vh;
@@ -58,6 +66,7 @@
 
 .servicios h2 {
     margin-bottom: 40px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
 }
 
 .service-cards {
@@ -102,6 +111,7 @@
 .mision h2, .vision h2 {
     color: #1DB954;
     margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
 }
 
 /* Sección Testimonios */
@@ -113,6 +123,7 @@
 
 .testimonios h2 {
     margin-bottom: 40px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
 }
 
 .testimonial-cards {
@@ -150,99 +161,20 @@
 }
 
 .contacto input, .contacto textarea {
-    border-radius: 5px;
     border: 1px solid #ccc;
-}
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    border-radius: 5px;
 }
 
-/* Estilos para el contenedor del header */
-header {
-    background-color: #222; /* Fondo oscuro */
-    padding: 15px 0;
-}
-
-/* Contenedor principal del nav */
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    margin: 0 auto;
-}
-
-/* Estilo del título */
-header h1 {
-    color: #1DB954; /* Verde vibrante */
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-/* Estilos del nav */
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px; /* Espacio entre los elementos */
-}
-
-/* Estilos de los enlaces */
-nav ul li a {
-    color: #fff; /* Color blanco */
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
-    position: relative;
-}
-
-/* Efecto hover con línea debajo */
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
+.contacto button {
     background-color: #1DB954;
-    left: 0;
-    bottom: -5px;
-    transition: width 0.3s ease;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Efecto hover */
-nav ul li a:hover {
-    color: #1DB954;
-    transform: translateY(-3px); /* Ligeramente hacia arriba */
-}
-
-nav ul li a:hover::after {
-    width: 100%;
-}
-
-/* Efectos adicionales para la versión responsive */
-@media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    header h1 {
-        margin-bottom: 20px;
-    }
+.contacto button:hover {
+    background-color: #17a34a;
 }

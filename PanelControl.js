@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const networkRows = document.querySelectorAll('.network-row');
+    const detailButtons = document.querySelectorAll('.btn.btn-primary.btn-sm');
 
-    networkRows.forEach(row => {
-        row.addEventListener('click', () => {
+    detailButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.stopPropagation(); // Evitar que otros eventos de clic en la fila se disparen
+            const row = button.closest('.network-row'); // Encuentra la fila que contiene el botón
             const networkId = row.getAttribute('data-network-id');
             const deviceRow = document.querySelector(`.device-row[data-parent-network="${networkId}"]`);
 
@@ -14,3 +16,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+    
