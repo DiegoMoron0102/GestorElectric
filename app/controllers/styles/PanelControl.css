@@ -37,6 +37,7 @@ h2 {
 /* Estilos de Botones */
 .btn {
     background-color: #1DB954; /* Color general de botón */
+    width: auto ;
     color: white;
     border: none;
     cursor: pointer;
@@ -50,6 +51,7 @@ h2 {
 /* Botones específicos */
 .btn-primary {
     background-color: #007bff; /* Azul */
+    width: auto;
 }
 
 .btn-warning {

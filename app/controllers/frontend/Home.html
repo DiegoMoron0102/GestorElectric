@@ -4,30 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
+    <link rel="stylesheet" href="/app/controllers/styles/index.css">
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
 </head>
 <body>
     <!-- Navbar -->
     <header>
         <div class="navbar-container">
-            <img src="imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
             <h1>Gestión Eléctrica</h1>
             <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="PanelControl.html">Panel de Control</a></li>
-                    <li><a href="GestionInventarios.html">Gestión de Inventarios</a></li>
-                    <li><a href="GeneracionInformes.html">Generación de Informes</a></li>
-                    <li><a href="VersionFreemium.html">Versión Freemium</a></li>
-                    <li><a href="Soporte.html">Soporte y Contacto</a></li>
-                    <li><a href="Login.html">Inicio Sesión</a></li>
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
                 </ul>
             </nav>
         </div>
     </header>
-
+    <script src="/app/controllers/js/roles_navbar.js"></script>
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-text">
@@ -42,17 +36,17 @@
         <h2>Nuestros Servicios</h2>
         <div class="service-cards">
             <div class="service-card">
-                <img src="imagenes/monitoreo.png" alt="Monitoreo de Redes">
+                <img src="/app/controllers/imagenes/monitoreo.png" alt="Monitoreo de Redes">
                 <h3>Monitoreo de Redes</h3>
                 <p>Control en tiempo real del consumo y el estado de las redes eléctricas.</p>
             </div>
             <div class="service-card">
-                <img src="imagenes/eficiencia.jpg" alt="Optimización de Consumo">
+                <img src="/app/controllers/imagenes/eficiencia.jpg" alt="Optimización de Consumo">
                 <h3>Optimización de Consumo</h3>
                 <p>Implementamos estrategias que ayudan a reducir el consumo y mejorar la eficiencia.</p>
             </div>
             <div class="service-card">
-                <img src="imagenes/opti.jpg" alt="Mantenimiento Predictivo">
+                <img src="/app/controllers/imagenes/opti.jpg" alt="Mantenimiento Predictivo">
                 <h3>Mantenimiento Predictivo</h3>
                 <p>Prevenimos fallos anticipando las necesidades de mantenimiento de tus sistemas eléctricos.</p>
             </div>

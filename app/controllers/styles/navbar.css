@@ -1,6 +1,7 @@
 /* Estilos para el contenedor del header */
 header {
     background-color: #222; /* Fondo negro */
+    
     padding: 0px 0;
 }
 
@@ -66,7 +67,48 @@ nav ul li a:hover {
 nav ul li a:hover::after {
     width: 100%;
 }
+/* Estilos para el dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropbtn {
+    color: white;
+    padding: 10px;
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.caret {
+    margin-left: 5px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #2b2b2b;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 /* Efectos adicionales para la versión responsive */
 @media (max-width: 768px) {
     .navbar-container {

@@ -4,30 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generación de Informes - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="gestInform.css">
+    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
+    <link rel="stylesheet" href="/app/controllers/styles/GeneracionInformes.css">
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="scriptGenInfor.js"></script>
+    <script src="/app/controllers/js/GeneracionInformes.js"></script>
 </head>
 <body>
     <header>
         <div class="navbar-container">
-            <img src="logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
             <h1>Gestión Eléctrica</h1>
             <nav>
-                <ul class="nav-links">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="PanelControl.html">Panel de Control</a></li>
-                        <li><a href="GestionInventarios.html">Gestión de Inventarios</a></li>
-                        <li><a href="GeneracionInformes.html">Generación de Informes</a></li>
-                        <li><a href="VersionFreemium.html">Versión Freemium</a></li>
-                        <li><a href="Soporte.html">Soporte y Contacto</a></li>
-                        <li><a href="Login.html">Inicio Sesion</a></li>
-                    </ul>
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
             </nav>
         </div>
     </header>
-
+    <script src="/app/controllers/js/roles_navbar.js"></script>
    <!-- Hero Section -->
    <section class="hero">
     <div class="hero-content">
@@ -144,7 +139,6 @@
     </div>
 </footer>
 
-<script src="script.js"></script>
     </div>
 </body>
 </html>

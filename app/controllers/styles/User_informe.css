@@ -1,0 +1,29 @@
+body {
+    background-color: #f4f4f4;
+}
+
+.navbar-container {
+    background-color: #222;
+}
+
+header h1 {
+    color: #1DB954; /* Verde vibrante */
+}
+
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success {
+    background-color: #1DB954;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #17a34a;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
+    <link rel="stylesheet" href="/app/controllers/styles/software.css">
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    
+    <title>Gestión de Software</title>
+</head>
+<body>
+    <header>
+        <div class="navbar-container">
+            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <h1>Gestión Eléctrica</h1>
+            <nav>
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script src="/app/controllers/js/roles_navbar.js"></script>
+
+    <main>
+        <button class="add-button" id="add-software-btn">Añadir Nuevo Software</button>
+        
+        <section class="product">
+            <h2>Nombre del Software</h2>
+            <p class="description">Una breve descripción del software que destaca sus características y beneficios.</p>
+            <h3>Funciones</h3>
+            <ul class="features">
+                <li>Función 1: Descripción breve de la función.</li>
+                <li>Función 2: Descripción breve de la función.</li>
+                <li>Función 3: Descripción breve de la función.</li>
+            </ul>
+            <div class="price">Costo: <strong>$49.99</strong></div>
+            <button class="edit-button">Editar</button>
+            <button class="delete-button">Eliminar</button>
+        </section>
+        
+        <section class="product">
+            <h2>Nombre del Software</h2>
+            <p class="description">Una breve descripción del software que destaca sus características y beneficios.</p>
+            <h3>Funciones</h3>
+            <ul class="features">
+                <li>Función 1: Descripción breve de la función.</li>
+                <li>Función 2: Descripción breve de la función.</li>
+                <li>Función 3: Descripción breve de la función.</li>
+            </ul>
+            <div class="price">Costo: <strong>$49.99</strong></div>
+            <button class="edit-button">Editar</button>
+            <button class="delete-button">Eliminar</button>
+        </section>
+
+        <div id="add-software-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Añadir Nuevo Software</h2>
+                <form id="software-form">
+                    <label for="software-name">Nombre:</label>
+                    <input type="text" id="software-name" required>
+                    <label for="software-description">Descripción:</label>
+                    <textarea id="software-description" required></textarea>
+                    <label for="software-features">Funciones (separadas por comas):</label>
+                    <input type="text" id="software-features" required>
+                    <label for="software-price">Costo:</label>
+                    <input type="number" id="software-price" required>
+                    <button type="submit">Añadir</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="/app/controllers/js/RegistrarSoftware.js"></script>
+</body>
+</html>
