@@ -1,43 +1,20 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte y Contacto - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+{% extends "base.html" %}
+
+{% block title %}Soporte y Contacto - Plataforma de Gestión de Redes Eléctricas{% endblock %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/soporte.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-</head>
-<body>
-    <header>
-        <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-            <h1>Gestión  Eléctrica</h1>
-            <nav>
-                <ul id="navbar" class="nav-links">
-                    <!-- El contenido del navbar será generado dinámicamente -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <script>
-        // Genera las rutas en el HTML usando url_for
-        const homeUrl = "{{ url_for('home') }}";
-        const loginUrl = "{{ url_for('login') }}";
-        const soporteUrl = "{{ url_for('soporte') }}";
-        const software = "{{ url_for('software') }}";
-    </script>
-    <script src="{{ url_for('static', filename='js/roles_navbar.js') }}"></script>
+{% endblock %}
+
+{% block content %}
     <main>
-        <!-- Sobre Nosotros -->
         <section class="sobre-nosotros" id="sobre-nosotros">
             <div class="container">
                 <h2>Sobre Nosotros</h2>
-                <p>GestorElectric es una empresa innovadora dedicada al desarrollo de software para la gestión eficiente de redes eléctricas. Nos apasiona la tecnología y buscamos hacer que la administración de la energía sea accesible para todos.</p>
+                <p>GestorElectric es una empresa innovadora dedicada al desarrollo de software para la gestión eficiente de redes eléctricas...</p>
             </div>
         </section>
 
-        <!-- Formulario de Contacto -->
         <section class="formulario-contacto" id="contacto">
             <div class="container">
                 <h2>Formulario de Contacto</h2>
@@ -45,23 +22,18 @@
                 <form action="#" method="POST">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
-                    
                     <label for="email">Correo Electrónico:</label>
                     <input type="email" id="email" name="email" required>
-
                     <label for="mensaje">Mensaje:</label>
                     <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-                    
                     <button type="submit" class="btn-enviar">Enviar Mensaje</button>
                 </form>
             </div>
         </section>
 
-        <!-- Ayuda Técnica -->
         <section class="ayuda-tecnica" id="ayuda-tecnica">
             <div class="container">
                 <h2>Ayuda Técnica</h2>
-                <p>Para asistencia técnica, puedes contactar con nuestro equipo a través de:</p>
                 <ul>
                     <li>Chat en vivo (disponible 24/7)</li>
                     <li>Correo electrónico: <a href="mailto:soporte@gestorelectric.com">soporte@gestorelectric.com</a></li>
@@ -70,15 +42,4 @@
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
-            <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <script src="/script.js"></script>
-</body>
-</html>
+{% endblock %}

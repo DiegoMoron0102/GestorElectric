@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario - Gestión de Productos</title>
-    <link rel="stylesheet" href="stylesinventario.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
-    <header>
-        <div class="navbar-container">
-            <img src="logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-            <h1>Inventario - Gestión Eléctrica</h1>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="PanelControl.html">Panel de Control</a></li>
-                    <li><a href="GestionInventarios.html">Gestión de Inventarios</a></li>
-                    <li><a href="GeneracionInformes.html">Generación de Informes</a></li>
-                    <li><a href="VersionFreemium.html">Versión Freemium</a></li>
-                    <li><a href="Soporte.html">Soporte y Contacto</a></li>
-                    <li><a href="Login.html">Inicio Sesion</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+{% extends "base.html" %}
 
+{% block title %}Inventario - Gestión de Productos{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesinventario.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
     <section class="hero">
         <div class="hero-text">
             <h2>Gestión de Inventarios Eléctricos</h2>
@@ -42,36 +24,33 @@
         <h2>Productos Disponibles</h2>
         <div class="product-cards">
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto1.jpg" alt="Producto 1">
+                <img src="{{ url_for('static', filename='img/producto1.jpg') }}" alt="Producto 1">
                 <h3>Transformador</h3>
                 <p>Capacidad: 150 kVA</p>
                 <button onclick="verDetalles('Transformador', '150 kVA', 'producto1.jpg')">Ver Detalles</button>
             </div>
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto2.jpg" alt="Producto 2">
+                <img src="{{ url_for('static', filename='img/producto2.jpg') }}" alt="Producto 2">
                 <h3>Interruptor Automático</h3>
                 <p>Capacidad: 120 A</p>
                 <button onclick="verDetalles('Interruptor Automático', '120 A', 'producto2.jpg')">Ver Detalles</button>
             </div>
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto3.jpg" alt="Producto 3">
+                <img src="{{ url_for('static', filename='img/producto3.jpg') }}" alt="Producto 3">
                 <h3>Cable de Alta Tensión</h3>
                 <p>Tipo: THHN, 500 metros</p>
                 <button onclick="verDetalles('Cable de Alta Tensión', 'THHN, 500 metros', 'producto3.jpg')">Ver Detalles</button>
             </div>
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto4.jpg" alt="Producto 4">
+                <img src="{{ url_for('static', filename='img/producto4.jpg') }}" alt="Producto 4">
                 <h3>Panel Eléctrico</h3>
                 <p>Modular, 8 posiciones</p>
                 <button onclick="verDetalles('Panel Eléctrico', 'Modular, 8 posiciones', 'producto4.jpg')">Ver Detalles</button>
             </div>
         </div>
     </section>
+{% endblock %}
 
-    <footer>
-        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="scriptsinventario.js"></script>
-</body>
-</html>
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/scriptsinventario.js') }}"></script>
+{% endblock %}
