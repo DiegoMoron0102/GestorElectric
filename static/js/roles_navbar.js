@@ -1,6 +1,8 @@
 // Simulamos que obtenemos el rol del usuario (en el futuro, podría venir de un backend)
 let userRole = localStorage.getItem('userRole') || "Sin Registro"; // Cambia entre "Sin Registro", "FreeUser", "PremiumUser", "Admin"
-let name = localStorage.getItem('userName') || "Invitado";
+let name = localStorage.getItem('userRole') || "Invitado";
+
+
 
 // Referencia al elemento del navbar
 const navbar = document.getElementById("navbar");
@@ -64,13 +66,14 @@ function renderNavbar(role) {
     // Insertamos las opciones de navegación generadas en el navbar
     navbar.innerHTML = navItems;
 
-    // Función de Logout
-    document.getElementById('logout')?.addEventListener('click', function() {
-        // Limpiar el rol del usuario y redirigir a la página de login
-        localStorage.removeItem('userRole');
-        localStorage.removeItem('userName');
-        window.location.href = '/login';  // Redirigir al login después de cerrar sesión
-    });
+    // Logout functionality
+    document.getElementById('logout').addEventListener('click', function() {
+    // Limpiar el rol del usuario y redirigir a la página de login
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('userName');
+    window.location.href = '/logout';  // Redirigir a la ruta de Flask que maneja el logout
+});
+
 }
 
 // Llamamos a la función de renderizado del navbar

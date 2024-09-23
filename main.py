@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,session,flash,redirect,url_for
 from autenticacion import autenticacion_bp  # Importa tu blueprint de autenticación
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ app.secret_key = 'una_clave_secreta_muy_segura'
 app.register_blueprint(autenticacion_bp)
 
 # Ruta para la página principal (home)
-@app.route('/inicio')
+@app.route('/')
 def home():
     return render_template('Home.html')
 
@@ -18,6 +18,23 @@ def home():
 @app.route('/login')
 def login():
     return render_template('Login.html')
+
+
+@app.route('/logout')
+def logout():
+    # Aquí limpiamos la sesión al cerrar sesión
+    session.pop('user', None)
+    session.pop('email', None)
+    session.pop('role', None)
+    session.pop('name', None)
+    flash("Has cerrado sesión correctamente", "success")
+    return redirect(url_for('autenticacion_bp.login'))
+
+
+@app.route('/user/registro_usuario', methods=['GET', 'POST'])
+def registro_usuario():
+    return render_template('F_user/RegistroUsuario.html')
+
 
 @app.route('/recuperar_contraseña')
 def recuperar_contraseña():
@@ -54,12 +71,6 @@ def panel_control():
 def informes():
     return render_template('F_user/Informes.html')
 
-@app.route('/user/registro_usuario', methods=['GET', 'POST'])
-def registro_usuario():
-    if request.method == 'POST':
-        # Lógica para registrar al usuario
-        pass
-    return render_template('F_user/RegistroUsuario.html')
 
 @app.route('/user/software')
 def software():

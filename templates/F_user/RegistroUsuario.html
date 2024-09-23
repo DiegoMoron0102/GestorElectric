@@ -21,7 +21,14 @@
             </nav>
         </div>
     </header>
-
+    <script>
+        // Genera las rutas en el HTML usando url_for
+        const homeUrl = "{{ url_for('home') }}";
+        const loginUrl = "{{ url_for('login') }}";
+        const soporteUrl = "{{ url_for('soporte') }}";
+        const software = "{{ url_for('software') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/roles_navbar.js') }}"></script>
     <!-- Registro de Usuario -->
     <div class="container">
         <h2>REGISTRO DE USUARIO</h2>
