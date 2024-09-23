@@ -25,7 +25,7 @@ function renderNavbar(role) {
             <li class="dropdown">
                 <a href="#" class="dropbtn">${name} <span class="caret">▼</span></a>
                 <div class="dropdown-content">
-                    <a href="InfoUsuario.html">Info Usuario</a>
+                    <a href="/app/controllers/frontend/InfoUsuario.html">Info Usuario</a>
                     <a href="#" id="logout">Cerrar Sesión</a>
                 </div>
             </li>
@@ -39,7 +39,7 @@ function renderNavbar(role) {
              <li class="dropdown">
                 <a href="#" class="dropbtn">${name} <span class="caret">▼</span></a>
                 <div class="dropdown-content">
-                    <a href="InfoUsuario.html">Info Usuario</a>
+                    <a href="/app/controllers/frontend/InfoUsuario.html">Info Usuario</a>
                     <a href="#" id="logout">Cerrar Sesión</a>
                 </div>
             </li>

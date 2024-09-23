@@ -4,7 +4,10 @@ header {
     
     padding: 0px 0;
 }
-
+h1 {
+    margin: 0;
+    flex-grow: 1;
+}
 /* Contenedor principal del nav */
 .navbar-container {
     display: flex;

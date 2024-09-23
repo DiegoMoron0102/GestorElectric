@@ -3,39 +3,14 @@
 }
 
 body {
-    margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-}
-
-header {
-    background-color: #222;
-    padding: 0px 0;
-}
-
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin: 0 auto;
-}
-
-header h1 {
-    color: #1DB954;
-    font-size: 2rem;
-}
-
-nav {
-    display: flex;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
+    margin: 0;
     padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4; /* Fondo gris claro */
+    transition: background-color 0.5s ease; /* Transición suave de fondo */
 }
-
 main {
     padding: 20px;
 }
@@ -169,26 +144,94 @@ main {
 }
 
 /* Modal styles */
+/* Estilos para el fondo del modal */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
+    display: none; /* Se oculta por defecto */
+    position: fixed; /* Fijo para que se superponga a la página */
+    z-index: 1; /* Asegura que se superponga a otros elementos */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto; /* Permite el scroll si el contenido es demasiado grande */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
 }
 
+/* Contenedor del contenido del modal */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: white;
+    margin: 15% auto; /* Centrado vertical y horizontal */
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
+    border-radius: 10px;
+    max-width: 500px; /* Ancho máximo del modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    text-align: left;
 }
+
+/* Botón de cierre (X) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Estilos del título */
+.modal-content h2 {
+    margin-top: 0;
+    color: #1DB954; /* Verde similar al que mencionabas */
+}
+
+/* Estilos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    background-color: #f9f9f9;
+    margin-bottom: 15px;
+}
+
+textarea {
+    resize: vertical; /* Permite cambiar el tamaño vertical del textarea */
+}
+
+/* Botón de añadir software */
+button[type="submit"] {
+    background-color: #1DB954;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #17a34a; /* Un tono más oscuro al hacer hover */
+}
+
 
 .close {
     color: #aaa;

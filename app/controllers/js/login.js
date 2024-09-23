@@ -38,6 +38,8 @@ loginForm.addEventListener('submit', function(event) {
         // Si el usuario es válido, guardamos el rol y el nombre en localStorage
         localStorage.setItem('userRole', user.role);
         localStorage.setItem('userName', user.name);
+        localStorage.setItem('userEmail', user.email);
+        localStorage.setItem('userPassword', user.password);
 
         // Redirigimos a la página principal o a la página correspondiente
         window.location.href = 'Home.html'; // Cambia a la página donde el usuario será redirigido

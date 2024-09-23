@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Usuario</title>
+    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
+    <link rel="stylesheet" href="/app/controllers/styles/InfoUsuario.css">
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+</head>
+<body>
+    <header>
+        <div class="navbar-container">
+            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <h1>Gestión Eléctrica</h1>
+            <nav>
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script src="/app/controllers/js/roles_navbar.js"></script>
+    <div class="container">
+        <div class="user-icon">
+            <img src="https://via.placeholder.com/60?text=👤" alt="Usuario">
+        </div>
+        <h1>Información del Usuario</h1>
+
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="role">Rol de Usuario</label>
+            <input type="text" id="role" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="birthdate">Fecha de Nacimiento</label>
+            <input type="date" id="birthdate" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Dirección</label>
+            <input type="text" id="address" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" disabled>
+        </div>
+
+        <button class="btn" id="editButton">Editar Información</button>
+    </div>
+
+    <script src="/app/controllers/js/InfoUsuario.js"></script>
+    <footer>
+        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
