@@ -10,9 +10,9 @@ body {
 
 /* Contenedor principal */
 .container {
-    max-width: 500px;
-    margin: 50px auto; /* Centrar el contenedor */
-    padding: 20px;
+    max-width: 400px; /* Ajusta el ancho para centrar mejor */
+    margin: 80px auto; /* Incrementa el margen superior para centrar verticalmente */
+    padding: 30px; /* Aumenta el padding para más espacio alrededor del contenido */
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -37,9 +37,10 @@ body {
 
 .form-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px 15px; /* Aumenta el padding dentro de los inputs */
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
 }
 
 /* Botón */

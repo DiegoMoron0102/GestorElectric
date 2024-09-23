@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguridad y Autenticación - Plataforma de Gestión de Redes Eléctricas</title>
+    <title>Recuperación de Contraseña - Plataforma de Gestión de Redes Eléctricas</title>
     <link rel="stylesheet" href="/app/controllers/styles/footer.css">
     <link rel="stylesheet" href="/app/controllers/styles/login.css">
     <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
@@ -21,29 +21,28 @@
         </div>
     </header>
     <script src="/app/controllers/js/roles_navbar.js"></script>
+    
     <div class="container">
-        <h2>BIENVENIDO</h2>
-        <form id="login-form">
+        <h2>Recuperar Contraseña</h2>
+        <form id="password-recovery-form">
             <div class="form-group">
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" placeholder="Tu correo" required>
+                <label for="email-recovery">Ingresa tu correo electrónico:</label>
+                <input type="email" id="email-recovery" name="email-recovery" placeholder="Tu correo" required>
             </div>
         
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
-            </div>
-        
-            <button type="submit" class="btn">Iniciar Sesión</button>
+            <button type="submit" class="btn">Recuperar Contraseña</button>
         </form>
+
+        <p><a href="/app/controllers/frontend/login.html">Volver al Inicio de Sesión</a></p>
         
-        <p>No tienes cuenta? <a href="/app/controllers/frontend/F_user/RegistroUsuario.html">Registrarse</a></p>
-        <p><a href="/app/controllers/frontend/RecuperarContraseña.html">Olvidaste tu contraseña?</a></p>
+        <div id="recovery-message" style="margin-top: 20px;"></div>
     </div>
+
     <footer>
         <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
         <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
     </footer>
-    <script src="/app/controllers/js/login.js"></script>
+
+    <script src="/app/controllers/js/passwordRecovery.js"></script>
 </body>
 </html>
