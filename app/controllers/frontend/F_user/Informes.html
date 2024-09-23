@@ -26,22 +26,33 @@
         <h2 class="mb-4">Informes de Redes de Clientes</h2>
         <button class="btn btn-success mb-3" id="download-pdf">Descargar como PDF</button>
 
-        <div class="card mb-4 p-3">
-            <h3>Gráfico de Consumo de Energía por Cliente</h3>
-            <canvas id="energyConsumptionChart"></canvas>
-            <p class="mt-2">Este gráfico muestra el consumo de energía por cliente, permitiendo identificar patrones y optimizar la gestión de recursos.</p>
+        <!-- Bloque 1 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4 p-3">
+                    <h3>Gráfico de Consumo de Energía por Cliente</h3>
+                    <canvas id="energyConsumptionChart"></canvas>
+                    <p class="mt-2">Este gráfico muestra el consumo de energía por cliente, permitiendo identificar patrones y optimizar la gestión de recursos.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4 p-3">
+                    <h3>Gráfico de Picos de Consumo</h3>
+                    <canvas id="peakConsumptionChart"></canvas>
+                    <p class="mt-2">Este gráfico ilustra los picos de consumo, lo que ayuda a planificar la distribución de la carga en las redes eléctricas.</p>
+                </div>
+            </div>
         </div>
 
-        <div class="card mb-4 p-3">
-            <h3>Gráfico de Picos de Consumo</h3>
-            <canvas id="peakConsumptionChart"></canvas>
-            <p class="mt-2">Este gráfico ilustra los picos de consumo, lo que ayuda a planificar la distribución de la carga en las redes eléctricas.</p>
-        </div>
-
-        <div class="card mb-4 p-3">
-            <h3>Gráfico de Eficiencia Energética</h3>
-            <canvas id="energyEfficiencyChart"></canvas>
-            <p class="mt-2">Este gráfico evalúa la eficiencia energética, facilitando la identificación de áreas de mejora en el uso de la energía.</p>
+        <!-- Bloque 2 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4 p-3">
+                    <h3>Gráfico de Eficiencia Energética</h3>
+                    <canvas id="energyEfficiencyChart"></canvas>
+                    <p class="mt-2">Este gráfico evalúa la eficiencia energética, facilitando la identificación de áreas de mejora en el uso de la energía.</p>
+                </div>
+            </div>
         </div>
     </main>
 
