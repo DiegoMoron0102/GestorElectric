@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+    <link rel="stylesheet" href="stylesinventario.css">
+</head>
+<body>
+    <header>
+        <h1>Detalles del Producto</h1>
+    </header>
+
+    <section class="detalle-producto">
+        <img id="productoImagen" alt="Imagen del Producto" width="300">
+        <h2 id="productoNombre"></h2>
+        <p id="productoCapacidad"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+        const nombre = params.get('nombre');
+        const capacidad = params.get('capacidad');
+        const imagen = params.get('imagen');
+
+        // Verifica si los parámetros existen y luego los muestra
+        if (nombre && capacidad && imagen) {
+            document.getElementById('productoNombre').textContent = nombre;
+            document.getElementById('productoCapacidad').textContent = `Capacidad: ${capacidad}`;
+            document.getElementById('productoImagen').src = imagen;
+        } else {
+            document.getElementById('productoNombre').textContent = 'Producto no encontrado';
+            document.getElementById('productoCapacidad').textContent = '';
+            document.getElementById('productoImagen').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

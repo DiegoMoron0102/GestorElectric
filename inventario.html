@@ -1,55 +1,77 @@
-<!-- archivo: inventario.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario</title>
-    <link rel="stylesheet" href="stylesprod.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <title>Inventario - Gestión de Productos</title>
+    <link rel="stylesheet" href="stylesinventario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body style="background-color: white;">
-
-    <div class="container my-5">
-        <h1 class="text-center mb-4" style="color: #243B4A;">Inventario</h1>
-
-        <!-- Tabla de productos -->
-        <div class="mt-5">
-            <table class="table table-striped">
-                <thead style="background-color: #E8C7C7;">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre del Dispositivo</th>
-                        <th>Categoría</th>
-                        <th>Consumo</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Medidor Inteligente</td>
-                        <td>Monitoreo</td>
-                        <td>50W</td>
-                        <td>Activo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Panel de Control</td>
-                        <td>Control</td>
-                        <td>100W</td>
-                        <td>Inactivo</td>
-                    </tr>
-                </tbody>
-            </table>
+<body>
+    <header>
+        <div class="navbar-container">
+            <img src="logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <h1>Inventario - Gestión Eléctrica</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="PanelControl.html">Panel de Control</a></li>
+                    <li><a href="GestionInventarios.html">Gestión de Inventarios</a></li>
+                    <li><a href="GeneracionInformes.html">Generación de Informes</a></li>
+                    <li><a href="VersionFreemium.html">Versión Freemium</a></li>
+                    <li><a href="Soporte.html">Soporte y Contacto</a></li>
+                    <li><a href="Login.html">Inicio Sesion</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <!-- Botón "Atrás" -->
-        <div class="text-center mt-4">
-            <a href="indexprod.html" class="btn btn-danger" style="background-color: #ef9a9a; border-color: #ef9a9a;">Atrás</a>
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Gestión de Inventarios Eléctricos</h2>
+            <p>Monitorea y controla los productos eléctricos en tu inventario de forma eficiente.</p>
         </div>
-    </div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <section class="search-bar">
+        <input type="text" placeholder="Buscar producto..." id="searchInput">
+        <button><i class="fas fa-search"></i></button>
+    </section>
+
+    <section class="inventario-container">
+        <h2>Productos Disponibles</h2>
+        <div class="product-cards">
+            <div class="product-card">
+                <img src="producto1.jpg" alt="Producto 1">
+                <h3>Transformador</h3>
+                <p>Capacidad: 150 kVA</p>
+                <button onclick="verDetalles('Transformador', '150 kVA', 'producto1.jpg')">Ver Detalles</button>
+            </div>
+            <div class="product-card">
+                <img src="producto2.jpg" alt="Producto 2">
+                <h3>Interruptor Automático</h3>
+                <p>Capacidad: 120 A</p>
+                <button onclick="verDetalles('Interruptor Automático', '120 A', 'producto2.jpg')">Ver Detalles</button>
+            </div>
+            <div class="product-card">
+                <img src="producto3.jpg" alt="Producto 3">
+                <h3>Cable de Alta Tensión</h3>
+                <p>Tipo: THHN, 500 metros</p>
+                <button onclick="verDetalles('Cable de Alta Tensión', 'THHN, 500 metros', 'producto3.jpg')">Ver Detalles</button>
+            </div>
+            <div class="product-card">
+                <img src="producto4.jpg" alt="Producto 4">
+                <h3>Panel Eléctrico</h3>
+                <p>Modular, 8 posiciones</p>
+                <button onclick="verDetalles('Panel Eléctrico', 'Modular, 8 posiciones', 'producto4.jpg')">Ver Detalles</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="scriptsinventario.js"></script>
 </body>
 </html>
