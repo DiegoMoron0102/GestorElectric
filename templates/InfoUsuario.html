@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información del Usuario</title>
-    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
-    <link rel="stylesheet" href="/app/controllers/styles/InfoUsuario.css">
-    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
-</head>
-<body>
-    <header>
-        <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-            <h1>Gestión Eléctrica</h1>
-            <nav>
-                <ul id="navbar" class="nav-links">
-                    <!-- El contenido del navbar será generado dinámicamente -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <script src="/app/controllers/js/roles_navbar.js"></script>
+{% extends "base.html" %}
+
+{% block title %}Información del Usuario{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/InfoUsuario.css') }}">
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <div class="user-icon">
             <img src="https://via.placeholder.com/60?text=👤" alt="Usuario">
@@ -59,11 +45,8 @@
 
         <button class="btn" id="editButton">Editar Información</button>
     </div>
+{% endblock %}
 
-    <script src="/app/controllers/js/InfoUsuario.js"></script>
-    <footer>
-        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
-        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/InfoUsuario.js') }}"></script>
+{% endblock %}
