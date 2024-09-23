@@ -23,7 +23,7 @@ function renderNavbar(role) {
             <li><a href="${homeUrl}">Inicio</a></li>
             <li><a href="${software}">Software</a></li>
             <li><a href="${soporteUrl}">Soporte Técnico</a></li>
-            <li><a href="/user/panel_control">Mis Redes</a></li>
+            <li><a href="/F_user/UserPanelControl">Mis Redes</a></li>
             <li class="dropdown">
                 <a href="#" class="dropbtn">${name} <span class="caret">▼</span></a>
                 <div class="dropdown-content">
@@ -37,7 +37,7 @@ function renderNavbar(role) {
             <li><a href="${homeUrl}">Inicio</a></li>
             <li><a href="${software}">Software Premium</a></li>
             <li><a href="${soporteUrl}">Soporte Premium</a></li>
-            <li><a href="/user/panel_control">Mis Redes</a></li>
+            <li><a href="/F_user/UserPanelControl">Mis Redes</a></li>
             <li><a href="/user/informes">Informes Detallados</a></li>
             <li class="dropdown">
                 <a href="#" class="dropbtn">${name} <span class="caret">▼</span></a>

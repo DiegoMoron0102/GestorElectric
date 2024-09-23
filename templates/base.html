@@ -26,7 +26,7 @@
                         <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
 
                     {% elif session['role'] == 'FreeUser' %}
-                        <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
+                        <li><a href="{{ url_for('UserPanelControl') }}">Mis Redes</a></li>
 
                     {% elif session['role'] == 'PremiumUser' %}
                         <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
