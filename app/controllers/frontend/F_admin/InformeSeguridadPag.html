@@ -1,86 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Informes de Intentos de Penetración de Seguridad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
-  <link rel="stylesheet" href="/app/controllers/styles/InformeSeguridadPag.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="/app/controllers/js/GeneracionInformes.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Panel de informes sobre intentos de penetración de seguridad en el sistema de gestión eléctrica.">
+    <meta name="author" content="Gestión Eléctrica">
+    <title>Informes de Intentos de Penetración de Seguridad</title>
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    <link rel="stylesheet" href="/app/controllers/styles/InformeSeguridadPag.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- encabezado con logo y navbar dinámico -->
-  <header>
-    <div class="navbar-container">
-      <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-      <h1>Gestión Eléctrica</h1>
-      <nav>
-        <ul id="navbar" class="nav-links">
-          <!-- El contenido del navbar será generado dinámicamente -->
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <!-- sección de formulario -->
-  <section class="form-section">
-    <h2>Agregar Informe</h2>
-    <form id="informe-form">
-      <div class="form-group">
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" class="input-field" required>
-      </div>
-      <div class="form-group">
-        <label for="gravedad">Gravedad:</label>
-        <select id="gravedad" class="input-field" required>
-          <option value="Baja">Baja</option>
-          <option value="Media">Media</option>
-          <option value="Alta">Alta</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="detalles">Detalles del Intento:</label>
-        <textarea id="detalles" class="input-field" required></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Agregar Informe</button>
-    </form>
-  </section>
+    <header>
+        <div class="navbar-container">
+            <a href="/" class="logo-link">
+                <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo Gestión Eléctrica" class="logo" width="70" height="70">
+            </a>
+            <h1 class="site-title">Gestión Eléctrica</h1>
+            <nav aria-label="Menú de navegación principal">
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <!-- sección de filtros -->
-  <section class="filter-section">
-    <h2>Filtrar Informes</h2>
-    <div class="filter-group">
-      <label for="filter-gravedad">Filtrar por Gravedad:</label>
-      <select id="filter-gravedad" class="input-field">
-        <option value="Todos">Todos</option>
-        <option value="Baja">Baja</option>
-        <option value="Media">Media</option>
-        <option value="Alta">Alta</option>
-      </select>
-    </div>
-  </section>
+    <main>
+        <section class="report-section">
+            <h2>Informes de Intentos de Penetración de Seguridad</h2>
+            <table id="report-table" aria-describedby="Informe de intentos de penetración en la seguridad del sistema.">
+                <thead>
+                    <tr>
+                        <th scope="col">ID del Informe</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo de Ataque</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="report-content">
+                    <!-- Los informes serán generados dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
 
-  <!-- tabla de informes -->
-  <section class="table-section">
-    <h2>Informes Registrados</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Gravedad</th>
-          <th>Detalles</th>
-        </tr>
-      </thead>
-      <tbody id="informe-table-body">
-        <!-- Los informes se agregarán dinámicamente aquí -->
-      </tbody>
-    </table>
-  </section>
+    <footer>
+        <p>© 2024 Gestión Eléctrica. Todos los derechos reservados.</p>
+    </footer>
 
-  <!-- scripts -->
-  <script src="/app/controllers/js/roles_navbar.js"></script>
-  <script src="script.js"></script>
+    <script src="/app/controllers/js/roles_navbar.js"></script>
+    <script src="/app/controllers/js/security_reports.js"></script>
 </body>
 </html>
