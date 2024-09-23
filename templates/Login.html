@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seguridad y Autenticación - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
-    <link rel="stylesheet" href="/app/controllers/styles/login.css">
-    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
 </head>
 <body>
     <header>
         <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <img src="{{ url_for('static', filename='img/logo_rayo.png') }}" alt="Logo" class="logo" width="70" height="70">
             <h1>Gestión Eléctrica</h1>
             <nav>
                 <ul id="navbar" class="nav-links">
@@ -20,10 +20,11 @@
             </nav>
         </div>
     </header>
-    <script src="/app/controllers/js/roles_navbar.js"></script>
+
     <div class="container">
         <h2>BIENVENIDO</h2>
-        <form id="login-form">
+        <!-- Asegúrate de que el formulario use POST -->
+        <form id="login-form" method="POST" action="{{ url_for('autenticacion_bp.login') }}">
             <div class="form-group">
                 <label for="email">Correo electrónico:</label>
                 <input type="email" id="email" name="email" placeholder="Tu correo" required>
@@ -37,13 +38,15 @@
             <button type="submit" class="btn">Iniciar Sesión</button>
         </form>
         
-        <p>No tienes cuenta? <a href="/app/controllers/frontend/F_user/RegistroUsuario.html">Registrarse</a></p>
-        <p><a href="/app/controllers/frontend/RecuperarContraseña.html">Olvidaste tu contraseña?</a></p>
+        <p>No tienes cuenta? <a href="{{ url_for('registro_usuario') }}">Registrarse</a></p>
+        <p><a href="{{ url_for('recuperar_contraseña') }}">Olvidaste tu contraseña?</a></p>
     </div>
+
     <footer>
         <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
         <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
     </footer>
-    <script src="/app/controllers/js/login.js"></script>
+     <!-- Enlazar el archivo JS externo -->
+     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>
 </html>

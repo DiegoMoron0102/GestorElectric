@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='footer.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
 </head>
 <body>
     <!-- Navbar -->
     <header>
         <div class="navbar-container">
-            <img src="{{ url_for('static', filename='imagenes/logo_rayo.png') }}" alt="Logo" class="logo" width="70" height="70">
+            <img src="{{ url_for('static', filename='img/logo_rayo.png') }}" alt="Logo" class="logo" width="70" height="70">
             <h1>Gestión Eléctrica</h1>
             <nav>
                 <ul id="navbar" class="nav-links">
@@ -21,6 +21,13 @@
             </nav>
         </div>
     </header>
+    <script>
+        // Genera las rutas en el HTML usando url_for
+        const homeUrl = "{{ url_for('home') }}";
+        const loginUrl = "{{ url_for('login') }}";
+        const soporteUrl = "{{ url_for('soporte') }}";
+        const software = "{{ url_for('software') }}";
+    </script>
     <script src="{{ url_for('static', filename='js/roles_navbar.js') }}"></script>
     <!-- Hero Section -->
     <section id="inicio" class="hero">
@@ -36,17 +43,17 @@
         <h2>Nuestros Servicios</h2>
         <div class="service-cards">
             <div class="service-card">
-                <img src="{{ url_for('static', filename='imagenes/monitoreo.png') }}" alt="Monitoreo de Redes">
+                <img src="{{ url_for('static', filename='img/monitoreo.png') }}" alt="Monitoreo de Redes">
                 <h3>Monitoreo de Redes</h3>
                 <p>Control en tiempo real del consumo y el estado de las redes eléctricas.</p>
             </div>
             <div class="service-card">
-                <img src="{{ url_for('static', filename='imagenes/eficiencia.jpg') }}" alt="Optimización de Consumo">
+                <img src="{{ url_for('static', filename='img/eficiencia.jpg') }}" alt="Optimización de Consumo">
                 <h3>Optimización de Consumo</h3>
                 <p>Implementamos estrategias que ayudan a reducir el consumo y mejorar la eficiencia.</p>
             </div>
             <div class="service-card">
-                <img src="{{ url_for('static', filename='imagenes/opti.jpg') }}" alt="Mantenimiento Predictivo">
+                <img src="{{ url_for('static', filename='img/opti.jpg') }}" alt="Mantenimiento Predictivo">
                 <h3>Mantenimiento Predictivo</h3>
                 <p>Prevenimos fallos anticipando las necesidades de mantenimiento de tus sistemas eléctricos.</p>
             </div>

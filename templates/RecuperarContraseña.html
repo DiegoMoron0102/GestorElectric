@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperación de Contraseña - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
-    <link rel="stylesheet" href="/app/controllers/styles/login.css">
-    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
 </head>
 <body>
     <header>
@@ -20,7 +20,14 @@
             </nav>
         </div>
     </header>
-    <script src="/app/controllers/js/roles_navbar.js"></script>
+    <script>
+        // Genera las rutas en el HTML usando url_for
+        const homeUrl = "{{ url_for('home') }}";
+        const loginUrl = "{{ url_for('login') }}";
+        const soporteUrl = "{{ url_for('soporte') }}";
+        const software = "{{ url_for('software') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/roles_navbar.js') }}"></script>
     
     <div class="container">
         <h2>Recuperar Contraseña</h2>
