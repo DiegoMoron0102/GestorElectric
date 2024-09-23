@@ -1,1 +1,86 @@
-#hola
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informes de Intentos de Penetración de Seguridad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+  <link rel="stylesheet" href="/app/controllers/styles/InformeSeguridadPag.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/app/controllers/js/GeneracionInformes.js"></script>
+</head>
+<body>
+  <!-- encabezado con logo y navbar dinámico -->
+  <header>
+    <div class="navbar-container">
+      <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+      <h1>Gestión Eléctrica</h1>
+      <nav>
+        <ul id="navbar" class="nav-links">
+          <!-- El contenido del navbar será generado dinámicamente -->
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- sección de formulario -->
+  <section class="form-section">
+    <h2>Agregar Informe</h2>
+    <form id="informe-form">
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" class="input-field" required>
+      </div>
+      <div class="form-group">
+        <label for="gravedad">Gravedad:</label>
+        <select id="gravedad" class="input-field" required>
+          <option value="Baja">Baja</option>
+          <option value="Media">Media</option>
+          <option value="Alta">Alta</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="detalles">Detalles del Intento:</label>
+        <textarea id="detalles" class="input-field" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Agregar Informe</button>
+    </form>
+  </section>
+
+  <!-- sección de filtros -->
+  <section class="filter-section">
+    <h2>Filtrar Informes</h2>
+    <div class="filter-group">
+      <label for="filter-gravedad">Filtrar por Gravedad:</label>
+      <select id="filter-gravedad" class="input-field">
+        <option value="Todos">Todos</option>
+        <option value="Baja">Baja</option>
+        <option value="Media">Media</option>
+        <option value="Alta">Alta</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- tabla de informes -->
+  <section class="table-section">
+    <h2>Informes Registrados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Gravedad</th>
+          <th>Detalles</th>
+        </tr>
+      </thead>
+      <tbody id="informe-table-body">
+        <!-- Los informes se agregarán dinámicamente aquí -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- scripts -->
+  <script src="/app/controllers/js/roles_navbar.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
