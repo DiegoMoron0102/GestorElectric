@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Inventarios - Plataforma de Gestión de Redes Eléctricas</title>
+    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
+    <link rel="stylesheet" href="/app/controllers/styles/GestionInventarios.css">
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+</head>
+<body>
+    <header>
+        <div class="navbar-container">
+            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <h1>Gestión Eléctrica</h1>
+            <nav>
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script src="/app/controllers/js/roles_navbar.js"></script>
+    <div class="container">
+        <h1 class="text-center text-primary mb-4">Gestión de Inventarios</h1>
+
+        <!-- Carrusel de productos -->
+        <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/app/controllers/imagenes/producto1.jpg" class="d-block w-100" alt="Producto 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="/app/controllers/imagenes/imagenes/producto2.jpg" class="d-block w-100" alt="Producto 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="/app/controllers/imagenes/imagenes/producto3.jpg" class="d-block w-100" alt="Producto 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="/app/controllers/imagenes/imagenes/producto4.jpg" class="d-block w-100" alt="Producto 4">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+
+        <!-- Botón para añadir dispositivos -->
+        <div class="text-center mb-5">
+            <a href="formDispo.html" class="btn btn-primary btn-lg">Añadir/Eliminar Dispositivos</a>
+        </div>
+
+        <!-- Tabla de dispositivos -->
+        <div>
+            <table class="table table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Dispositivo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Medidor Inteligente</td>
+                        <td>Activo</td>
+                        <td>
+                            <button class="btn btn-warning">Editar</button>
+                            <button class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Panel de Control</td>
+                        <td>Inactivo</td>
+                        <td>
+                            <button class="btn btn-warning">Editar</button>
+                            <button class="btn btn-danger">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!-- Más filas aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

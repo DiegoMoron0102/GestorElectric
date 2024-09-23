@@ -1,0 +1,98 @@
+/* Estilos Generales */
+body {
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Sección del Panel de Control */
+.container {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #1DB954; /* Color del título */
+    margin-bottom: 40px;
+}
+
+/* Filtros */
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-select,
+.form-control,
+.btn {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Estilos de Botones */
+.btn {
+    background-color: #1DB954; /* Color general de botón */
+    width: auto ;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #17a34a; /* Color en hover */
+}
+
+/* Botones específicos */
+.btn-primary {
+    background-color: #007bff; /* Azul */
+    width: auto;
+}
+
+.btn-warning {
+    background-color: #ffc107; /* Amarillo */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Rojo */
+}
+
+/* Estilos en hover para botones específicos */
+.btn-detail:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+}
+
+.btn-edit:hover {
+    background-color: #e0a800; /* Amarillo más oscuro */
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+}
+
+/* Tabla */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table-light {
+    background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}

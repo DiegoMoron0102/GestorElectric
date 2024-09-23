@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Panel de informes sobre intentos de penetración de seguridad en el sistema de gestión eléctrica.">
+    <meta name="author" content="Gestión Eléctrica">
+    <title>Informes de Intentos de Penetración de Seguridad</title>
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    <link rel="stylesheet" href="/app/controllers/styles/InformeSeguridadPag.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="navbar-container">
+            <a href="/" class="logo-link">
+                <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo Gestión Eléctrica" class="logo" width="70" height="70">
+            </a>
+            <h1 class="site-title">Gestión Eléctrica</h1>
+            <nav aria-label="Menú de navegación principal">
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="report-section">
+            <h2>Informes de Intentos de Penetración de Seguridad</h2>
+            <table id="report-table" aria-describedby="Informe de intentos de penetración en la seguridad del sistema.">
+                <thead>
+                    <tr>
+                        <th scope="col">ID del Informe</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Tipo de Ataque</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="report-content">
+                    <!-- Los informes serán generados dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Gestión Eléctrica. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="/app/controllers/js/roles_navbar.js"></script>
+    <script src="/app/controllers/js/security_reports.js"></script>
+</body>
+</html>

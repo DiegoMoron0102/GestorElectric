@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
+    <link rel="stylesheet" href="/app/controllers/styles/User_informe.css">
+    <title>Informes de Redes</title>
+</head>
+<body>
+    <header>
+        <div class="navbar-container">
+            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <h1>Gestión Eléctrica</h1>
+            <nav>
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script src="/app/controllers/js/roles_navbar.js"></script>
+    <main class="container mt-4">
+        <h2 class="mb-4">Informes de Redes de Clientes</h2>
+        <button class="btn btn-success mb-3" id="download-pdf">Descargar como PDF</button>
+
+        <!-- Bloque 1 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4 p-3">
+                    <h3>Gráfico de Consumo de Energía por Cliente</h3>
+                    <canvas id="energyConsumptionChart"></canvas>
+                    <p class="mt-2">Este gráfico muestra el consumo de energía por cliente, permitiendo identificar patrones y optimizar la gestión de recursos.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4 p-3">
+                    <h3>Gráfico de Picos de Consumo</h3>
+                    <canvas id="peakConsumptionChart"></canvas>
+                    <p class="mt-2">Este gráfico ilustra los picos de consumo, lo que ayuda a planificar la distribución de la carga en las redes eléctricas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloque 2 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4 p-3">
+                    <h3>Gráfico de Eficiencia Energética</h3>
+                    <canvas id="energyEfficiencyChart"></canvas>
+                    <p class="mt-2">Este gráfico evalúa la eficiencia energética, facilitando la identificación de áreas de mejora en el uso de la energía.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para la publicidad -->
+    <div class="modal fade" id="pricingModal" tabindex="-1" aria-labelledby="pricingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pricingModalLabel">Planes de Monitorización</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <section class="pricing-section">
+                        <div class="pricing-table d-flex justify-content-around">
+                            <div class="plan">
+                                <h2>Plan Gratuito</h2>
+                                <p class="price">$0.00 / mes</p>
+                                <ul>
+                                    <li><span>&#10003;</span> Monitorización básica de redes</li>
+                                    <li><span>&#10007;</span> Sin soporte técnico prioritario</li>
+                                    <li><span>&#10007;</span> Sin análisis predictivo</li>
+                                    <li><span>&#10007;</span> Capacidad limitada de nodos de red</li>
+                                    <li><span>&#10007;</span> Reportes básicos</li>
+                                </ul>
+                                <button class="btn btn-success">Obtener Gratis</button>
+                            </div>
+
+                            <div class="plan premium">
+                                <h2>Plan Premium</h2>
+                                <p class="price">$99.99 / mes</p>
+                                <p class="trial">Empieza tu prueba gratuita de 30 días*</p>
+                                <ul>
+                                    <li><span>&#10003;</span> Monitorización avanzada de redes</li>
+                                    <li><span>&#10003;</span> Soporte técnico 24/7</li>
+                                    <li><span>&#10003;</span> Análisis predictivo</li>
+                                    <li><span>&#10003;</span> Capacidad ilimitada de nodos</li>
+                                    <li><span>&#10003;</span> Reportes avanzados y personalizables</li>
+                                </ul>
+                                <button class="btn btn-primary">Obtener Premium</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="/app/controllers/js/User_informe.js"></script>
+
+    <script>
+        // Mostrar modal al cargar la página
+        $(document).ready(function() {
+            $('#pricingModal').modal('show');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* Estilos del footer */
+footer {
+    background-color: #222; /* Fondo negro */
+    color: white;
+    text-align: center;
+    padding: 30px 0; /* Espacio aumentado */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5; /* Aumenta la altura de línea */
+}
+
+/* Espacio adicional entre párrafos */
+footer p + p {
+    margin-top: 15px; /* Espacio entre párrafos */
+}

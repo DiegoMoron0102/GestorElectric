@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
+    <link rel="stylesheet" href="/app/controllers/styles/software.css">
+    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    <title>Venta de Software</title>
+</head>
+<body>
+    <header>
+        <div class="navbar-container">
+            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <h1>Gestión Eléctrica</h1>
+            <nav>
+                <ul id="navbar" class="nav-links">
+                    <!-- El contenido del navbar será generado dinámicamente -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script src="/app/controllers/js/roles_navbar.js"></script>
+
+    <main>
+        <section class="product">
+            <img src="/app/controllers/imagenes/PowernetPro.webp" alt="Imagen del producto">
+            <div class="product-info">
+                <h2>PowerNet Pro</h2>
+                <p class="description">Solución avanzada de gestión de redes eléctricas con paneles analíticos en tiempo real, informes de seguridad, y monitoreo de rendimiento para redes de gran escala.</p>
+                <h3>Funciones</h3>
+                <ul class="features">
+                    <li>Monitoreo en tiempo real del rendimiento de la red.</li>
+                    <li>Paneles de control analíticos con informes automáticos.</li>
+                    <li>Detección avanzada de fallos y rendimiento.</li>
+                    <li>Monitoreo continuo de seguridad y alertas en caso de intentos de acceso no autorizado.</li>
+                    <li>Accesible desde cualquier dispositivo móvil o de escritorio.</li>
+                </ul>
+                <div class="price">Costo: <strong>$499.99/mes</strong></div>
+                <button class="buy-button" onclick="window.location.href='comprarSoftware.html?software=PowerNet Pro'">Comprar</button>            </div>
+        </section>
+        
+
+        <section class="product">
+            <img src="/app/controllers/imagenes/ElecManage.webp" alt="Imagen del producto">
+            <div class="product-info">
+                <h2>ElecManage Lite</h2>
+                <p class="description">Solución asequible para pequeñas empresas, diseñada para gestionar redes eléctricas con informes básicos y herramientas de gestión simplificada.</p>
+                <h3>Funciones</h3>
+                <ul class="features">
+                    <li>Paneles de control básicos y fáciles de usar.</li>
+                    <li>Informes de rendimiento general de la red.</li>
+                    <li>Monitoreo y gestión de hasta 100,000 clientes.</li>
+                    <li>Módulo contable básico para gestión de inventarios y gastos.</li>
+                    <li>Accesible desde dispositivos móviles.</li>
+                </ul>
+                <div class="price">Costo: <strong>$99.99/mes</strong></div>
+                <button class="buy-button" onclick="window.location.href='comprarSoftware.html?software=PowerNet Pro'">Comprar</button>            </div>
+        </section>
+        
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
