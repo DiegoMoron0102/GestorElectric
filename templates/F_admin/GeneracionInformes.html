@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generación de Informes - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
-    <link rel="stylesheet" href="/app/controllers/styles/GeneracionInformes.css">
-    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/app/controllers/js/GeneracionInformes.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
-    <header>
-        <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-            <h1>Gestión Eléctrica</h1>
-            <nav>
-                <ul id="navbar" class="nav-links">
-                    <!-- El contenido del navbar será generado dinámicamente -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <script src="/app/controllers/js/roles_navbar.js"></script>
+{% extends "base.html" %}
+
+{% block title %}Generación de Informes - Plataforma de Gestión de Redes Eléctricas{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/GeneracionInformes.css') }}">
+{% endblock %}
+
+{% block content %}
    <!-- Hero Section -->
    <section class="hero">
     <div class="hero-content">
@@ -132,14 +115,9 @@
         </table>
     </div>
 </section>
+{% endblock %}
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
-    </div>
-</footer>
-
-    </div>
-</body>
-</html>
+{% block extra_js %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/GeneracionInformes.js') }}"></script>
+{% endblock %}

@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
-    <link rel="stylesheet" href="/app/controllers/styles/PanelControl.css">
-    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
-    <script defer src="/app/controllers/js/PanelControl.js"></script>
-</head>
-<body>
-    <!-- Navbar -->
-    <header>
-        <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-            <h1>Gestión Eléctrica</h1>
-            <nav>
-                <ul id="navbar" class="nav-links">
-                    <!-- El contenido del navbar será generado dinámicamente -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <script src="/app/controllers/js/roles_navbar.js"></script>
+{% extends "base.html" %}
+
+{% block title %}Panel de Control - Plataforma de Gestión de Redes Eléctricas{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/PanelControl.css') }}">
+{% endblock %}
+
+{% block content %}
     <div class="container mt-4">
         <h2 class="mb-4 text-primary">Panel de Control - Redes Clientes</h2>
         
@@ -56,118 +40,12 @@
                 </tr>
             </thead>
             <tbody id="network-table">
-                <tr class="network-row" data-network-id="SC152223">
-                    <td>SC152223</td>
-                    <td>21-03-2022</td>
-                    <td>22-03-2022</td>
-                    <td>1594</td>
-                    <td><a href="#">PLANO-SC152223</a></td>
-                    <td>u-241232</td>
-                    <td>25.1456 kw/mes</td>
-                    <td><button class="btn btn-primary btn-sm">Detalle</button></td>
-                    <td><button class="btn btn-warning btn-sm">✎</button></td>
-                    <td><button class="btn btn-danger btn-sm">🗑️</button></td>
-                </tr>
-
-                <tr class="device-row" data-parent-network="SC152223" style="display: none;">
-                    <td colspan="10">
-                        <table class="table table-sm mb-0">
-                            <thead>
-                                <tr>
-                                    <th>id_dispositivo</th>
-                                    <th>Nombre Dispositivo</th>
-                                    <th>Categoría</th>
-                                    <th>Consumo eléctrico</th>
-                                    <th>Estado</th>
-                                    <th>Fecha instalación</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>TV-LG-WF231</td>
-                                    <td>Entretenimiento</td>
-                                    <td>0.232 kwh</td>
-                                    <td>Activo</td>
-                                    <td>21-03-2022</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Transformador</td>
-                                    <td>Eléctrico</td>
-                                    <td>0.054 kwh</td>
-                                    <td>Activo</td>
-                                    <td>21-03-2022</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button class="btn btn-primary mt-2">Aceptar</button>
-                    </td>
-                </tr>
-
-                <tr class="network-row" data-network-id="SC1522234">
-                    <td>SC1522234</td>
-                    <td>22-03-2022</td>
-                    <td>23-03-2022</td>
-                    <td>1595</td>
-                    <td><a href="#">PLANO-SC1522234</a></td>
-                    <td>u-241233</td>
-                    <td>30.1456 kw/mes</td>
-                    <td><button class="btn btn-primary btn-sm">Detalle</button></td>
-                    <td><button class="btn btn-warning btn-sm">✎</button></td>
-                    <td><button class="btn btn-danger btn-sm">🗑️</button></td>
-                </tr>
-
-                <tr class="device-row" data-parent-network="SC1522234" style="display: none;">
-                    <td colspan="10">
-                        <table class="table table-sm mb-0">
-                            <thead>
-                                <tr>
-                                    <th>id_dispositivo</th>
-                                    <th>Nombre Dispositivo</th>
-                                    <th>Categoría</th>
-                                    <th>Consumo eléctrico</th>
-                                    <th>Estado</th>
-                                    <th>Fecha instalación</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Refrigerador</td>
-                                    <td>Electrodoméstico</td>
-                                    <td>0.400 kwh</td>
-                                    <td>Activo</td>
-                                    <td>22-03-2022</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Aire Acondicionado</td>
-                                    <td>Climatización</td>
-                                    <td>1.200 kwh</td>
-                                    <td>Activo</td>
-                                    <td>22-03-2022</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button class="btn btn-primary mt-2">Aceptar</button>
-                    </td>
-                </tr>
+                <!-- Data de ejemplo aquí -->
             </tbody>
         </table>
-
-        <div class="d-flex justify-content-between">
-            <span>Page 1 of 30</span>
-            <div>
-                <button class="btn btn-light">◀</button>
-                <button class="btn btn-light">▶</button>
-            </div>
-        </div>
     </div>
-    
-    <footer>
-        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
-        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/PanelControl.js') }}"></script>
+{% endblock %}

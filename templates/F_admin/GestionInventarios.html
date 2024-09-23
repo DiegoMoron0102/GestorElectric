@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Inventarios - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
-    <link rel="stylesheet" href="/app/controllers/styles/GestionInventarios.css">
-    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-</head>
-<body>
-    <header>
-        <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-            <h1>Gestión Eléctrica</h1>
-            <nav>
-                <ul id="navbar" class="nav-links">
-                    <!-- El contenido del navbar será generado dinámicamente -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <script src="/app/controllers/js/roles_navbar.js"></script>
- 
+{% extends "base.html" %}
+
+{% block title %}Gestión de Inventarios - Plataforma de Gestión de Redes Eléctricas{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/GestionInventarios.css') }}">
+{% endblock %}
+
+{% block content %}
     <section class="hero">
         <div class="hero-text">
             <h2>Gestión de Inventarios Eléctricos</h2>
@@ -40,34 +23,33 @@
         <h2>Productos Disponibles</h2>
         <div class="product-cards">
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto1.jpg" alt="Producto 1">
+                <img src="{{ url_for('static', filename='img/producto1.jpg') }}" alt="Producto 1">
                 <h3>Transformador</h3>
                 <p>Capacidad: 150 kVA</p>
                 <button onclick="verDetalles('Transformador', '150 kVA', 'producto1.jpg')">Ver Detalles</button>
             </div>
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto2.jpg" alt="Producto 2">
+                <img src="{{ url_for('static', filename='img/producto2.jpg') }}" alt="Producto 2">
                 <h3>Interruptor Automático</h3>
                 <p>Capacidad: 120 A</p>
                 <button onclick="verDetalles('Interruptor Automático', '120 A', 'producto2.jpg')">Ver Detalles</button>
             </div>
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto3.jpg" alt="Producto 3">
+                <img src="{{ url_for('static', filename='img/producto3.jpg') }}" alt="Producto 3">
                 <h3>Cable de Alta Tensión</h3>
                 <p>Tipo: THHN, 500 metros</p>
                 <button onclick="verDetalles('Cable de Alta Tensión', 'THHN, 500 metros', 'producto3.jpg')">Ver Detalles</button>
             </div>
             <div class="product-card">
-                <img src="/app/controllers/imagenes/producto4.jpg" alt="Producto 4">
+                <img src="{{ url_for('static', filename='img/producto4.jpg') }}" alt="Producto 4">
                 <h3>Panel Eléctrico</h3>
                 <p>Modular, 8 posiciones</p>
                 <button onclick="verDetalles('Panel Eléctrico', 'Modular, 8 posiciones', 'producto4.jpg')">Ver Detalles</button>
             </div>
         </div>
     </section>
-    <footer>
-        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
-        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/roles_navbar.js') }}"></script>
+{% endblock %}
