@@ -35,6 +35,7 @@ function renderNavbar(role) {
             <li><a href="/app/controllers/frontend/F_admin/GestionInventarios.html">Gestión Inventarios</a></li>
             <li><a href="/app/controllers/frontend/F_admin/PanelControl.html">Gestión redes clientes</a></li>
             <li><a href="/app/controllers/frontend/F_admin/GestionSoftware.html">Gestión Software</a></li>
+            <li><a href="/app/controllers/frontend/F_admin/InformeSeguridadPag.html">Informe seguridad</a></li>
              <li class="dropdown">
                 <a href="#" class="dropbtn">${name} <span class="caret">▼</span></a>
                 <div class="dropdown-content">
