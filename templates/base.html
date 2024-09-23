@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gestión Eléctrica{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- Navbar dinámico -->
+    <header>
+        <div class="navbar-container">
+            <img src="{{ url_for('static', filename='img/logo_rayo.png') }}" alt="Logo" class="logo" width="70" height="70">
+            <h1>Gestión Eléctrica</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('software') }}">Software</a></li>
+                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
+
+                    <!-- Mostrar elementos según el rol del usuario -->
+                    {% if session['role'] == 'Sin Registro' %}
+                        <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+
+                    {% elif session['role'] == 'FreeUser' %}
+                        <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
+
+                    {% elif session['role'] == 'PremiumUser' %}
+                        <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
+                        <li><a href="{{ url_for('informes') }}">Informes Detallados</a></li>
+
+                    {% elif session['role'] == 'Admin' %}
+                        <li><a href="{{ url_for('gestion_inventarios') }}">Gestión Inventarios</a></li>
+                        <li><a href="{{ url_for('panel_control') }}">Gestión Redes Clientes</a></li>
+                        <li><a href="{{ url_for('gestion_software') }}">Gestión Software</a></li>
+                        <li><a href="{{ url_for('informe_seguridad') }}">Informe de Seguridad</a></li>
+                    {% endif %}
+
+                    <!-- Mostrar Cerrar Sesión si el usuario está autenticado -->
+                    <!-- Mostrar Cerrar Sesión si el usuario está autenticado -->
+                    {% if 'role' in session %}
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">{{ session['name'] }} <span class="caret">▼</span></a>
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('informes') }}">Info Usuario</a>
+                            <a href="{{ url_for('autenticacion_bp.logout') }}">Cerrar Sesión</a>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido de la página -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

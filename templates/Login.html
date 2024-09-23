@@ -1,26 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguridad y Autenticación - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-</head>
-<body>
-    <header>
-        <div class="navbar-container">
-            <img src="{{ url_for('static', filename='img/logo_rayo.png') }}" alt="Logo" class="logo" width="70" height="70">
-            <h1>Gestión Eléctrica</h1>
-            <nav>
-                <ul id="navbar" class="nav-links">
-                    <!-- El contenido del navbar será generado dinámicamente -->
-                </ul>
-            </nav>
-        </div>
-    </header>
+{% extends "base.html" %}
 
+{% block title %}Iniciar Sesión - Gestión Eléctrica{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <h2>BIENVENIDO</h2>
         <!-- Asegúrate de que el formulario use POST -->
@@ -29,24 +15,20 @@
                 <label for="email">Correo electrónico:</label>
                 <input type="email" id="email" name="email" placeholder="Tu correo" required>
             </div>
-        
+
             <div class="form-group">
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
             </div>
-        
+
             <button type="submit" class="btn">Iniciar Sesión</button>
         </form>
-        
+
         <p>No tienes cuenta? <a href="{{ url_for('registro_usuario') }}">Registrarse</a></p>
         <p><a href="{{ url_for('recuperar_contraseña') }}">Olvidaste tu contraseña?</a></p>
     </div>
+{% endblock %}
 
-    <footer>
-        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
-        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
-    </footer>
-     <!-- Enlazar el archivo JS externo -->
-     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
-</body>
-</html>
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}
