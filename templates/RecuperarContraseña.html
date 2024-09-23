@@ -1,34 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperación de Contraseña - Plataforma de Gestión de Redes Eléctricas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+{% extends "base.html" %}
+
+{% block title %}Recuperación de Contraseña - Plataforma de Gestión de Redes Eléctricas{% endblock %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-</head>
-<body>
-    <header>
-        <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
-            <h1>Gestión Eléctrica</h1>
-            <nav>
-                <ul id="navbar" class="nav-links">
-                    <!-- El contenido del navbar será generado dinámicamente -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <script>
-        // Genera las rutas en el HTML usando url_for
-        const homeUrl = "{{ url_for('home') }}";
-        const loginUrl = "{{ url_for('login') }}";
-        const soporteUrl = "{{ url_for('soporte') }}";
-        const software = "{{ url_for('software') }}";
-    </script>
-    <script src="{{ url_for('static', filename='js/roles_navbar.js') }}"></script>
-    
+{% endblock %}
+
+{% block content %}
     <div class="container">
         <h2>Recuperar Contraseña</h2>
         <form id="password-recovery-form">
@@ -40,16 +18,11 @@
             <button type="submit" class="btn">Recuperar Contraseña</button>
         </form>
 
-        <p><a href="/app/controllers/frontend/login.html">Volver al Inicio de Sesión</a></p>
-        
+        <p><a href="{{ url_for('autenticacion_bp.login') }}">Volver al Inicio de Sesión</a></p>
         <div id="recovery-message" style="margin-top: 20px;"></div>
     </div>
+{% endblock %}
 
-    <footer>
-        <p>&copy; 2024 GestorElectric. Todos los derechos reservados.</p>
-        <p>&copy; 2024 Plataforma de Gestión de Redes Eléctricas. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="/app/controllers/js/passwordRecovery.js"></script>
-</body>
-</html>
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/passwordRecovery.js') }}"></script>
+{% endblock %}
