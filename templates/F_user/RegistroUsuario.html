@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
-    <link rel="stylesheet" href="/app/controllers/styles/footer.css">
-    <link rel="stylesheet" href="/app/controllers/styles/RegistroUsuario.css">
-    <link rel="stylesheet" href="/app/controllers/styles/navbar.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/RegistroUsuario.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
 </head>
 <body>
     <!-- Navbar -->
     <header>
         <div class="navbar-container">
-            <img src="/app/controllers/imagenes/logo_rayo.png" alt="Logo" class="logo" width="70" height="70">
+            <img src="{{ url_for('static', filename='imagenes/logo_rayo.png') }}" alt="Logo" class="logo" width="70" height="70">
             <h1>Gestión Eléctrica</h1>
             <nav>
                 <ul id="navbar" class="nav-links">
@@ -21,11 +21,11 @@
             </nav>
         </div>
     </header>
-    <script src="/app/controllers/js/roles_navbar.js"></script>
+
     <!-- Registro de Usuario -->
     <div class="container">
         <h2>REGISTRO DE USUARIO</h2>
-        <form class="custom-report-form">
+        <form class="custom-report-form" method="POST" action="{{ url_for('autenticacion_bp.signup') }}">
             <div class="form-group">
                 <label for="company">Nombre de la empresa:</label>
                 <input type="text" id="company" name="company" placeholder="Nombre de la empresa" required>
@@ -48,7 +48,7 @@
 
             <button type="submit" class="btn">Registrarse</button>
         </form>
-        <p>¿Ya tienes una cuenta? <a href="/app/controllers/frontend/Login.html">Inicia Sesión</a></p>
+        <p>¿Ya tienes una cuenta? <a href="{{ url_for('autenticacion_bp.login') }}">Inicia Sesión</a></p>
     </div>
 
     <!-- Footer -->
