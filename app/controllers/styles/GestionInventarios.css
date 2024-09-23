@@ -1,0 +1,90 @@
+/* Estilos Generales */
+body {
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333; /* Texto oscuro */
+}
+
+/* Contenedor Principal */
+.container {
+    padding: 50px 20px; /* Espaciado interno */
+    text-align: center; /* Centrado del texto */
+}
+
+/* Carrusel */
+.carousel {
+    margin-bottom: 50px; /* Espacio inferior */
+}
+
+.carousel-inner {
+    max-height: 400px; /* Altura máxima del carrusel */
+    overflow: hidden; /* Ocultar el desbordamiento */
+}
+
+.carousel-item img {
+    width: 100%; /* Ancho completo */
+    height: 400px; /* Altura fija */
+    object-fit: cover; /* Ajustar la imagen sin distorsionarla */
+    border-radius: 10px; /* Bordes redondeados para las imágenes */
+}
+
+/* Botón Principal */
+.btn-primary {
+    background-color: #1DB954; /* Verde */
+    color: white; /* Texto blanco */
+    padding: 15px 30px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como bloque en línea */
+    transition: background-color 0.3s ease; /* Transición suave */
+    margin-bottom: 30px; /* Espacio inferior */
+}
+
+.btn-primary:hover {
+    background-color: #17a34a; /* Verde más oscuro al pasar el mouse */
+}
+
+/* Tabla */
+.table {
+    width: 100%; /* Ancho completo */
+    margin-top: 20px; /* Espacio superior */
+    border-collapse: collapse; /* Colapsar bordes */
+}
+
+.table-primary {
+    background-color: #f1f1f1; /* Fondo de la cabecera */
+}
+
+.table th, .table td {
+    padding: 15px; /* Espaciado interno */
+    text-align: left; /* Alineación a la izquierda */
+    border-bottom: 1px solid #ddd; /* Línea inferior */
+}
+
+/* Estilos para los botones de acción */
+.btn-warning {
+    background-color: #ffc107; /* Amarillo */
+    color: white; /* Texto blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Rojo */
+    color: white; /* Texto blanco */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.btn-warning:hover {
+    background-color: #e0a800; /* Amarillo más oscuro */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+}

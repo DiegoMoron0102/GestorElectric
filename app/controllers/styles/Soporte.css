@@ -1,0 +1,83 @@
+/* Estilos Generales */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Sección Ayuda Técnica */
+.ayuda-tecnica {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+.ayuda-tecnica h2 {
+    margin-bottom: 20px;
+}
+
+/* Formulario de Contacto */
+.formulario-contacto {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #ddd;
+}
+
+.formulario-contacto h2 {
+    margin-bottom: 20px;
+}
+
+.formulario-contacto form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.formulario-contacto label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-enviar {
+    background-color: #1DB954;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+    background-color: #17a34a;
+}
+
+/* Sección Sobre Nosotros */
+.sobre-nosotros {
+    padding: 50px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.sobre-nosotros h2 {
+    margin-bottom: 20px;
+}

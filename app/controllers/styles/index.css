@@ -1,0 +1,180 @@
+/* Sección Hero */
+body {
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+    margin: 0;  
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+.hero {
+    background-image: url('/app/controllers/imagenes/empresa.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.hero-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    animation: fadeIn 2s ease-in;
+}
+
+.hero h2 {
+    font-size: 3rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+.button {
+    background-color: #1DB954;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #17a34a;
+}
+
+/* Animación de Fade */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Sección de Servicios */
+.servicios {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.servicios h2 {
+    margin-bottom: 40px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+}
+
+.service-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Sección Misión & Visión */
+.mision-vision {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.mision, .vision {
+    width: 40%;
+}
+
+.mision h2, .vision h2 {
+    color: #1DB954;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+}
+
+/* Sección Testimonios */
+.testimonios {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.testimonios h2 {
+    margin-bottom: 40px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+}
+
+.testimonial-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Sección de Contacto */
+.contacto {
+    background-color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.contacto form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contacto label, .contacto input, .contacto textarea {
+    width: 50%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.contacto input, .contacto textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contacto button {
+    background-color: #1DB954;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contacto button:hover {
+    background-color: #17a34a;
+}
