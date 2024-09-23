@@ -89,7 +89,20 @@ main {
     font-weight: bold;
     margin-top: 10px;
 }
+.add-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
 
+.add-button:hover {
+    background-color: #17a34a;
+}
 .buy-button {
     background-color: #1DB954;
     color: white;
@@ -103,6 +116,48 @@ main {
 
 .buy-button:hover {
     background-color: #17a34a;
+}
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    background-color: #1DB954;
+}
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    background-color: #1DB954;
+}
+.edit-button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.edit-button:hover {
+    background-color: #1DB954;
 }
 
 /* Lugar para la imagen del producto */

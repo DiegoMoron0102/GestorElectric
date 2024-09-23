@@ -142,39 +142,84 @@ body {
 }
 
 /* Sección de Contacto */
-.contacto {
-    background-color: #fff;
+/* Formulario de Contacto */
+.formulario-contacto {
     padding: 50px 0;
     text-align: center;
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #ddd;
+    position: relative;
 }
 
-.contacto form {
+.formulario-contacto h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.formulario-contacto form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 15px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.contacto label, .contacto input, .contacto textarea {
-    width: 50%;
-    margin: 10px 0;
+.formulario-contacto form:hover {
+    transform: translateY(-5px); /* Efecto de elevación */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más fuerte al pasar el mouse */
+}
+
+.formulario-contacto label {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+    color: #555;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+    width: 100%;
     padding: 10px;
-}
-
-.contacto input, .contacto textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #f7f7f7;
+    transition: border-color 0.3s ease;
 }
 
-.contacto button {
+.formulario-contacto input:focus,
+.formulario-contacto textarea:focus {
+    border-color: #1DB954; /* Bordes verdes al enfocar */
+    outline: none;
+}
+
+.formulario-contacto textarea {
+    resize: none;
+}
+
+.btn-enviar {
     background-color: #1DB954;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    font-weight: bold;
 }
 
-.contacto button:hover {
+.btn-enviar:hover {
     background-color: #17a34a;
+    transform: scale(1.05); /* Efecto de agrandar el botón al pasar el mouse */
 }
