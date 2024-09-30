@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Mensajes de Soporte - Administración{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/InformeSeguridadPag.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="report-section">
+        <h2>Mensajes de Soporte</h2>
+        <p>Total de mensajes: {{ mensajes|length }}</p>
+        <table id="report-table" aria-describedby="Mensajes enviados por los usuarios para soporte técnico.">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Mensaje</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody id="report-content">
+                <!-- Los mensajes serán generados dinámicamente -->
+                {% if mensajes %}
+                    {% for mensaje in mensajes %}
+                    <tr>
+                        <td>{{ mensaje.nombre }}</td>
+                        <td>{{ mensaje.email }}</td>
+                        <td>{{ mensaje.mensaje }}</td>
+                        <td>{{ mensaje.fecha }}</td> <!-- Ya has convertido la fecha en el backend -->
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">No hay mensajes de soporte</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

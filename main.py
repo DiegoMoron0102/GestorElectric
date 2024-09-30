@@ -1,5 +1,6 @@
 from flask import Flask, render_template,session,flash,redirect,url_for
 from autenticacion import autenticacion_bp  # Importa tu blueprint de autenticación
+from soporte import soporte_bp
 
 app = Flask(__name__)
 
@@ -8,6 +9,7 @@ app.secret_key = 'una_clave_secreta_muy_segura'
 
 # Registrar el blueprint de autenticación
 app.register_blueprint(autenticacion_bp)
+app.register_blueprint(soporte_bp)
 
 # Ruta para la página principal (home)
 @app.route('/')
@@ -40,6 +42,12 @@ def registro_usuario():
 def recuperar_contraseña():
     return render_template('RecuperarContraseña.html')
 
+# Ruta para mostrar los mensajes de soporte
+@app.route('/admin/mensajes_soporte')  # Verifica si la ruta es correcta
+def mostrar_mensajes():
+    return redirect(url_for('soporte_bp.listar_mensajes'))  # Redirigir al Blueprint de soporte
+
+
 # Rutas para la versión freemium
 @app.route('/version_freemium')
 def version_freemium():
@@ -60,7 +68,7 @@ def gestion_software():
 
 @app.route('/admin/informe_seguridad')
 def informe_seguridad():
-    return render_template('F_admin/InformeSeguridadPag.html')
+    return render_template('F_admin/mensajes_soporte.html')
 
 @app.route('/admin/panel_control')
 def panel_control():
