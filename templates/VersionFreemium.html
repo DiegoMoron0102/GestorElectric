@@ -11,6 +11,7 @@
         <section class="pricing-section">
             <h2>Planes de Suscripción</h2>
             <div class="pricing-table">
+                <!-- Plan Gratuito -->
                 <div class="plan">
                     <h3>Plan Gratuito</h3>
                     <p class="price">$0.00 / mes</p>
@@ -24,6 +25,7 @@
                     <button class="btn-free">Obtener Gratis</button>
                 </div>
 
+                <!-- Plan Premium -->
                 <div class="plan premium">
                     <h3>Plan Premium</h3>
                     <p class="price">$99.99 / mes</p>
@@ -35,7 +37,14 @@
                         <li><span>&#10003;</span> Capacidad ilimitada de nodos</li>
                         <li><span>&#10003;</span> Reportes avanzados y personalizables</li>
                     </ul>
-                    <button class="btn-premium">Obtener Premium</button>
+                    <!-- Formulario para actualizar a Premium -->
+                    {% if session['role'] == 'PremiumUser' %}
+                    <button class="btn-premium" disabled>Eres Premium</button>
+                    {% else %}
+                    <form action="{{ url_for('premium_bp.comprar_premium') }}" method="POST">
+                        <button type="submit" class="btn-premium">Obtener Premium</button>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
         </section>

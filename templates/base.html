@@ -24,10 +24,12 @@
                     {% if session['role'] == 'Sin Registro' %}
                     <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+                        <li><a href="{{ url_for('version_freemium') }}">Suscripcion</a></li>o
 
                     {% elif session['role'] == 'FreeUser' %}
                     <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
+                        <li><a href="{{ url_for('version_freemium') }}">Suscripcion</a></li>
 
                     {% elif session['role'] == 'PremiumUser' %}
                     <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
@@ -47,7 +49,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropbtn">{{ session['name'] }} <span class="caret">▼</span></a>
                         <div class="dropdown-content">
-                            <a href="{{ url_for('informes') }}">Info Usuario</a>
+                            <a href="{{ url_for('InfoUsuario') }}">Info Usuario</a>
                             <a href="{{ url_for('autenticacion_bp.logout') }}">Cerrar Sesión</a>
                         </div>
                     </li>
