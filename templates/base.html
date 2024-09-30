@@ -19,16 +19,18 @@
                 <ul class="nav-links">
                     <li><a href="{{ url_for('home') }}">Inicio</a></li>
                     <li><a href="{{ url_for('software') }}">Software</a></li>
-                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
 
                     <!-- Mostrar elementos según el rol del usuario -->
                     {% if session['role'] == 'Sin Registro' %}
+                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
 
                     {% elif session['role'] == 'FreeUser' %}
+                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
 
                     {% elif session['role'] == 'PremiumUser' %}
+                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
                         <li><a href="{{ url_for('informes') }}">Informes Detallados</a></li>
 
@@ -43,7 +45,7 @@
                     <!-- Mostrar Cerrar Sesión si el usuario está autenticado -->
                     {% if 'role' in session %}
                     <li class="dropdown">
-                        <a href="#" class="dropbtn">{{ session['role'] }} <span class="caret">▼</span></a>
+                        <a href="#" class="dropbtn">{{ session['name'] }} <span class="caret">▼</span></a>
                         <div class="dropdown-content">
                             <a href="{{ url_for('informes') }}">Info Usuario</a>
                             <a href="{{ url_for('autenticacion_bp.logout') }}">Cerrar Sesión</a>

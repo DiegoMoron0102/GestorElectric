@@ -51,12 +51,18 @@ def signup():
             user = auth.create_user_with_email_and_password(email, password)
             user_id = user['localId']  # ID del usuario creado
 
+            # Condición para asignar rol según el dominio del correo electrónico
+            if email.endswith('@ucb.edu.bo'):
+                user_role = 'Admin'
+            else:
+                user_role = 'FreeUser'  # Rol por defecto
+
             # Guardar la información del usuario en Firestore con rol FreeUser por defecto
             db.collection('users').document(user_id).set({
                 "email": email,
                 "company": company,
-                "name": "Usuario Nuevo",  # Nombre por defecto, puede personalizarse más adelante
-                "role": "FreeUser"  # Rol por defecto
+                "name": company,  # Nombre por defecto, puede personalizarse más adelante
+                "role": user_role  # Rol por defecto
             })
 
             flash("Registro exitoso, por favor inicia sesión", "success")
