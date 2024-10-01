@@ -1,0 +1,50 @@
+<!-- Ruta: templates/F_user/info_user.html -->
+{% extends "base.html" %}
+
+{% block title %}Información del Usuario{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/InfoUsuario.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="user-icon">
+            <img src="https://via.placeholder.com/60?text=👤" alt="Usuario">
+        </div>
+        <h1>Información del Usuario</h1>
+
+        <p>Datos del usuario:</p>
+
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" value="" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email" value="" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="role">Rol de Usuario</label>
+            <input type="text" id="role" name="role" value="" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="birthdate">Fecha de Nacimiento</label>
+            <input type="date" id="birthdate" name="birthdate" value="" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Dirección</label>
+            <input type="text" id="address" name="address" value="" disabled>
+        </div>
+
+        <button class="btn" id="editButton">Editar Información</button>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/InfoUsuario.js') }}"></script>
+{% endblock %}
