@@ -21,7 +21,8 @@ auth = firebase.auth()
 # Verificar si Firebase Admin ya ha sido inicializado
 if not firebase_admin._apps:
     print("Inicializando Firebase Admin SDK...")
-    cred = credentials.Certificate('gestorelectric-5d20a-firebase-adminsdk-z48lc-10fa512203.json')
+    cred = credentials.Certificate('C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\GestorElectric\\gestorelectric-5d20a-firebase-adminsdk-z48lc-ed2f2ef1b5.json')
+
     firebase_admin.initialize_app(cred)
     print("Firebase Admin SDK inicializado correctamente.")
 else:

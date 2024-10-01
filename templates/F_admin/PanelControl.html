@@ -10,6 +10,7 @@
     <div class="container mt-4">
         <h2 class="mb-4 text-primary">Panel de Control - Redes Clientes</h2>
         
+        <!-- Filtros y búsqueda -->
         <div class="row mb-3">
             <div class="col-md-3">
                 <select class="form-select" id="filter">
@@ -24,6 +25,12 @@
             </div>
         </div>
 
+        <!-- Botón para agregar red -->
+        <div class="d-flex justify-content-between mb-4">
+            <button class="btn btn-success" onclick="showAddForm()">Agregar Red</button>
+        </div>
+
+        <!-- Tabla de redes -->
         <table class="table table-hover">
             <thead class="table-light">
                 <tr>
@@ -34,15 +41,51 @@
                     <th>Plano de instalación</th>
                     <th>ID Usuario</th>
                     <th>Consumo promedio mensual</th>
-                    <th>Detalle</th>
+                    <th>Aprox. Monto a pagar</th>
                     <th>Editar</th>
                     <th>Borrar</th>
                 </tr>
             </thead>
             <tbody id="network-table">
-                <!-- Data de ejemplo aquí -->
+                <!-- Aquí se rellenará la tabla -->
             </tbody>
         </table>
+
+        <!-- Formulario para agregar o editar una red -->
+        <div id="network-form" style="display:none;" class="mt-5">
+            <h3>Agregar/Editar Red</h3>
+            <input type="hidden" id="id">
+            <div class="form-group mb-3">
+                <label for="fecha_registro">Fecha de registro</label>
+                <input type="date" class="form-control" id="fecha_registro">
+            </div>
+            <div class="form-group mb-3">
+                <label for="fecha_instalacion">Fecha de última instalación</label>
+                <input type="date" class="form-control" id="fecha_instalacion">
+            </div>
+            <div class="form-group mb-3">
+                <label for="nro_medidor">Nro Medidor</label>
+                <input type="text" class="form-control" id="nro_medidor">
+            </div>
+            <div class="form-group mb-3">
+                <label for="plano_instalacion">Plano de instalación</label>
+                <input type="text" class="form-control" id="plano_instalacion">
+            </div>
+            <div class="form-group mb-3">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" id="direccion">
+            </div>
+            <div class="form-group mb-3">
+                <label for="consumo_mensual">Consumo promedio mensual</label>
+                <input type="number" class="form-control" id="consumo_mensual">
+            </div>
+            <div class="form-group mb-3">
+                <label for="monto_aprox">Aprox. Monto a pagar</label>
+                <input type="number" class="form-control" id="monto_aprox">
+            </div>
+            <button class="btn btn-primary" onclick="addNetwork()">Agregar Red</button>
+            <button class="btn btn-primary" onclick="updateNetwork()">Guardar Cambios</button>
+        </div>
     </div>
 {% endblock %}
 

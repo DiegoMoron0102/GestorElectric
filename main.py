@@ -3,6 +3,7 @@ from autenticacion import autenticacion_bp  # Importa tu blueprint de autenticac
 from soporte import soporte_bp
 from premium import premium_bp
 from usuario import usuario_bp
+from abm import abm_bp
 from firebase_admin import firestore
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ app.register_blueprint(autenticacion_bp)
 app.register_blueprint(soporte_bp)
 app.register_blueprint(premium_bp)
 app.register_blueprint(usuario_bp)
+app.register_blueprint(abm_bp)
 
 # Ruta para la página principal (home)
 @app.route('/')
