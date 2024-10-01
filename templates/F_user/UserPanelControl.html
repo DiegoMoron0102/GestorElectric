@@ -36,41 +36,46 @@
         </table>
 
         <!-- Formulario para agregar o editar redes -->
-        <div id="network-form" style="display:none;" class="mt-5">
-            <h3>Agregar/Editar Red</h3>
-            <form id="networkForm" onsubmit="event.preventDefault(); addOrUpdateNetwork();">
-                <input type="hidden" id="id">
-                <div class="form-group mb-3">
-                    <label for="fecha_registro">Fecha de registro</label>
-                    <input type="date" class="form-control" id="fecha_registro" required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="fecha_instalacion">Fecha de última instalación</label>
-                    <input type="date" class="form-control" id="fecha_instalacion" required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="nro_medidor">Nro Medidor</label>
-                    <input type="text" class="form-control" id="nro_medidor" required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="plano_instalacion">Plano de instalación</label>
-                    <input type="text" class="form-control" id="plano_instalacion" required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="direccion">Dirección</label>
-                    <input type="text" class="form-control" id="direccion" required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="consumo_mensual">Consumo promedio mensual</label>
-                    <input type="number" class="form-control" id="consumo_mensual" required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="monto_aprox">Aprox. Monto a pagar</label>
-                    <input type="number" class="form-control" id="monto_aprox" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Guardar Red</button>
-            </form>
-        </div>
+       <!-- Formulario modal para agregar o editar redes -->
+        <div id="network-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3>Agregar/Editar Red</h3>
+                <form id="networkForm" onsubmit="event.preventDefault(); addOrUpdateNetwork();">
+                    <input type="hidden" id="id">
+                    <div class="form-group mb-3">
+                        <label for="fecha_registro">Fecha de registro</label>
+                        <input type="date" class="form-control" id="fecha_registro" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="fecha_instalacion">Fecha de última instalación</label>
+                        <input type="date" class="form-control" id="fecha_instalacion" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nro_medidor">Nro Medidor</label>
+                        <input type="text" class="form-control" id="nro_medidor" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="plano_instalacion">Plano de instalación</label>
+                        <input type="text" class="form-control" id="plano_instalacion" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" class="form-control" id="direccion" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="consumo_mensual">Consumo promedio mensual</label>
+                        <input type="number" class="form-control" id="consumo_mensual" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="monto_aprox">Aprox. Monto a pagar</label>
+                        <input type="number" class="form-control" id="monto_aprox" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Red</button>
+                </form>
+            </div>
+</div>
+
     </div>
 {% endblock %}
 
@@ -106,11 +111,39 @@
         }
 
         // Mostrar formulario para agregar una nueva red
-        function showAddForm() {
-            $("#network-form").show();
-            $("#networkForm")[0].reset();  // Limpiar el formulario
-            $("#id").val('');  // Asegurarse de que el campo ID esté vacío
-        }
+                // Mostrar el modal para agregar una nueva red
+                function showAddForm() {
+                    $("#networkForm")[0].reset();  // Limpiar el formulario
+                    $("#id").val('');  // Asegurarse de que el campo ID esté vacío
+                    $("#network-modal").show();  // Mostrar el modal
+                }
+
+                // Cerrar el modal
+                function closeModal() {
+                    $("#network-modal").hide();  // Ocultar el modal
+                }
+
+                // Editar una red existente
+                function editNetwork(id) {
+                    fetch(`/redes/${id}`)
+                    .then(response => response.json())
+                    .then(network => {
+                        $("#network-modal").show();  // Mostrar el modal
+                        $("#id").val(network.id);
+                        $("#fecha_registro").val(network.fecha_registro);
+                        $("#fecha_instalacion").val(network.fecha_instalacion);
+                        $("#nro_medidor").val(network.nro_medidor);
+                        $("#plano_instalacion").val(network.plano_instalacion);
+                        $("#direccion").val(network.direccion);
+                        $("#consumo_mensual").val(network.consumo_mensual);
+                        $("#monto_aprox").val(network.monto_aprox);
+                    });
+                }
+
+                $(document).ready(function() {
+                    // Ocultar el modal al cargar la página
+                    $("#network-modal").hide();
+                });
 
         // Agregar o actualizar una red
         function addOrUpdateNetwork() {

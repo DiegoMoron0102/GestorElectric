@@ -8,7 +8,7 @@ body {
 }
 
 .hero {
-    background-image: url('/app/controllers/imagenes/empresa.jpg');
+    background-image: url('/static/img/empresa.jpg');
     background-size: cover;
     background-position: center;
     height: 90vh;
