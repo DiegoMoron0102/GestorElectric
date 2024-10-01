@@ -23,7 +23,7 @@ def home():
 
 @app.route('/InfoUsuario')
 def InfoUsuario():
-    return render_template('InfoUsuario.html')
+    return render_template('info_user.html')
 
 # Rutas de autenticación
 @app.route('/login')
