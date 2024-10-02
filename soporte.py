@@ -32,10 +32,7 @@ def listar_mensajes():
         # Agrega más detalles sobre el error al log
         print(f"Error al obtener los mensajes: {e}")  # Log para errores más detallado
         return f"Error al obtener los mensajes de soporte: {str(e)}", 500
-
-
-        
-
+    
 # Ruta para enviar un nuevo mensaje de soporte
 @soporte_bp.route('/soporte/enviar', methods=['POST'])
 def enviar_mensaje():
