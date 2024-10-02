@@ -88,6 +88,10 @@ def informe_seguridad():
 def panel_control():
     return render_template('F_admin/PanelControl.html')
 
+@app.route('/admin/modulo_contable')
+def modulo_contable():
+    return render_template('F_admin/ModuloContable.html')
+
 # Rutas del usuario (F_user)
 @app.route('/user/informes')
 def informes():
@@ -108,6 +112,7 @@ def user_panel_control():
 @app.route('/user/comprar_software')
 def comprar_software():
     return render_template('F_user/comprarSoftware.html')
+
 
 
 if __name__ == '__main__':

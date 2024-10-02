@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Módulo Contable{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ModuloContable.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Módulo Contable</h1>
+
+        <!-- Resumen contable -->
+        <div class="summary">
+            <h2>Resumen</h2>
+            <p><strong>Total Balance:</strong> <span id="total-balance">0.00</span>Bs</p>
+            <p><strong>Total Ingresos:</strong> <span id="total-ingresos">0.00</span>Bs</p>
+            <p><strong>Total Gastos:</strong> <span id="total-gastos">0.00</span>Bs</p>
+        </div>
+
+        <!-- Botón para añadir ingreso/gasto -->
+        <button id="add-transaction-btn">Añadir Ingreso/Gasto</button>
+
+        <!-- Modal para añadir/editar transacción -->
+        <div id="transaction-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="modal-title">Añadir Transacción</h2>
+                <form id="transaction-form">
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" required>
+                        <option value="ingreso">Ingreso</option>
+                        <option value="gasto">Gasto</option>
+                    </select>
+
+                    <label for="monto">Monto:</label>
+                    <input type="number" id="monto" required>
+
+                    <label for="descripcion">Descripción:</label>
+                    <input type="text" id="descripcion" required>
+
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" required>
+
+                    <button type="submit" id="submit-btn">Añadir</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de confirmación para eliminar -->
+        <div id="confirm-delete-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Confirmar Eliminación</h2>
+                <p>¿Estás seguro de que quieres eliminar esta transacción?</p>
+                <button id="confirm-delete-btn">Eliminar</button>
+                <button id="cancel-delete-btn">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- Modal de confirmación para editar -->
+        <div id="confirm-edit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Confirmar Edición</h2>
+                <p>¿Deseas guardar los cambios en esta transacción?</p>
+                <button id="confirm-edit-btn">Guardar</button>
+                <button id="cancel-edit-btn">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- Tabla de movimientos -->
+        <table id="transactions-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Tipo</th>
+                    <th>Monto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- Filtro de fechas -->
+        <div class="filter">
+            <h2>Filtrar por Fecha</h2>
+            <label for="filter-start">Desde:</label>
+            <input type="date" id="filter-start">
+            <label for="filter-end">Hasta:</label>
+            <button id="filter-btn">Filtrar</button>
+        </div>
+
+        <!-- Gráfico de ingresos vs gastos -->
+        <canvas id="chart" width="400" height="200"></canvas>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/ModuloContable.js') }}"></script>
+{% endblock %}
