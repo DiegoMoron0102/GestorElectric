@@ -9,7 +9,7 @@ body {
 
 /* Sección Hero */
 .hero {
-    background-image: url('/static/img/informe2.jpg'); /* Cambia la imagen según sea necesario */
+    background-image: url('/app/controllers/imagenes/informe2.jpg'); /* Cambia la imagen según sea necesario */
     background-size: cover;
     background-position: center;
     height: 30vh; /* Ajustar la altura de la imagen */
