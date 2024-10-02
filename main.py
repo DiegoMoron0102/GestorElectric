@@ -1,5 +1,9 @@
 from flask import Flask, render_template,session,flash,redirect,url_for
 from autenticacion import autenticacion_bp  # Importa tu blueprint de autenticación
+from soporte import soporte_bp
+from premium import premium_bp
+from usuario import usuario_bp
+from firebase_admin import firestore
 
 app = Flask(__name__)
 
@@ -8,6 +12,9 @@ app.secret_key = 'una_clave_secreta_muy_segura'
 
 # Registrar el blueprint de autenticación
 app.register_blueprint(autenticacion_bp)
+app.register_blueprint(soporte_bp)
+app.register_blueprint(premium_bp)
+app.register_blueprint(usuario_bp)
 
 # Ruta para la página principal (home)
 @app.route('/')
