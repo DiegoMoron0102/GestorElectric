@@ -22,6 +22,7 @@ auth = firebase.auth()
 if not firebase_admin._apps:
     print("Inicializando Firebase Admin SDK...")
     cred = credentials.Certificate('gestorelectric-5d20a-firebase-adminsdk-z48lc-10fa512203.json')
+
     firebase_admin.initialize_app(cred)
     print("Firebase Admin SDK inicializado correctamente.")
 else:
