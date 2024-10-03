@@ -16,40 +16,37 @@
 
     <section class="search-bar">
         <input type="text" placeholder="Buscar producto..." id="searchInput">
-        <button><i class="fas fa-search"></i></button>
+        <button onclick="buscarProducto()">Buscar</button>
+    </section>
+
+    <section class="inventario-container-">
+        <h2>Productos Disponibles</h2>
+        <div id="product-list" class="product-cards">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
     </section>
 
     <section class="inventario-container">
         <h2>Productos Disponibles</h2>
-        <div class="product-cards">
-            <div class="product-card">
-                <img src="{{ url_for('static', filename='img/producto1.jpg') }}" alt="Producto 1">
-                <h3>Transformador</h3>
-                <p>Capacidad: 150 kVA</p>
-                <button onclick="verDetalles('Transformador', '150 kVA', 'producto1.jpg')">Ver Detalles</button>
-            </div>
-            <div class="product-card">
-                <img src="{{ url_for('static', filename='img/producto2.jpg') }}" alt="Producto 2">
-                <h3>Interruptor Automático</h3>
-                <p>Capacidad: 120 A</p>
-                <button onclick="verDetalles('Interruptor Automático', '120 A', 'producto2.jpg')">Ver Detalles</button>
-            </div>
-            <div class="product-card">
-                <img src="{{ url_for('static', filename='img/producto3.jpg') }}" alt="Producto 3">
-                <h3>Cable de Alta Tensión</h3>
-                <p>Tipo: THHN, 500 metros</p>
-                <button onclick="verDetalles('Cable de Alta Tensión', 'THHN, 500 metros', 'producto3.jpg')">Ver Detalles</button>
-            </div>
-            <div class="product-card">
-                <img src="{{ url_for('static', filename='img/producto4.jpg') }}" alt="Producto 4">
-                <h3>Panel Eléctrico</h3>
-                <p>Modular, 8 posiciones</p>
-                <button onclick="verDetalles('Panel Eléctrico', 'Modular, 8 posiciones', 'producto4.jpg')">Ver Detalles</button>
-            </div>
+        <button id="mostrar-form-btn">Agregar Producto</button>
+    
+        <!-- Formulario oculto inicialmente -->
+        <div id="form-agregar-producto" style="display: none;">
+            <form id="productoForm">
+                <input type="text" placeholder="Nombre del Producto" id="nombreProducto">
+                <input type="text" placeholder="Capacidad" id="capacidadProducto">
+                <input type="text" placeholder="Descripción" id="descripcionProducto">
+                <input type="text" placeholder="URL de la Imagen" id="imagenProducto">
+                <input type="text" placeholder="Categoría" id="categoriaProducto">
+                <input type="number" placeholder="Cantidad" id="cantidadProducto">
+                <button type="submit">Agregar Producto</button>
+            </form>
         </div>
     </section>
+    
+
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{{ url_for('static', filename='js/roles_navbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/GestionInventarios.js') }}"></script>
 {% endblock %}

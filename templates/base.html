@@ -18,23 +18,24 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="{{ url_for('home') }}">Inicio</a></li>
-                    <li><a href="{{ url_for('software') }}">Software</a></li>
-
                     <!-- Mostrar elementos según el rol del usuario -->
                     {% if session['role'] == 'Sin Registro' %}
                     <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
-                        <li><a href="{{ url_for('version_freemium') }}">Suscripcion</a></li>o
+                        <li><a href="{{ url_for('version_freemium') }}">Suscripcion</a></li>
+                        <li><a href="{{ url_for('software') }}">Software</a></li>
 
                     {% elif session['role'] == 'FreeUser' %}
                     <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
                         <li><a href="{{ url_for('version_freemium') }}">Suscripcion</a></li>
+                        <li><a href="{{ url_for('software') }}">Software</a></li>
 
                     {% elif session['role'] == 'PremiumUser' %}
                     <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
                         <li><a href="{{ url_for('informes') }}">Informes Detallados</a></li>
+                        <li><a href="{{ url_for('software') }}">Software</a></li>
 
                     {% elif session['role'] == 'Admin' %}
                         <li><a href="{{ url_for('gestion_inventarios') }}">Gestión Inventarios</a></li>

@@ -4,6 +4,8 @@ from soporte import soporte_bp
 from premium import premium_bp
 from usuario import usuario_bp
 from abm import abm_bp
+from informes import informes_bp
+from inventario import inventario_bp
 from firebase_admin import firestore
 
 app = Flask(__name__)
@@ -17,6 +19,9 @@ app.register_blueprint(soporte_bp)
 app.register_blueprint(premium_bp)
 app.register_blueprint(usuario_bp)
 app.register_blueprint(abm_bp)
+app.register_blueprint(informes_bp)
+app.register_blueprint(inventario_bp)
+
 
 # Ruta para la página principal (home)
 @app.route('/')
@@ -75,6 +80,7 @@ def generacion_informes():
 @app.route('/admin/gestion_inventarios')
 def gestion_inventarios():
     return render_template('F_admin/GestionInventarios.html')
+
 
 @app.route('/admin/gestion_software')
 def gestion_software():
