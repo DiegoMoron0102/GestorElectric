@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cargar redes cuando la página cargue sin filtro
     cargarRedes(); 
 
+    // Asegurarse de que el modal esté oculto al cargar la página
+    $("#network-modal").hide();  // Ocultar el modal inicialmente
+
     // Filtrar redes en tiempo real cuando el usuario escribe en el campo de búsqueda
     const empresaInput = document.getElementById('empresa-input');
     empresaInput.addEventListener('input', () => {

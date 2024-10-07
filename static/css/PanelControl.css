@@ -7,6 +7,26 @@ body {
     color: #333;
 }
 
+.pagination .page-item .page-link {
+    color: #007bff; /* Azul claro, como en la imagen */
+    border: none;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;  /* Color de fondo para el botón activo */
+    color: white;  /* Color del texto del botón activo */
+    border-color: #007bff;  /* Borde azul para el botón activo */
+}
+
+.pagination .page-link:hover {
+    background-color: #f1f1f1;  /* Un fondo gris claro en hover */
+    color: #007bff;  /* Texto azul claro en hover */
+}
+
+/* Estilo de las elipsis */
+.pagination .page-item.disabled .page-link {
+    color: #ddd;
+}
 /* Sección del Panel de Control */
 .container {
     padding: 50px 20px;
