@@ -6,8 +6,9 @@ from usuario import usuario_bp
 from redes import redes_bp
 from informes import informes_bp
 from inventario import inventario_bp
+from abm import abm_bp
 from firebase_admin import firestore
-
+from ModuloContable import modulo_contable_bp
 app = Flask(__name__)
 
 # Añadir secret key
@@ -18,11 +19,11 @@ app.register_blueprint(autenticacion_bp)
 app.register_blueprint(soporte_bp)
 app.register_blueprint(premium_bp)
 app.register_blueprint(usuario_bp)
+app.register_blueprint(abm_bp)
 app.register_blueprint(redes_bp)
 app.register_blueprint(informes_bp)
 app.register_blueprint(inventario_bp)
-
-
+app.register_blueprint(modulo_contable_bp)
 # Ruta para la página principal (home)
 @app.route('/')
 def home():
@@ -94,6 +95,12 @@ def informe_seguridad():
 def panel_control():
     return render_template('F_admin/PanelControl.html')
 
+@app.route('/admin/modulo_contable')
+def modulo_contable():
+    return render_template('F_admin/ModuloContable.html')
+
+
+
 # Rutas del usuario (F_user)
 @app.route('/user/informes')
 def informes():
@@ -114,6 +121,7 @@ def user_panel_control():
 @app.route('/user/comprar_software')
 def comprar_software():
     return render_template('F_user/comprarSoftware.html')
+
 
 
 if __name__ == '__main__':

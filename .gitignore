@@ -3,8 +3,6 @@ gestorelectric-5d20a-firebase-adminsdk-z48lc-10fa512203.json
 /.venv
 /venv
 /__pycache__
-/__pycache__
-/__pycache__
-/__pycache__
-/__pycache__
-/__pycache__
+/__pycache__/abm.cpython-312.pyc
+/__pycache__/*
+__pycache__\autenticacion.cpython-312.pyc
