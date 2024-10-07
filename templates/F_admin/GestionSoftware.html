@@ -11,22 +11,23 @@
         <!-- Botón para añadir nuevo software -->
         <button class="add-button" id="add-software-btn">Añadir Nuevo Software</button>
         
-        <!-- Primer software - PowerNet Pro -->
-        <section class="product">
-            <img src="{{ url_for('static', filename='img/PowernetPro.webp') }}" alt="Imagen del producto">
-            <div class="product-info">
-                <h2>PowerNet Pro</h2>
-                <p class="description">Solución avanzada de gestión de redes eléctricas...</p>
-                <h3>Funciones</h3>
-                <ul class="features">
-                    <!-- Listado de funciones -->
-                </ul>
-                <div class="price">Costo: <strong>$499.99/mes</strong></div>
-                <button class="edit-button">Editar</button>
-                <button class="delete-button">Eliminar</button>
-            </div>
+        <!-- Formulario para añadir/editar software -->
+        <div id="software-form" style="display: none;">
+            <form id="softwareForm">
+                <input type="text" placeholder="Título" id="software-title">
+                <input type="text" placeholder="Descripción" id="software-description">
+                <textarea placeholder="Funciones" id="software-features"></textarea>
+                <input type="text" placeholder="Precio" id="software-price">
+                <input type="text" placeholder="URL de la imagen" id="software-image">
+                <button type="submit">Guardar</button>
+                <button type="button" id="cancelar-btn">Cancelar</button>
+            </form>
+        </div>
+
+        <!-- Lista de productos -->
+        <section id="product-list">
+            <!-- Productos se cargarán aquí dinámicamente -->
         </section>
-        <!-- Otros productos aquí -->
     </main>
 {% endblock %}
 
