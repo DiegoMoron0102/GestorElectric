@@ -60,8 +60,7 @@ def add_network():
     data = request.get_json()
 
     # Obtener el user_id de la sesión
-    user_id = session.get('user')  # Aquí utilizo la clave "user" como en tu código de usuario
-
+    user_id = session.get('user')
     if not user_id:
         flash('Error: Usuario no encontrado en la sesión.', 'error')
         return jsonify({'message': 'Usuario no autenticado'}), 401
@@ -70,7 +69,7 @@ def add_network():
         # Obtener el documento del usuario desde la colección 'users'
         user_doc = db.collection('users').document(user_id).get()
 
-        if not user_doc.exists:
+        if not user_doc.exists():
             return jsonify({'message': 'No se encontró el usuario en la base de datos'}), 404
 
         # Obtener la empresa desde el documento del usuario
@@ -80,20 +79,24 @@ def add_network():
         if not empresa:
             return jsonify({'message': 'No se encontró la empresa del usuario'}), 400
 
-        # Crear el nuevo registro de la red con los datos enviados más el nombre de la empresa
+        # Obtener el consumo mensual y calcular el monto a pagar usando la tarifa "Industrial"
+        consumo_mensual = float(data.get('consumo_mensual', 0))  # Asegurarse de que el consumo sea un número
+        monto_aprox = calcular_monto_por_consumo_industrial(consumo_mensual)
+
+        # Crear el nuevo registro de la red con los datos enviados más el nombre de la empresa y el monto calculado
         new_network = {
             'fecha_registro': data.get('fecha_registro'),
             'fecha_instalacion': data.get('fecha_instalacion'),
             'nro_medidor': data.get('nro_medidor'),
             'plano_instalacion': data.get('plano_instalacion'),
             'direccion': data.get('direccion'),
-            'consumo_mensual': data.get('consumo_mensual'),
-            'monto_aprox': data.get('monto_aprox'),
+            'consumo_mensual': consumo_mensual,
+            'monto_aprox': monto_aprox,
             'empresa': empresa  # Agregar el nombre de la empresa desde el documento de usuario
         }
 
         db.collection('redes').add(new_network)
-        return jsonify({'message': 'Red agregada con éxito'}), 201
+        return jsonify({'message': 'Red agregada con éxito, monto calculado automáticamente'}), 201
 
     except Exception as e:
         print(f"Error al agregar la red: {e}")
@@ -104,21 +107,45 @@ def add_network():
 def update_network(id):
     data = request.get_json()
 
-    updated_network = {
-        'fecha_registro': data.get('fecha_registro'),
-        'fecha_instalacion': data.get('fecha_instalacion'),
-        'nro_medidor': data.get('nro_medidor'),
-        'plano_instalacion': data.get('plano_instalacion'),
-        'direccion': data.get('direccion'),
-        'consumo_mensual': data.get('consumo_mensual'),
-        'monto_aprox': data.get('monto_aprox')
-    }
+    try:
+        # Obtener el consumo mensual y calcular el monto a pagar usando la tarifa "Industrial"
+        consumo_mensual = float(data.get('consumo_mensual', 0))
+        monto_aprox = calcular_monto_por_consumo_industrial(consumo_mensual)
 
-    db.collection('redes').document(id).update(updated_network)
-    return jsonify({'message': 'Red actualizada con éxito'}), 200
+        # Actualizar el registro de la red con los nuevos datos y el monto calculado
+        updated_network = {
+            'fecha_registro': data.get('fecha_registro'),
+            'fecha_instalacion': data.get('fecha_instalacion'),
+            'nro_medidor': data.get('nro_medidor'),
+            'plano_instalacion': data.get('plano_instalacion'),
+            'direccion': data.get('direccion'),
+            'consumo_mensual': consumo_mensual,
+            'monto_aprox': monto_aprox,  # Recalcular el monto automáticamente
+        }
+
+        # Actualizar la red en Firestore
+        db.collection('redes').document(id).update(updated_network)
+        return jsonify({'message': 'Red actualizada con éxito, monto recalculado automáticamente'}), 200
+
+    except Exception as e:
+        print(f"Error al actualizar la red: {e}")
+        return jsonify({'error': 'Hubo un problema al actualizar la red.'}), 500
 
 # Ruta para eliminar una red
 @redes_bp.route('/redes/<id>', methods=['DELETE'])
 def delete_network(id):
     db.collection('redes').document(id).delete()
     return jsonify({'message': 'Red eliminada con éxito'}), 200
+
+# Función que calcula el monto a pagar basado en los rangos de consumo para tarifa "Industrial"
+def calcular_monto_por_consumo_industrial(consumo):
+    if consumo <= 20:
+        return 22.529  # Cargo mínimo
+    elif consumo <= 120:
+        return 22.529 + (consumo - 20) * 1.019
+    elif consumo <= 300:
+        return 22.529 + (120 - 20) * 1.019 + (consumo - 120) * 1.155
+    else:
+        return 22.529 + (120 - 20) * 1.019 + (300 - 120) * 1.155 + (consumo - 300) * 1.649
+    
+    return round(monto, 2)  # Redondear el monto a 2 decimales

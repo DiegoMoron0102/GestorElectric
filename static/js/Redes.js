@@ -32,7 +32,6 @@ function cargarRedes() {
                     <p>Dirección: ${red.direccion}</p>
                     <p>Consumo Mensual: ${red.consumo_mensual}</p>
                     <p>Monto Aproximado: ${red.monto_aprox}</p>
-                    <button onclick="verDetalles('${red.id}')">Ver Detalles</button>
                     <button onclick="editarRed('${red.id}')">Editar</button>
                     <button onclick="eliminarRed('${red.id}')">Eliminar</button>
                 `;
@@ -42,36 +41,41 @@ function cargarRedes() {
         .catch(error => console.error('Error al cargar las redes:', error));
 }
 
-// Función para agregar una nueva red
-document.getElementById('redForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const nuevaRed = {
-        fecha_registro: document.getElementById('fechaRegistro').value,
-        fecha_instalacion: document.getElementById('fechaInstalacion').value,
-        nro_medidor: document.getElementById('nroMedidor').value,
-        plano_instalacion: document.getElementById('planoInstalacion').value,
-        direccion: document.getElementById('direccionRed').value,
-        consumo_mensual: document.getElementById('consumoMensual').value,
-        monto_aprox: document.getElementById('montoAprox').value
+// Función para agregar o actualizar una red
+function addOrUpdateNetwork() {
+    const id = $("#id").val();
+    const data = {
+        fecha_registro: $("#fecha_registro").val(),
+        fecha_instalacion: $("#fecha_instalacion").val(),
+        nro_medidor: $("#nro_medidor").val(),
+        plano_instalacion: $("#plano_instalacion").val(),
+        direccion: $("#direccion").val(),
+        consumo_mensual: $("#consumo_mensual").val(),  // Enviar solo el consumo
     };
 
-    fetch('/redes', {
-        method: 'POST',
+    let url = '/redes';
+    let method = 'POST';
+
+    if (id) {
+        url = `/redes/${id}`;
+        method = 'PUT';
+    }
+
+    fetch(url, {
+        method: method,
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(nuevaRed)
+        body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => {
         alert(data.message);
-        cargarRedes(); // Recargar la lista de redes
-        document.getElementById('redForm').reset();  // Limpiar el formulario
-        document.getElementById('form-agregar-red').style.display = 'none';  // Ocultar el formulario después de agregar
+        cargarRedes();
+        $("#network-modal").hide();  // Ocultar el modal después de guardar
     })
-    .catch(error => console.error('Error al agregar la red:', error));
-});
+    .catch(error => console.error('Error:', error));
+}
 
 // Función para eliminar una red
 function eliminarRed(id) {
@@ -88,6 +92,16 @@ function eliminarRed(id) {
 
 // Función para editar una red (requiere ajustes adicionales para un formulario de edición)
 function editarRed(id) {
-    // Aquí puedes implementar la lógica para editar la red
-    alert('Función de edición por implementar.');
+    fetch(`/redes/${id}`)
+        .then(response => response.json())
+        .then(red => {
+            $("#network-modal").show();  // Mostrar el modal
+            $("#id").val(red.id);
+            $("#fecha_registro").val(red.fecha_registro);
+            $("#fecha_instalacion").val(red.fecha_instalacion);
+            $("#nro_medidor").val(red.nro_medidor);
+            $("#plano_instalacion").val(red.plano_instalacion);
+            $("#direccion").val(red.direccion);
+            $("#consumo_mensual").val(red.consumo_mensual);
+        });
 }
