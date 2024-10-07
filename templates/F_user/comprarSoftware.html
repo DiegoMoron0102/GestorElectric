@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %}Confirmar Pago{% endblock %}
-
+{% block extra_css %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comprar_software.css') }}">
+{% endblock %}
 {% block content %}
     <section class="product">
         <img src="{{ software.image_url }}" alt="Imagen del producto">
