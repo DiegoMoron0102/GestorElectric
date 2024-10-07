@@ -27,3 +27,12 @@ __pycache__/redes.cpython-312.pyc
 __pycache__/soporte.cpython-312.pyc
 __pycache__/usuario.cpython-312.pyc
 *.pyc
+__pycache__/usuario.cpython-312.pyc
+__pycache__/soporte.cpython-312.pyc
+__pycache__/redes.cpython-312.pyc
+__pycache__/premium.cpython-312.pyc
+__pycache__/ModuloContable.cpython-312.pyc
+__pycache__/inventario.cpython-312.pyc
+__pycache__/informes.cpython-312.pyc
+__pycache__/autenticacion.cpython-312.pyc
+*.pyc

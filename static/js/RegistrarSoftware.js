@@ -33,8 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         if (editando) {
+            // Realizar un PUT para actualizar el software
             actualizarSoftware(softwareId, nuevoSoftware);
         } else {
+            // Realizar un POST para agregar un nuevo software
             agregarSoftware(nuevoSoftware);
         }
 
@@ -48,7 +50,7 @@ function cargarSoftware() {
         .then(response => response.json())
         .then(data => {
             const productList = document.getElementById('product-list');
-            productList.innerHTML = '';  // Limpiar la lista de productos
+            productList.innerHTML = '';  // Limpiar la lista de productos para evitar duplicados
 
             data.forEach(software => {
                 const productCard = document.createElement('div');
@@ -89,17 +91,19 @@ function agregarSoftware(software) {
 
 // Función para editar software
 function editarSoftware(id) {
-    fetch(`/software/${id}`)
+    fetch(`/software1/${id}`)  // Hacemos una solicitud GET para obtener el software
         .then(response => response.json())
         .then(data => {
+            // Llenamos el formulario con los datos del software
             document.getElementById("software-title").value = data.title;
             document.getElementById("software-description").value = data.description;
             document.getElementById("software-features").value = data.features.join(',');
             document.getElementById("software-price").value = data.price;
             document.getElementById("software-image").value = data.image_url;
-            document.getElementById("software-form").style.display = "block";
+            
+            document.getElementById("software-form").style.display = "block";  // Mostrar el formulario
 
-            softwareId = id;
+            softwareId = id;  // Guardar el ID para cuando actualicemos
             editando = true;  // Establecer en modo edición
         })
         .catch(error => console.error('Error al cargar software para editar:', error));
@@ -107,16 +111,16 @@ function editarSoftware(id) {
 
 // Función para actualizar software
 function actualizarSoftware(id, software) {
-    fetch(`/software/${id}`, {
+    fetch(`/software1/${id}`, {  // Hacemos una solicitud PUT para actualizar el software
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(software)
+        body: JSON.stringify(software)  // Enviamos los datos del software como JSON
     })
     .then(response => response.json())
     .then(data => {
-        alert(data.message);
+        alert(data.message);  // Mostrar mensaje de éxito
         cargarSoftware();  // Recargar la lista de software
     })
     .catch(error => console.error('Error al actualizar software:', error));
