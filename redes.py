@@ -11,29 +11,31 @@ redes_bp = Blueprint('redes_bp', __name__)
 
 @redes_bp.route('/redes', methods=['GET'])
 def get_networks():
-    user_id = session.get('user')  # Obtener el ID del usuario desde la sesión
-    user_role = session.get('role')  # Obtener el rol del usuario desde la sesión
-    user_empresa = session.get('company')  # Obtenemos la empresa de la sesión, pero cambiaremos el nombre a empresa
+    empresa_filtro = request.args.get('empresa', '')  # Obtener el filtro de empresa si se proporciona
 
-    if not user_id or not user_role or not user_empresa:
-        return jsonify({'message': 'Usuario no autenticado.'}), 401
+    print(f'Filtrando redes por empresa: {empresa_filtro}')  # Verificar que el filtro se está capturando
 
     networks = []
+    
+    # Realizamos la búsqueda si hay un filtro proporcionado
+    if empresa_filtro:
+        # Si utilizas Firestore, puedes hacer un filtro con rangos para buscar empresas que comienzan con la cadena ingresada
+        empresa_filtro_capitalizada = empresa_filtro.capitalize()  # Asegúrate de que la primera letra sea mayúscula
+        start_at = empresa_filtro_capitalizada
+        end_at = empresa_filtro_capitalizada + '\uf8ff'  # Esto incluye todo lo que empiece con la cadena
 
-    if user_role == 'Admin':
-        # Si es administrador, obtener todas las redes
-        networks_ref = db.collection('redes').stream()
+        networks_ref = db.collection('redes').where('empresa', '>=', start_at).where('empresa', '<=', end_at).stream()
     else:
-        # Si es un usuario normal, filtrar las redes por el campo 'empresa'
-        networks_ref = db.collection('redes').where('empresa', '==', user_empresa).stream()
+        # Si no hay filtro, traer todas las redes
+        networks_ref = db.collection('redes').stream()
 
+    # Convertimos las redes a una lista de diccionarios
     for network in networks_ref:
         network_data = network.to_dict()
         network_data['id'] = network.id
         networks.append(network_data)
 
     return jsonify(networks), 200
-
 
 # Ruta para obtener una red específica por su ID
 @redes_bp.route('/redes/<id>', methods=['GET'])
@@ -59,8 +61,8 @@ def get_network(id):
 def add_network():
     data = request.get_json()
 
-    # Obtener el user_id de la sesión
-    user_id = session.get('user')
+    user_id = session.get('user')  # Obtener el user_id de la sesión
+
     if not user_id:
         flash('Error: Usuario no encontrado en la sesión.', 'error')
         return jsonify({'message': 'Usuario no autenticado'}), 401
@@ -69,21 +71,20 @@ def add_network():
         # Obtener el documento del usuario desde la colección 'users'
         user_doc = db.collection('users').document(user_id).get()
 
-        if not user_doc.exists():
+        if not user_doc.exists:  # Aquí se corrigió el uso de exists
             return jsonify({'message': 'No se encontró el usuario en la base de datos'}), 404
 
-        # Obtener la empresa desde el documento del usuario
         user_data = user_doc.to_dict()
         empresa = user_data.get('company')
 
         if not empresa:
             return jsonify({'message': 'No se encontró la empresa del usuario'}), 400
 
-        # Obtener el consumo mensual y calcular el monto a pagar usando la tarifa "Industrial"
-        consumo_mensual = float(data.get('consumo_mensual', 0))  # Asegurarse de que el consumo sea un número
-        monto_aprox = calcular_monto_por_consumo_industrial(consumo_mensual)
+        # Calcular el monto aproximado en base al consumo mensual
+        consumo_mensual = float(data.get('consumo_mensual'))
+        monto_aprox = calcular_monto_aprox(consumo_mensual)
 
-        # Crear el nuevo registro de la red con los datos enviados más el nombre de la empresa y el monto calculado
+        # Crear el nuevo registro de la red con los datos enviados más el nombre de la empresa
         new_network = {
             'fecha_registro': data.get('fecha_registro'),
             'fecha_instalacion': data.get('fecha_instalacion'),
@@ -91,16 +92,21 @@ def add_network():
             'plano_instalacion': data.get('plano_instalacion'),
             'direccion': data.get('direccion'),
             'consumo_mensual': consumo_mensual,
-            'monto_aprox': monto_aprox,
-            'empresa': empresa  # Agregar el nombre de la empresa desde el documento de usuario
+            'monto_aprox': monto_aprox,  # Guardar el monto aproximado calculado
+            'empresa': empresa  # Agregar el nombre de la empresa
         }
 
         db.collection('redes').add(new_network)
-        return jsonify({'message': 'Red agregada con éxito, monto calculado automáticamente'}), 201
+        return jsonify({'message': 'Red agregada con éxito'}), 201
 
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
     except Exception as e:
         print(f"Error al agregar la red: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({'error': 'Hubo un problema al agregar la red.'}), 500
+
 
 # Ruta para editar una red
 @redes_bp.route('/redes/<id>', methods=['PUT'])
@@ -108,11 +114,10 @@ def update_network(id):
     data = request.get_json()
 
     try:
-        # Obtener el consumo mensual y calcular el monto a pagar usando la tarifa "Industrial"
-        consumo_mensual = float(data.get('consumo_mensual', 0))
-        monto_aprox = calcular_monto_por_consumo_industrial(consumo_mensual)
+        # Asegurarse de convertir consumo_mensual a número
+        consumo_mensual = float(data.get('consumo_mensual'))
+        monto_aprox = calcular_monto_aprox(consumo_mensual)
 
-        # Actualizar el registro de la red con los nuevos datos y el monto calculado
         updated_network = {
             'fecha_registro': data.get('fecha_registro'),
             'fecha_instalacion': data.get('fecha_instalacion'),
@@ -120,13 +125,14 @@ def update_network(id):
             'plano_instalacion': data.get('plano_instalacion'),
             'direccion': data.get('direccion'),
             'consumo_mensual': consumo_mensual,
-            'monto_aprox': monto_aprox,  # Recalcular el monto automáticamente
+            'monto_aprox': monto_aprox
         }
 
-        # Actualizar la red en Firestore
         db.collection('redes').document(id).update(updated_network)
-        return jsonify({'message': 'Red actualizada con éxito, monto recalculado automáticamente'}), 200
+        return jsonify({'message': 'Red actualizada con éxito'}), 200
 
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
     except Exception as e:
         print(f"Error al actualizar la red: {e}")
         return jsonify({'error': 'Hubo un problema al actualizar la red.'}), 500
@@ -137,15 +143,30 @@ def delete_network(id):
     db.collection('redes').document(id).delete()
     return jsonify({'message': 'Red eliminada con éxito'}), 200
 
-# Función que calcula el monto a pagar basado en los rangos de consumo para tarifa "Industrial"
-def calcular_monto_por_consumo_industrial(consumo):
-    if consumo <= 20:
-        return 22.529  # Cargo mínimo
-    elif consumo <= 120:
-        return 22.529 + (consumo - 20) * 1.019
-    elif consumo <= 300:
-        return 22.529 + (120 - 20) * 1.019 + (consumo - 120) * 1.155
-    else:
-        return 22.529 + (120 - 20) * 1.019 + (300 - 120) * 1.155 + (consumo - 300) * 1.649
+def calcular_monto_aprox(consumo_mensual):
+    try:
+        # Convertir consumo_mensual a float (o int si prefieres trabajar con enteros)
+        consumo_mensual = float(consumo_mensual)
+    except ValueError:
+        raise ValueError("El consumo mensual debe ser un número válido.")
     
-    return round(monto, 2)  # Redondear el monto a 2 decimales
+    monto = 0
+    if consumo_mensual <= 20:
+        monto = 22.529  # Cargo mínimo
+    else:
+        monto = 22.529
+
+        if consumo_mensual > 20 and consumo_mensual <= 120:
+            monto += (consumo_mensual - 20) * 1.019
+
+        if consumo_mensual > 120 and consumo_mensual <= 300:
+            monto += (120 - 20) * 1.019
+            monto += (consumo_mensual - 120) * 1.155
+
+        if consumo_mensual > 300:
+            monto += (120 - 20) * 1.019
+            monto += (300 - 120) * 1.155
+            monto += (consumo_mensual - 300) * 1.649
+
+    return round(monto, 2)
+
