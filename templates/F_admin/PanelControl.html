@@ -40,6 +40,13 @@
             </tbody>
         </table>
 
+        <!-- Paginación -->
+        <nav aria-label="Paginación de redes">
+            <ul class="pagination justify-content-center" id="pagination">
+                <!-- Botones de paginación generados dinámicamente -->
+            </ul>
+        </nav>
+
         <!-- Formulario para agregar o editar redes -->
         <div id="network-modal" class="modal">
             <div class="modal-content">
@@ -83,10 +90,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         let redesCache = [];  // Almacenaremos todas las redes aquí
+        const redesPorPagina = 5;  // Cambia este valor según cuántas redes quieras mostrar por página
+        let paginaActual = 1;
 
         // Cargar redes cuando la página cargue sin filtro
         document.addEventListener("DOMContentLoaded", () => {
             cargarRedes();  // Cargar las redes desde el backend
+
+            // Asegurarse de que el modal esté oculto al cargar la página
+            $("#network-modal").hide();  // Ocultar el modal inicialmente
 
             // Filtrar redes en tiempo real cuando el usuario escribe en el campo de búsqueda
             $("#empresa-input").on('input', function() {
@@ -102,21 +114,34 @@
             .then(response => response.json())
             .then(data => {
                 redesCache = data;  // Guardar las redes en caché para filtrar localmente
-                filtrarRedes('');  // Mostrar todas las redes inicialmente
+                paginarRedes();  // Paginar y mostrar las redes inicialmente
             })
             .catch(error => console.error('Error al cargar las redes:', error));
         }
 
-        // Función para filtrar redes localmente en el caché
+        // Función para filtrar redes localmente y paginarlas
         function filtrarRedes(filtroEmpresa) {
+            const redesFiltradas = redesCache.filter(red => red.empresa.toLowerCase().includes(filtroEmpresa));
+            paginaActual = 1;  // Reiniciar a la primera página al filtrar
+            paginarRedes(redesFiltradas);  // Paginar las redes filtradas
+        }
+
+        // Función para paginar redes
+        function paginarRedes(redes = redesCache) {
+            const inicio = (paginaActual - 1) * redesPorPagina;
+            const fin = inicio + redesPorPagina;
+            const redesPagina = redes.slice(inicio, fin);  // Obtener las redes para la página actual
+
+            mostrarRedes(redesPagina);  // Mostrar las redes de la página actual
+            generarPaginacion(redes.length);  // Generar los botones de paginación
+        }
+
+        // Función para mostrar las redes en la tabla
+        function mostrarRedes(redes) {
             const redList = $("#network-table");
             redList.empty();  // Limpiar la tabla antes de agregar los nuevos datos
 
-            // Filtrar las redes según el texto ingresado
-            const redesFiltradas = redesCache.filter(red => red.empresa.toLowerCase().includes(filtroEmpresa));
-
-            // Mostrar las redes filtradas
-            redesFiltradas.forEach(red => {
+            redes.forEach(red => {
                 const redRow = `
                     <tr>
                         <td>${red.id}</td>
@@ -135,6 +160,49 @@
                 `;
                 redList.append(redRow);
             });
+        }
+
+        function generarPaginacion(totalRedes) {
+            const totalPaginas = Math.ceil(totalRedes / redesPorPagina);
+            const paginacion = $("#pagination");
+            paginacion.empty();  // Limpiar la paginación antes de generar nuevos botones
+
+            const maxPaginasVisibles = 5;  // Número máximo de páginas visibles
+            const startPage = Math.max(paginaActual - Math.floor(maxPaginasVisibles / 2), 1);
+            const endPage = Math.min(startPage + maxPaginasVisibles - 1, totalPaginas);
+
+            // Botón de "Anterior"
+            const prevDisabled = paginaActual === 1 ? 'disabled' : '';
+            paginacion.append(`<li class="page-item ${prevDisabled}"><a class="page-link" href="#" onclick="cambiarPagina(${paginaActual - 1})">Anterior</a></li>`);
+
+            // Si la página inicial es mayor que 1, mostramos elipsis
+            if (startPage > 1) {
+                paginacion.append(`<li class="page-item"><a class="page-link" href="#" onclick="cambiarPagina(1)">1</a></li>`);
+                paginacion.append(`<li class="page-item disabled"><a class="page-link" href="#">...</a></li>`);
+            }
+
+            // Generar los botones de página visibles
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === paginaActual ? 'active' : '';
+                paginacion.append(`<li class="page-item ${active}"><a class="page-link" href="#" onclick="cambiarPagina(${i})">${i}</a></li>`);
+            }
+
+            // Si la última página visible es menor que el total de páginas, mostramos elipsis
+            if (endPage < totalPaginas) {
+                paginacion.append(`<li class="page-item disabled"><a class="page-link" href="#">...</a></li>`);
+                paginacion.append(`<li class="page-item"><a class="page-link" href="#" onclick="cambiarPagina(${totalPaginas})">${totalPaginas}</a></li>`);
+            }
+
+            // Botón de "Siguiente"
+            const nextDisabled = paginaActual === totalPaginas ? 'disabled' : '';
+            paginacion.append(`<li class="page-item ${nextDisabled}"><a class="page-link" href="#" onclick="cambiarPagina(${paginaActual + 1})">Siguiente</a></li>`);
+        }
+
+        // Función para cambiar de página
+        function cambiarPagina(pagina) {
+            if (pagina < 1 || pagina > Math.ceil(redesCache.length / redesPorPagina)) return;
+            paginaActual = pagina;
+            paginarRedes();  // Actualizar la tabla y la paginación con la nueva página
         }
 
         // Mostrar formulario para agregar una nueva red
