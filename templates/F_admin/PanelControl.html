@@ -8,11 +8,16 @@
 
 {% block content %}
     <div class="container mt-4">
-        <h2 class="mb-4 text-primary">Panel de Control - Redes</h2>
-
-        <!-- Botón para agregar una nueva red -->
+        <h2 class="mb-4 text-primary">Panel de Control - Redes Clientes</h2>
+         
+        <!-- Campo para seleccionar la empresa para filtrar -->
         <div class="d-flex justify-content-between mb-4">
             <button class="btn btn-success" onclick="showAddForm()">Agregar Red</button>
+        </div>
+
+         <!-- Campo de búsqueda para filtrar empresas en tiempo real -->
+        <div class="d-flex justify-content-between mb-4">
+            <input type="text" id="empresa-input" class="form-control w-25" placeholder="Escribe el nombre de la empresa">
         </div>
 
         <!-- Tabla de redes -->
@@ -36,7 +41,6 @@
         </table>
 
         <!-- Formulario para agregar o editar redes -->
-       
         <div id="network-modal" class="modal">
             <div class="modal-content">
                 <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -72,40 +76,64 @@
             </div>
         </div>
 
-</div>
-
     </div>
 {% endblock %}
 
 {% block extra_js %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Obtener redes desde el servidor
-        // Obtener redes desde el servidor
-        function getNetworks() {
+        let redesCache = [];  // Almacenaremos todas las redes aquí
+
+        // Cargar redes cuando la página cargue sin filtro
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarRedes();  // Cargar las redes desde el backend
+
+            // Filtrar redes en tiempo real cuando el usuario escribe en el campo de búsqueda
+            $("#empresa-input").on('input', function() {
+                const empresa = $("#empresa-input").val().toLowerCase();  // Convertir el valor a minúsculas
+                console.log("Filtrando redes por empresa:", empresa);
+                filtrarRedes(empresa);  // Aplicar el filtro localmente
+            });
+        });
+
+        // Función para cargar redes desde el backend
+        function cargarRedes() {
             fetch('/redes')
             .then(response => response.json())
             .then(data => {
-                let tableBody = $("#network-table");
-                tableBody.empty();
-                data.forEach(network => {
-                    tableBody.append(`
-                        <tr>
-                            <td>${network.id}</td>
-                            <td>${network.fecha_registro}</td>
-                            <td>${network.fecha_instalacion}</td>
-                            <td>${network.nro_medidor}</td>
-                            <td>${network.plano_instalacion}</td>
-                            <td>${network.direccion}</td>
-                            <td>${network.consumo_mensual}</td>
-                            <td>${network.monto_aprox}</td>
-                            <td>
-                                <button class="btn btn-info" onclick="editNetwork('${network.id}')">Editar</button>
-                                <button class="btn btn-danger" onclick="deleteNetwork('${network.id}')">Eliminar</button>
-                            </td>
-                        </tr>
-                    `);
-                });
+                redesCache = data;  // Guardar las redes en caché para filtrar localmente
+                filtrarRedes('');  // Mostrar todas las redes inicialmente
+            })
+            .catch(error => console.error('Error al cargar las redes:', error));
+        }
+
+        // Función para filtrar redes localmente en el caché
+        function filtrarRedes(filtroEmpresa) {
+            const redList = $("#network-table");
+            redList.empty();  // Limpiar la tabla antes de agregar los nuevos datos
+
+            // Filtrar las redes según el texto ingresado
+            const redesFiltradas = redesCache.filter(red => red.empresa.toLowerCase().includes(filtroEmpresa));
+
+            // Mostrar las redes filtradas
+            redesFiltradas.forEach(red => {
+                const redRow = `
+                    <tr>
+                        <td>${red.id}</td>
+                        <td>${red.fecha_registro}</td>
+                        <td>${red.fecha_instalacion}</td>
+                        <td>${red.nro_medidor}</td>
+                        <td>${red.plano_instalacion}</td>
+                        <td>${red.direccion}</td>
+                        <td>${red.consumo_mensual}</td>
+                        <td>${red.monto_aprox}</td>
+                        <td>
+                            <button class="btn btn-info" onclick="editNetwork('${red.id}')">Editar</button>
+                            <button class="btn btn-danger" onclick="deleteNetwork('${red.id}')">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+                redList.append(redRow);
             });
         }
 
@@ -126,8 +154,7 @@
             fetch(`/redes/${id}`)
             .then(response => response.json())
             .then(network => {
-                // Mostrar el modal para editar la red
-                $("#network-modal").show();  // Mostrar el modal
+                $("#network-modal").show();  // Mostrar el modal para editar
 
                 // Cargar los datos de la red en el formulario
                 $("#id").val(network.id);
@@ -173,7 +200,7 @@
             .then(response => response.json())
             .then(data => {
                 alert(data.message);
-                getNetworks();
+                cargarRedes();  // Recargar las redes después de guardar
                 $("#network-modal").hide();  // Ocultar el modal después de guardar
             });
         }
@@ -187,18 +214,9 @@
                 .then(response => response.json())
                 .then(data => {
                     alert(data.message);
-                    getNetworks();
+                    cargarRedes();  // Recargar las redes después de eliminar
                 });
             }
         }
-
-        // Cargar redes al cargar la página
-        $(document).ready(function() {
-            getNetworks();
-
-            // Asegurarse de que el modal esté oculto al cargar la página
-            $("#network-modal").hide();
-        });
-
     </script>
 {% endblock %}
