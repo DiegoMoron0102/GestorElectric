@@ -34,7 +34,7 @@
         <table class="table table-hover">
             <thead class="table-light">
                 <tr>
-                    <th>ID RED</th>
+                    <th>Empresa</th>
                     <th>Fecha de registro</th>
                     <th>Fecha de última instalación</th>
                     <th>Nro Medidor</th>
@@ -90,5 +90,208 @@
 {% endblock %}
 
 {% block extra_js %}
+<<<<<<< Updated upstream
     <script src="{{ url_for('static', filename='js/PanelControl.js') }}"></script>
+=======
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let redesCache = [];  // Almacenaremos todas las redes aquí
+        const redesPorPagina = 5;  // Cambia este valor según cuántas redes quieras mostrar por página
+        let paginaActual = 1;
+
+        // Cargar redes cuando la página cargue sin filtro
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarRedes();  // Cargar las redes desde el backend
+
+            // Asegurarse de que el modal esté oculto al cargar la página
+            $("#network-modal").hide();  // Ocultar el modal inicialmente
+
+            // Filtrar redes en tiempo real cuando el usuario escribe en el campo de búsqueda
+            $("#empresa-input").on('input', function() {
+                const empresa = $("#empresa-input").val().toLowerCase();  // Convertir el valor a minúsculas
+                console.log("Filtrando redes por empresa:", empresa);
+                filtrarRedes(empresa);  // Aplicar el filtro localmente
+            });
+        });
+
+        // Función para cargar redes desde el backend
+        function cargarRedes() {
+            fetch('/redes')
+            .then(response => response.json())
+            .then(data => {
+                redesCache = data;  // Guardar las redes en caché para filtrar localmente
+                paginarRedes();  // Paginar y mostrar las redes inicialmente
+            })
+            .catch(error => console.error('Error al cargar las redes:', error));
+        }
+
+        // Función para filtrar redes localmente y paginarlas
+        function filtrarRedes(filtroEmpresa) {
+            const redesFiltradas = redesCache.filter(red => red.empresa.toLowerCase().includes(filtroEmpresa));
+            paginaActual = 1;  // Reiniciar a la primera página al filtrar
+            paginarRedes(redesFiltradas);  // Paginar las redes filtradas
+        }
+
+        // Función para paginar redes
+        function paginarRedes(redes = redesCache) {
+            const inicio = (paginaActual - 1) * redesPorPagina;
+            const fin = inicio + redesPorPagina;
+            const redesPagina = redes.slice(inicio, fin);  // Obtener las redes para la página actual
+
+            mostrarRedes(redesPagina);  // Mostrar las redes de la página actual
+            generarPaginacion(redes.length);  // Generar los botones de paginación
+        }
+
+        // Función para mostrar las redes en la tabla
+        function mostrarRedes(redes) {
+            const redList = $("#network-table");
+            redList.empty();  // Limpiar la tabla antes de agregar los nuevos datos
+
+            redes.forEach(red => {
+                const redRow = `
+                    <tr>
+                        <td>${red.empresa}</td>
+                        <td>${red.fecha_registro}</td>
+                        <td>${red.fecha_instalacion}</td>
+                        <td>${red.nro_medidor}</td>
+                        <td>${red.plano_instalacion}</td>
+                        <td>${red.direccion}</td>
+                        <td>${red.consumo_mensual}</td>
+                        <td>${red.monto_aprox}</td>
+                        <td>
+                            <button class="btn btn-info" onclick="editNetwork('${red.id}')">Editar</button>
+                            <button class="btn btn-danger" onclick="deleteNetwork('${red.id}')">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+                redList.append(redRow);
+            });
+        }
+
+        function generarPaginacion(totalRedes) {
+            const totalPaginas = Math.ceil(totalRedes / redesPorPagina);
+            const paginacion = $("#pagination");
+            paginacion.empty();  // Limpiar la paginación antes de generar nuevos botones
+
+            const maxPaginasVisibles = 5;  // Número máximo de páginas visibles
+            const startPage = Math.max(paginaActual - Math.floor(maxPaginasVisibles / 2), 1);
+            const endPage = Math.min(startPage + maxPaginasVisibles - 1, totalPaginas);
+
+            // Botón de "Anterior"
+            const prevDisabled = paginaActual === 1 ? 'disabled' : '';
+            paginacion.append(`<li class="page-item ${prevDisabled}"><a class="page-link" href="#" onclick="cambiarPagina(${paginaActual - 1})">Anterior</a></li>`);
+
+            // Si la página inicial es mayor que 1, mostramos elipsis
+            if (startPage > 1) {
+                paginacion.append(`<li class="page-item"><a class="page-link" href="#" onclick="cambiarPagina(1)">1</a></li>`);
+                paginacion.append(`<li class="page-item disabled"><a class="page-link" href="#">...</a></li>`);
+            }
+
+            // Generar los botones de página visibles
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === paginaActual ? 'active' : '';
+                paginacion.append(`<li class="page-item ${active}"><a class="page-link" href="#" onclick="cambiarPagina(${i})">${i}</a></li>`);
+            }
+
+            // Si la última página visible es menor que el total de páginas, mostramos elipsis
+            if (endPage < totalPaginas) {
+                paginacion.append(`<li class="page-item disabled"><a class="page-link" href="#">...</a></li>`);
+                paginacion.append(`<li class="page-item"><a class="page-link" href="#" onclick="cambiarPagina(${totalPaginas})">${totalPaginas}</a></li>`);
+            }
+
+            // Botón de "Siguiente"
+            const nextDisabled = paginaActual === totalPaginas ? 'disabled' : '';
+            paginacion.append(`<li class="page-item ${nextDisabled}"><a class="page-link" href="#" onclick="cambiarPagina(${paginaActual + 1})">Siguiente</a></li>`);
+        }
+
+        // Función para cambiar de página
+        function cambiarPagina(pagina) {
+            if (pagina < 1 || pagina > Math.ceil(redesCache.length / redesPorPagina)) return;
+            paginaActual = pagina;
+            paginarRedes();  // Actualizar la tabla y la paginación con la nueva página
+        }
+
+        // Mostrar formulario para agregar una nueva red
+        function showAddForm() {
+            $("#networkForm")[0].reset();  // Limpiar el formulario
+            $("#id").val('');  // Asegurarse de que el campo ID esté vacío
+            $("#network-modal").show();  // Mostrar el modal
+        }
+
+        // Cerrar el modal
+        function closeModal() {
+            $("#network-modal").hide();  // Ocultar el modal
+        }
+
+        // Editar una red existente
+        function editNetwork(id) {
+            fetch(`/redes/${id}`)
+            .then(response => response.json())
+            .then(network => {
+                $("#network-modal").show();  // Mostrar el modal para editar
+
+                // Cargar los datos de la red en el formulario
+                $("#id").val(network.id);
+                $("#fecha_registro").val(network.fecha_registro);
+                $("#fecha_instalacion").val(network.fecha_instalacion);
+                $("#nro_medidor").val(network.nro_medidor);
+                $("#plano_instalacion").val(network.plano_instalacion);
+                $("#direccion").val(network.direccion);
+                $("#consumo_mensual").val(network.consumo_mensual);
+                $("#monto_aprox").val(network.monto_aprox);
+            });
+        }
+
+        // Agregar o actualizar una red
+        function addOrUpdateNetwork() {
+            const id = $("#id").val();
+            const data = {
+                fecha_registro: $("#fecha_registro").val(),
+                fecha_instalacion: $("#fecha_instalacion").val(),
+                nro_medidor: $("#nro_medidor").val(),
+                plano_instalacion: $("#plano_instalacion").val(),
+                direccion: $("#direccion").val(),
+                consumo_mensual: $("#consumo_mensual").val(),
+                monto_aprox: $("#monto_aprox").val()
+            };
+
+            let url = '/redes';
+            let method = 'POST';
+
+            // Si hay un ID, significa que estamos editando una red
+            if (id) {
+                url = `/redes/${id}`;
+                method = 'PUT';
+            }
+
+            fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                cargarRedes();  // Recargar las redes después de guardar
+                $("#network-modal").hide();  // Ocultar el modal después de guardar
+            });
+        }
+
+        // Eliminar una red
+        function deleteNetwork(id) {
+            if (confirm("¿Estás seguro de que deseas eliminar esta red?")) {
+                fetch(`/redes/${id}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    cargarRedes();  // Recargar las redes después de eliminar
+                });
+            }
+        }
+    </script>
+>>>>>>> Stashed changes
 {% endblock %}
