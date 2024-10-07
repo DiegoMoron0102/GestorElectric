@@ -1,22 +1,35 @@
-from flask import Flask, render_template,session,flash,redirect,url_for
+from flask import Flask, render_template,session,flash,redirect,url_for,request
 from autenticacion import autenticacion_bp  # Importa tu blueprint de autenticación
 from soporte import soporte_bp
 from premium import premium_bp
 from usuario import usuario_bp
-from abm import abm_bp
+from redes import redes_bp
+from informes import informes_bp
+from inventario import inventario_bp
+from software import software_bp
+from compras import compras_bp
+from datetime import timedelta
 from firebase_admin import firestore
-
+from ModuloContable import modulo_contable_bp
 app = Flask(__name__)
 
 # Añadir secret key
 app.secret_key = 'una_clave_secreta_muy_segura'
+# Conectar con Firestore
+db = firestore.client()
+
 
 # Registrar el blueprint de autenticación
 app.register_blueprint(autenticacion_bp)
 app.register_blueprint(soporte_bp)
 app.register_blueprint(premium_bp)
 app.register_blueprint(usuario_bp)
-app.register_blueprint(abm_bp)
+app.register_blueprint(redes_bp)
+app.register_blueprint(informes_bp)
+app.register_blueprint(inventario_bp)
+app.register_blueprint(software_bp)
+app.register_blueprint(modulo_contable_bp)
+app.register_blueprint(compras_bp, url_prefix='/user')
 
 # Ruta para la página principal (home)
 @app.route('/')
@@ -76,6 +89,7 @@ def generacion_informes():
 def gestion_inventarios():
     return render_template('F_admin/GestionInventarios.html')
 
+
 @app.route('/admin/gestion_software')
 def gestion_software():
     return render_template('F_admin/GestionSoftware.html')
@@ -87,6 +101,12 @@ def informe_seguridad():
 @app.route('/admin/panel_control')
 def panel_control():
     return render_template('F_admin/PanelControl.html')
+
+@app.route('/admin/modulo_contable')
+def modulo_contable():
+    return render_template('F_admin/ModuloContable.html')
+
+
 
 # Rutas del usuario (F_user)
 @app.route('/user/informes')
@@ -107,8 +127,17 @@ def user_panel_control():
 
 @app.route('/user/comprar_software')
 def comprar_software():
-    return render_template('F_user/comprarSoftware.html')
+    software_id = request.args.get('software_id')  # Obtener el ID del software de los parámetros de la URL
+    software = db.collection('software').document(software_id).get().to_dict()  # Obtener la información del software
+    
+    user = session.get('user')  # Supongamos que tienes el usuario guardado en la sesión
 
+    if software and user:
+        return render_template('F_user/comprarSoftware.html', software=software, user=user)
+    elif not user:
+        return "Usuario no autenticado", 403
+    else:
+        return "Software no encontrado", 404
 
 if __name__ == '__main__':
     app.run(debug=True)

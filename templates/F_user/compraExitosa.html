@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Compra Exitosa{% endblock %}
+
+{% block content %}
+<h1>¡Compra Exitosa!</h1>
+<p>Tu código de compra es: <strong>{{ codigo_compra }}</strong></p>
+<button onclick="copiarCodigo()">Copiar Código</button>
+
+<script>
+    function copiarCodigo() {
+        const codigo = "{{ codigo_compra }}";
+        navigator.clipboard.writeText(codigo).then(() => {
+            alert('Código copiado al portapapeles');
+        });
+    }
+</script>
+{% endblock %}

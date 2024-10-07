@@ -99,6 +99,8 @@ def login():
             session['email'] = user_data.get('email')
             session['role'] = user_data.get('role')
             session['name'] = user_data.get('name')
+            session['company'] = user_data.get('company')
+            
 
             flash('Inicio de sesión exitoso', 'success')
 

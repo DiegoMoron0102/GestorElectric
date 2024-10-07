@@ -1,5 +1,5 @@
 # Ruta: controllers/usuario_controller.py
-from flask import Blueprint, jsonify, session, flash, redirect, url_for
+from flask import Blueprint, jsonify, session, flash, redirect, url_for,request
 from firebase_admin import firestore
 
 # Crear el Blueprint
@@ -27,3 +27,25 @@ def info_usuario_datos():
     except Exception as e:
         print(f"Error al obtener la información del usuario: {e}")
         return jsonify({'error': 'Hubo un problema al cargar la información del usuario.'}), 500
+# Ruta para actualizar la información del usuario
+@usuario_bp.route('/info_usuario/editar', methods=['POST'])
+def editar_info_usuario():
+    user_id = session.get('user')  # Obtener el ID del usuario desde la sesión
+    if not user_id:
+        return jsonify({'error': 'Usuario no encontrado en la sesión.'}), 403
+
+    # Obtener los nuevos datos desde la solicitud
+    user_data = request.get_json()
+
+    try:
+        # Actualizar solo los campos de nacimiento y dirección en Firestore
+        db.collection('users').document(user_id).update({
+            'birthdate': user_data.get('birthdate'),
+            'address': user_data.get('address')
+        })
+
+        return jsonify({'message': 'Información actualizada correctamente'}), 200
+
+    except Exception as e:
+        print(f"Error al actualizar la información del usuario: {e}")
+        return jsonify({'error': 'Hubo un problema al actualizar la información.'}), 500

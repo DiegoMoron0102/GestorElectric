@@ -345,3 +345,128 @@ textarea {
         margin: 20px auto;
     }
 }
+/* Botón para añadir software */
+.add-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-button:hover {
+    background-color: #17a34a;
+}
+
+/* Estilos del formulario de software */
+#software-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#software-form input, #software-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#software-form button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#software-form button:hover {
+    background-color: #17a34a;
+}
+
+/* Contenedor de los productos */
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px; /* Espacio entre productos */
+}
+
+/* Tarjeta de cada producto */
+.product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 300px; /* Ajusta el ancho de las tarjetas según necesites */
+    flex: 1; /* Hace que todas las tarjetas tengan el mismo ancho */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-card h3 {
+    margin-top: 15px;
+    font-size: 1.5rem;
+}
+
+.product-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.product-card ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.product-card ul li {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.price {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #27ae60;
+}
+
+.buy-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #219150;
+}
+.product-card img {
+    width: 150px; /* Tamaño fijo para las imágenes */
+    height: auto; /* Mantener la proporción de la imagen */
+    object-fit: cover; /* Asegura que la imagen se ajuste correctamente dentro del tamaño */
+    border-radius: 10px;
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+}

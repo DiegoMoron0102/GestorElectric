@@ -1,70 +1,44 @@
 {% extends "base.html" %}
 
-{% block title %}Formulario de Compra{% endblock %}
-
+{% block title %}Confirmar Pago{% endblock %}
 {% block extra_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/Software.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/comprar_software.css') }}">
+{% endblock %}
+{% block content %}
+    <section class="product">
+        <img src="{{ software.image_url }}" alt="Imagen del producto">
+        <div class="product-info">
+            <h2>{{ software.title }}</h2>
+            <p>{{ software.description }}</p>
+            <h3>Funciones</h3>
+            <ul class="features">
+                {% for feature in software.features %}
+                    <li>{{ feature }}</li>
+                {% endfor %}
+            </ul>
+            <div class="price">Costo: <strong>${{ software.price }}/mes</strong></div>
+        </div>
+    </section>
+
+    <section class="purchase-form">
+        <form id="purchase-form">
+            <!-- Campo oculto para el NoSerie -->
+            <input type="hidden" id="software-no-serie" value="{{ software.NoSerie }}">
+        
+            <label for="metodo_pago">Selecciona tu método de pago:</label>
+            <select name="metodo_pago" id="metodo_pago" required>
+                <option value="tarjeta_credito">Tarjeta de Crédito</option>
+                <option value="paypal">PayPal</option>
+                <option value="transferencia_bancaria">Transferencia Bancaria</option>
+            </select>
+            <button type="submit">Confirmar Compra</button>
+        </form>
+        
+        
+    </section>
 {% endblock %}
 
-{% block content %}
-    <section class="purchase-form">
-        <h2>Formulario de Compra</h2>
-        <form action="/comprar" method="POST">
-            <div class="form-group">
-                <label for="nombre">Nombre Completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required>
-            </div>
-
-            <div class="form-group">
-                <label for="ciudad">Ciudad:</label>
-                <input type="text" id="ciudad" name="ciudad" required>
-            </div>
-
-            <div class="form-group">
-                <label for="pais">País:</label>
-                <select id="pais" name="pais" required>
-                    <option value="">Seleccione su país</option>
-                    <option value="Bolivia">Bolivia</option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Peru">Perú</option>
-                    <option value="Otros">Otros</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono" required>
-            </div>
-
-            <div class="form-group">
-                <label for="software">Seleccione el software que desea comprar:</label>
-                <select id="software" name="software" required>
-                    <option value="PowerNet Pro">PowerNet Pro - $499.99/mes</option>
-                    <option value="ElecManage Lite">ElecManage Lite - $99.99/mes</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="metodo-pago">Método de Pago:</label>
-                <select id="metodo-pago" name="metodo-pago" required>
-                    <option value="tarjeta">Tarjeta de Crédito/Débito</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="transferencia">Transferencia Bancaria</option>
-                </select>
-            </div>
-
-            <button type="submit" class="buy-button">Completar Compra</button>
-        </form>
-    </section>
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/comprar_software.js') }}"></script>
 {% endblock %}
