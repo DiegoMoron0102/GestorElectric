@@ -16,8 +16,6 @@ const submitBtn = document.getElementById('submit-btn');
 const modalTitle = document.getElementById('modal-title');
 const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
 const confirmEditBtn = document.getElementById('confirm-edit-btn');
-const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
-const cancelEditBtn = document.getElementById('cancel-edit-btn');
 
 let deleteIndex = -1; // Variable para eliminar transacción
 
@@ -39,8 +37,17 @@ closeBtns.forEach(btn => {
     });
 });
 
+// Función para cargar las transacciones desde Firestore
+async function cargarTransacciones() {
+    const response = await fetch('/contabilidad');
+    const data = await response.json();
+    transactions = data;
+    actualizarTabla();
+    //actualizarResumen();
+}
+
 // Función para agregar o editar una transacción
-transactionForm.addEventListener('submit', function(event) {
+transactionForm.addEventListener('submit', async function(event) {
     event.preventDefault();
 
     const tipo = document.getElementById('tipo').value;
@@ -48,21 +55,36 @@ transactionForm.addEventListener('submit', function(event) {
     const descripcion = document.getElementById('descripcion').value;
     const fecha = document.getElementById('fecha').value;
 
-    if (!isNaN(monto) && monto > 0) {
-        const transaction = { tipo, monto, descripcion, fecha };
+    const transaction = { tipo, monto, descripcion, fecha };
 
-        if (editingIndex >= 0) {
-            // Editar transacción existente
-            transactions[editingIndex] = transaction;
-            confirmEditModal.style.display = 'block'; // Mostrar confirmación
-        } else {
-            // Añadir nueva transacción
-            transactions.push(transaction);
-            modal.style.display = 'none'; // Cerrar modal
-            actualizarTabla();
-            actualizarResumen();
+    if (editingIndex >= 0) {
+        // Editar transacción existente
+        const id = transactions[editingIndex].id;
+        const response = await fetch(`/contabilidad/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(transaction)
+        });
+
+        if (response.ok) {
+            confirmEditModal.style.display = 'block';
+        }
+    } else {
+        // Añadir nueva transacción
+        const response = await fetch('/contabilidad', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(transaction)
+        });
+
+        if (response.ok) {
+            const newTransaction = await response.json();
+            transactions.push(newTransaction);
+            modal.style.display = 'none';
         }
     }
+    
+    cargarTransacciones(); // Recargar las transacciones y actualizar la tabla
 });
 
 // Función para actualizar la tabla
@@ -75,7 +97,8 @@ function actualizarTabla() {
             <td>${transaction.fecha}</td>
             <td>${transaction.descripcion}</td>
             <td>${transaction.tipo}</td>
-            <td>${transaction.tipo === 'ingreso' ? '+' : '-'}${transaction.monto.toFixed(2)}Bs</td>
+            <td>${transaction.tipo === 'ingreso' ? '+' : '-'}$${parseFloat(transaction.monto).toFixed(2)}</td>
+
             <td>
                 <button class="edit-btn" data-index="${index}">Editar</button>
                 <button class="delete-btn" data-index="${index}">Eliminar</button>
@@ -97,36 +120,16 @@ function actualizarTabla() {
     });
 }
 
-// Función para actualizar el resumen contable
-function actualizarResumen() {
-    const totalIngresos = transactions
-        .filter(t => t.tipo === 'ingreso')
-        .reduce((sum, t) => sum + t.monto, 0);
-
-    const totalGastos = transactions
-        .filter(t => t.tipo === 'gasto')
-        .reduce((sum, t) => sum + t.monto, 0);
-
-    const balance = totalIngresos - totalGastos;
-
-    totalBalanceEl.textContent = balance.toFixed(2);
-    totalIngresosEl.textContent = totalIngresos.toFixed(2);
-    totalGastosEl.textContent = totalGastos.toFixed(2);
-
-    actualizarGrafico(totalIngresos, totalGastos);
-}
-
 // Función para eliminar una transacción
-confirmDeleteBtn.addEventListener('click', () => {
-    transactions.splice(deleteIndex, 1);
-    confirmDeleteModal.style.display = 'none';
-    actualizarTabla();
-    actualizarResumen();
-});
+confirmDeleteBtn.addEventListener('click', async () => {
+    const id = transactions[deleteIndex].id;
+    const response = await fetch(`/contabilidad/${id}`, { method: 'DELETE' });
 
-// Cancelar la eliminación
-cancelDeleteBtn.addEventListener('click', () => {
-    confirmDeleteModal.style.display = 'none';
+    if (response.ok) {
+        transactions.splice(deleteIndex, 1);
+        confirmDeleteModal.style.display = 'none';
+        cargarTransacciones();
+    }
 });
 
 // Función para editar una transacción
@@ -144,19 +147,6 @@ function editarTransaccion(event) {
     modal.style.display = 'block';
     editingIndex = index;
 }
-
-// Confirmar la edición de una transacción
-confirmEditBtn.addEventListener('click', () => {
-    confirmEditModal.style.display = 'none';
-    modal.style.display = 'none';
-    actualizarTabla();
-    actualizarResumen();
-});
-
-// Cancelar la edición
-cancelEditBtn.addEventListener('click', () => {
-    confirmEditModal.style.display = 'none';
-});
 
 // Función para actualizar el gráfico
 function actualizarGrafico(ingresos, gastos) {
@@ -187,24 +177,5 @@ function actualizarGrafico(ingresos, gastos) {
     });
 }
 
-// Función para filtrar por fecha
-document.getElementById('filter-btn').addEventListener('click', () => {
-    const startDate = document.getElementById('filter-start').value;
-    const endDate = document.getElementById('filter-end').value;
-
-    const filteredTransactions = transactions.filter(t => {
-        return (!startDate || t.fecha >= startDate) && (!endDate || t.fecha <= endDate);
-    });
-
-    transactionsTable.innerHTML = '';
-    filteredTransactions.forEach(transaction => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${transaction.fecha}</td>
-            <td>${transaction.descripcion}</td>
-            <td>${transaction.tipo}</td>
-            <td>${transaction.tipo === 'ingreso' ? '+' : '-'}${transaction.monto.toFixed(2)}Bs</td>
-        `;
-        transactionsTable.appendChild(row);
-    });
-});
+// Cargar transacciones al cargar la página
+document.addEventListener('DOMContentLoaded', cargarTransacciones);

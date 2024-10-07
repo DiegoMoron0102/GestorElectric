@@ -4,6 +4,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ModuloContable.css') }}">
+
 {% endblock %}
 
 {% block content %}
@@ -84,14 +85,15 @@
         </table>
 
         <!-- Filtro de fechas -->
-        <div class="filter">
+        <!--<div class="filter">
             <h2>Filtrar por Fecha</h2>
             <label for="filter-start">Desde:</label>
             <input type="date" id="filter-start">
             <label for="filter-end">Hasta:</label>
+            <input type="date" id="filter-end">
             <button id="filter-btn">Filtrar</button>
         </div>
-
+            -->
         <!-- Gráfico de ingresos vs gastos -->
         <canvas id="chart" width="400" height="200"></canvas>
     </div>

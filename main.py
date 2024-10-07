@@ -5,7 +5,7 @@ from premium import premium_bp
 from usuario import usuario_bp
 from abm import abm_bp
 from firebase_admin import firestore
-
+from ModuloContable import modulo_contable_bp
 app = Flask(__name__)
 
 # Añadir secret key
@@ -17,7 +17,7 @@ app.register_blueprint(soporte_bp)
 app.register_blueprint(premium_bp)
 app.register_blueprint(usuario_bp)
 app.register_blueprint(abm_bp)
-
+app.register_blueprint(modulo_contable_bp)
 # Ruta para la página principal (home)
 @app.route('/')
 def home():
@@ -91,6 +91,8 @@ def panel_control():
 @app.route('/admin/modulo_contable')
 def modulo_contable():
     return render_template('F_admin/ModuloContable.html')
+
+
 
 # Rutas del usuario (F_user)
 @app.route('/user/informes')
