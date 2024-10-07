@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             if (data.redes) {
                 generarGraficos(data.redes);
+                generarTablaDatos(data.redes);
             } else {
                 console.error('No se pudieron obtener los datos.');
             }
@@ -36,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
-        // Aquí puedes agregar más gráficos similares utilizando los datos de "redesData"
+
+        // Gráfico de Picos de Consumo
         const ctxPeakConsumption = document.getElementById('peakConsumptionChart').getContext('2d');
-        // Datos ficticios para los picos de consumo, ajusta según los datos reales.
-        const peakConsumptionData = [150, 180, 130, 120];
+        const peakConsumptionData = [150, 180, 130, 120];  // Datos ficticios
         const peakLabels = ['Red A', 'Red B', 'Red C', 'Red D'];
 
         new Chart(ctxPeakConsumption, {
@@ -58,24 +59,15 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 scales: {
                     y: {
-                        title: {
-                            display: true,
-                            text: 'Potencia en kW'
-                        },
                         beginAtZero: true
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Redes Eléctricas'
-                        }
                     }
                 }
             }
         });
+
+        // Gráfico de Eficiencia Energética
         const ctxEnergyEfficiency = document.getElementById('energyEfficiencyChart').getContext('2d');
-        // Datos ficticios de eficiencia energética, ajusta según los datos reales.
-        const efficiencyData = [85, 90, 75, 88]; // Valores en porcentaje (%)
+        const efficiencyData = [85, 90, 75, 88];
         const efficiencyLabels = ['Red A', 'Red B', 'Red C', 'Red D'];
 
         new Chart(ctxEnergyEfficiency, {
@@ -93,32 +85,60 @@ document.addEventListener('DOMContentLoaded', function () {
             options: {
                 scales: {
                     y: {
-                        title: {
-                            display: true,
-                            text: 'Porcentaje (%)'
-                        },
                         beginAtZero: true,
                         max: 100
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Redes Eléctricas'
-                        }
                     }
                 }
             }
         });
-                
     }
 
-    // Lógica para descargar como PDF
+    // Generar la tabla de datos para el informe
+    function generarTablaDatos(redesData) {
+        const tablaHTML = `
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Dirección</th>
+                        <th>Empresa</th>
+                        <th>Consumo Mensual (kWh)</th>
+                        <th>Monto Aproximado</th>
+                        <th>Fecha de Instalación</th>
+                        <th>Número de Medidor</th>
+                        <th>Plano de Instalación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${redesData.map(red => `
+                        <tr>
+                            <td>${red.direccion}</td>
+                            <td>${red.empresa}</td>
+                            <td>${red.consumo_mensual}</td>
+                            <td>${red.monto_aprox}</td>
+                            <td>${red.fecha_instalacion}</td>
+                            <td>${red.nro_medidor}</td>
+                            <td>${red.plano_instalacion}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+        document.getElementById('tablaDatos').innerHTML = tablaHTML;
+    }
+
+    // Descargar como PDF
     const downloadButton = document.getElementById('download-pdf');
     downloadButton.addEventListener('click', function () {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
+        const fecha = new Date().toLocaleDateString();
 
-        doc.text("Informe de Redes de Clientes", 10, 10);
-        doc.save("informe_redes.pdf");
+        doc.text(`Informe de Redes de Clientes (${fecha})`, 10, 10);
+        // Capturando los gráficos y agregándolos al PDF
+        doc.addImage(document.getElementById('energyConsumptionChart').toDataURL(), 'PNG', 10, 20, 180, 60);
+        doc.addImage(document.getElementById('peakConsumptionChart').toDataURL(), 'PNG', 10, 90, 180, 60);
+        doc.addImage(document.getElementById('energyEfficiencyChart').toDataURL(), 'PNG', 10, 160, 180, 60);
+
+        doc.save(`informe_redes_${fecha}.pdf`);
     });
 });
