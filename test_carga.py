@@ -21,7 +21,7 @@ def cargar_json_a_firestore(ruta_json):
             # Si es una lista, iterar sobre cada objeto en la lista
             for dato in datos:
                 if isinstance(dato, dict):
-                    db.collection('redes_test').add(dato)
+                    db.collection('redes').add(dato)
                 else:
                     print("Error: Elemento de la lista no es un diccionario.")
         elif isinstance(datos, dict):
@@ -40,7 +40,7 @@ def cargar_json_a_firestore(ruta_json):
         print(f"Error al añadir datos: {e}")
 
 # Definir la ruta del archivo JSON en tu sistema (puedes cambiar esta ruta según tu archivo)
-ruta_json = 'MOCK_DATA.json'
+ruta_json = 'REDES_DATOS.json'
 
 # Ejecutar la función para cargar el JSON
 cargar_json_a_firestore(ruta_json)
