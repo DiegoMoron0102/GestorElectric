@@ -83,6 +83,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         // Obtener redes desde el servidor
+        // Obtener redes desde el servidor
         function getNetworks() {
             fetch('/redes')
             .then(response => response.json())
@@ -111,39 +112,36 @@
         }
 
         // Mostrar formulario para agregar una nueva red
-                // Mostrar el modal para agregar una nueva red
-                function showAddForm() {
-                    $("#networkForm")[0].reset();  // Limpiar el formulario
-                    $("#id").val('');  // Asegurarse de que el campo ID esté vacío
-                    $("#network-modal").show();  // Mostrar el modal
-                }
+        function showAddForm() {
+            $("#networkForm")[0].reset();  // Limpiar el formulario
+            $("#id").val('');  // Asegurarse de que el campo ID esté vacío
+            $("#network-modal").show();  // Mostrar el modal
+        }
 
-                // Cerrar el modal
-                function closeModal() {
-                    $("#network-modal").hide();  // Ocultar el modal
-                }
+        // Cerrar el modal
+        function closeModal() {
+            $("#network-modal").hide();  // Ocultar el modal
+        }
 
-                // Editar una red existente
-                function editNetwork(id) {
-                    fetch(`/redes/${id}`)
-                    .then(response => response.json())
-                    .then(network => {
-                        $("#network-modal").show();  // Mostrar el modal
-                        $("#id").val(network.id);
-                        $("#fecha_registro").val(network.fecha_registro);
-                        $("#fecha_instalacion").val(network.fecha_instalacion);
-                        $("#nro_medidor").val(network.nro_medidor);
-                        $("#plano_instalacion").val(network.plano_instalacion);
-                        $("#direccion").val(network.direccion);
-                        $("#consumo_mensual").val(network.consumo_mensual);
-                        $("#monto_aprox").val(network.monto_aprox);
-                    });
-                }
+        // Editar una red existente
+        function editNetwork(id) {
+            fetch(`/redes/${id}`)
+            .then(response => response.json())
+            .then(network => {
+                // Mostrar el modal para editar la red
+                $("#network-modal").show();  // Mostrar el modal
 
-                $(document).ready(function() {
-                    // Ocultar el modal al cargar la página
-                    $("#network-modal").hide();
-                });
+                // Cargar los datos de la red en el formulario
+                $("#id").val(network.id);
+                $("#fecha_registro").val(network.fecha_registro);
+                $("#fecha_instalacion").val(network.fecha_instalacion);
+                $("#nro_medidor").val(network.nro_medidor);
+                $("#plano_instalacion").val(network.plano_instalacion);
+                $("#direccion").val(network.direccion);
+                $("#consumo_mensual").val(network.consumo_mensual);
+                $("#monto_aprox").val(network.monto_aprox);
+            });
+        }
 
         // Agregar o actualizar una red
         function addOrUpdateNetwork() {
@@ -178,24 +176,7 @@
             .then(data => {
                 alert(data.message);
                 getNetworks();
-                $("#network-form").hide();
-            });
-        }
-
-        // Editar una red existente
-        function editNetwork(id) {
-            fetch(`/redes/${id}`)
-            .then(response => response.json())
-            .then(network => {
-                $("#network-form").show();
-                $("#id").val(network.id);
-                $("#fecha_registro").val(network.fecha_registro);
-                $("#fecha_instalacion").val(network.fecha_instalacion);
-                $("#nro_medidor").val(network.nro_medidor);
-                $("#plano_instalacion").val(network.plano_instalacion);
-                $("#direccion").val(network.direccion);
-                $("#consumo_mensual").val(network.consumo_mensual);
-                $("#monto_aprox").val(network.monto_aprox);
+                $("#network-modal").hide();  // Ocultar el modal después de guardar
             });
         }
 
@@ -216,6 +197,10 @@
         // Cargar redes al cargar la página
         $(document).ready(function() {
             getNetworks();
+
+            // Asegurarse de que el modal esté oculto al cargar la página
+            $("#network-modal").hide();
         });
+
     </script>
 {% endblock %}

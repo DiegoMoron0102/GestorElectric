@@ -3,7 +3,7 @@ from autenticacion import autenticacion_bp  # Importa tu blueprint de autenticac
 from soporte import soporte_bp
 from premium import premium_bp
 from usuario import usuario_bp
-from abm import abm_bp
+from redes import redes_bp
 from informes import informes_bp
 from inventario import inventario_bp
 from firebase_admin import firestore
@@ -18,7 +18,7 @@ app.register_blueprint(autenticacion_bp)
 app.register_blueprint(soporte_bp)
 app.register_blueprint(premium_bp)
 app.register_blueprint(usuario_bp)
-app.register_blueprint(abm_bp)
+app.register_blueprint(redes_bp)
 app.register_blueprint(informes_bp)
 app.register_blueprint(inventario_bp)
 
