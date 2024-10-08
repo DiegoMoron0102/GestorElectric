@@ -7,35 +7,45 @@ db = firestore.client()
 # Crear el blueprint para ABM
 redes_bp = Blueprint('redes_bp', __name__)
 
-
-
 @redes_bp.route('/redes', methods=['GET'])
 def get_networks():
+    user_id = session.get('user')  # Obtener el ID del usuario desde la sesión
+    user_role = session.get('role')  # Obtener el rol del usuario desde la sesión
+    user_empresa = session.get('company')  # Obtener la empresa del usuario desde la sesión
     empresa_filtro = request.args.get('empresa', '')  # Obtener el filtro de empresa si se proporciona
 
     print(f'Filtrando redes por empresa: {empresa_filtro}')  # Verificar que el filtro se está capturando
 
     networks = []
-    
-    # Realizamos la búsqueda si hay un filtro proporcionado
-    if empresa_filtro:
-        # Si utilizas Firestore, puedes hacer un filtro con rangos para buscar empresas que comienzan con la cadena ingresada
-        empresa_filtro_capitalizada = empresa_filtro.capitalize()  # Asegúrate de que la primera letra sea mayúscula
-        start_at = empresa_filtro_capitalizada
-        end_at = empresa_filtro_capitalizada + '\uf8ff'  # Esto incluye todo lo que empiece con la cadena
 
-        networks_ref = db.collection('redes').where('empresa', '>=', start_at).where('empresa', '<=', end_at).stream()
-    else:
-        # Si no hay filtro, traer todas las redes
-        networks_ref = db.collection('redes').stream()
+    try:
+        # Si el usuario es administrador, puede ver todas las redes o filtrar por empresa
+        if user_role == 'Admin':
+            if empresa_filtro:
+                # Filtrar redes por empresa, utilizando rangos
+                empresa_filtro_capitalizada = empresa_filtro.capitalize()
+                start_at = empresa_filtro_capitalizada
+                end_at = empresa_filtro_capitalizada + '\uf8ff'
 
-    # Convertimos las redes a una lista de diccionarios
-    for network in networks_ref:
-        network_data = network.to_dict()
-        network_data['id'] = network.id
-        networks.append(network_data)
+                networks_ref = db.collection('redes').where('empresa', '>=', start_at).where('empresa', '<=', end_at).stream()
+            else:
+                # Si no hay filtro, traer todas las redes
+                networks_ref = db.collection('redes').stream()
+        else:
+            # Si es un usuario normal, solo ver las redes de su empresa
+            networks_ref = db.collection('redes').where('empresa', '==', user_empresa).stream()
 
-    return jsonify(networks), 200
+        # Convertimos las redes a una lista de diccionarios
+        for network in networks_ref:
+            network_data = network.to_dict()
+            network_data['id'] = network.id
+            networks.append(network_data)
+
+        return jsonify(networks), 200
+
+    except Exception as e:
+        print(f"Error al obtener las redes: {e}")
+        return jsonify({'error': 'Hubo un problema al obtener las redes.'}), 500
 
 # Ruta para obtener una red específica por su ID
 @redes_bp.route('/redes/<id>', methods=['GET'])
@@ -44,7 +54,7 @@ def get_network(id):
         # Obtener el documento de la red en Firestore
         network_doc = db.collection('redes').document(id).get()
 
-        if not network_doc.exists:
+        if not network_doc.exists():
             return jsonify({'message': 'Red no encontrada'}), 404
 
         # Convertir el documento a un diccionario y devolverlo como JSON
@@ -55,6 +65,7 @@ def get_network(id):
     except Exception as e:
         print(f"Error al obtener la red: {e}")
         return jsonify({'error': 'Hubo un problema al obtener la red.'}), 500
+
 
 # Ruta para agregar una red
 @redes_bp.route('/redes', methods=['POST'])
