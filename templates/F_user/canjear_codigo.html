@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Canjear Código{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .redeem-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .redeem-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .redeem-container .btn-primary {
+            width: 100%;
+        }
+        #redeem-message {
+            margin-top: 15px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        .redeem-container .message-success {
+            color: green;
+        }
+        .redeem-container .message-error {
+            color: red;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="redeem-container">
+    <h2>Canjear Código de Producto</h2>
+    <form id="redeem-code-form" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="redeem-code-input">Introduce tu código de canje</label>
+            <input type="text" id="redeem-code-input" class="form-control" required>
+            <div class="invalid-feedback">
+                Por favor ingresa un código válido.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Canjear</button>
+    </form>
+
+    <div id="redeem-message"></div> <!-- Aquí se mostrará el mensaje -->
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Validación de Bootstrap
+            var forms = document.getElementsByClassName('needs-validation');
+            Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+
+            const redeemForm = document.getElementById('redeem-code-form');
+            const redeemMessage = document.getElementById('redeem-message');
+
+            // Enviar el código al backend para validación
+            redeemForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const code = document.getElementById('redeem-code-input').value;
+
+                fetch('/canjear_codigo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ codigo: code })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        redeemMessage.innerHTML = `<p class="message-success">¡Código canjeado con éxito! Producto: ${data.producto}</p>`;
+                    } else {
+                        redeemMessage.innerHTML = `<p class="message-error">Error: ${data.message}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    redeemMessage.innerHTML = `<p class="message-error">Error en el servidor. Inténtalo de nuevo más tarde.</p>`;
+                });
+            });
+        });
+    </script>
+{% endblock %}

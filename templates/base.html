@@ -52,9 +52,11 @@
                         <a href="#" class="dropbtn">{{ session['name'] }} <span class="caret">▼</span></a>
                         <div class="dropdown-content">
                             <a href="{{ url_for('InfoUsuario') }}">Info Usuario</a>
+                            <a href="{{ url_for('canjear') }}">Canjear Código</a>
                             <a href="{{ url_for('autenticacion_bp.logout') }}">Cerrar Sesión</a>
                         </div>
                     </li>
+                    
                     {% else %}
                     <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
                     {% endif %}

@@ -8,6 +8,7 @@ from informes import informes_bp
 from inventario import inventario_bp
 from software import software_bp
 from compras import compras_bp
+from codigo import codigo_bp
 from datetime import timedelta
 from firebase_admin import firestore
 from ModuloContable import modulo_contable_bp
@@ -29,6 +30,7 @@ app.register_blueprint(informes_bp)
 app.register_blueprint(inventario_bp)
 app.register_blueprint(software_bp)
 app.register_blueprint(modulo_contable_bp)
+app.register_blueprint(codigo_bp)
 app.register_blueprint(compras_bp, url_prefix='/user')
 
 # Ruta para la página principal (home)
@@ -138,6 +140,13 @@ def comprar_software():
         return "Usuario no autenticado", 403
     else:
         return "Software no encontrado", 404
+
+@app.route('/canjear')
+def canjear():
+    # Esta ruta renderiza la página donde se introduce el código
+    return render_template('F_user/canjear_codigo.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
