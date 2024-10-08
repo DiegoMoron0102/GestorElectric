@@ -1,6 +1,7 @@
 /* Estilos Generales */
 body {
     font-family: 'Arial', sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -11,6 +12,8 @@ body {
 .container {
     padding: 50px 20px;
     text-align: center;
+    max-width: 1200px; /* Limitar el ancho del contenedor */
+    margin: 0 auto; /* Centrar el contenedor */
     max-width: 1200px; /* Limitar el ancho del contenedor */
     margin: 0 auto; /* Centrar el contenedor */
 }
@@ -39,39 +42,56 @@ h2 {
 /* Estilos de Botones */
 .btn {
     background-color: #1DB954;
+    background-color: #1DB954;
     color: white;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
     padding: 10px 20px;
+    padding: 10px 20px;
 }
 
 .btn:hover {
+    background-color: #17a34a;
     background-color: #17a34a;
 }
 
 .btn-primary {
     background-color: #007bff;
+    background-color: #007bff;
 }
 
 .btn-warning {
+    background-color: #ffc107;
     background-color: #ffc107;
 }
 
 .btn-danger {
     background-color: #dc3545;
+    background-color: #dc3545;
 }
 
 .btn-detail:hover {
+    background-color: #0056b3;
     background-color: #0056b3;
 }
 
 .btn-edit:hover {
     background-color: #e0a800;
+    background-color: #e0a800;
 }
 
 .btn-delete:hover {
     background-color: #c82333;
+    background-color: #c82333;
+}
+
+/* Estilización de la tabla */
+.table-container {
+    margin-top: 20px;
+    text-align: center;
+    overflow-x: auto; /* Evitar desbordamiento en pantallas pequeñas */
+    max-width: 100%;
 }
 
 /* Estilización de la tabla */
@@ -84,6 +104,7 @@ h2 {
 
 .table {
     width: 100%;
+    margin: 20px auto;
     margin: 20px auto;
     border-collapse: collapse;
 }

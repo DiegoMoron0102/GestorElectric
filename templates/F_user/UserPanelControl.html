@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Panel de Control - Redes{% endblock %}
+{% block title %}Panel de Control - Redes{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/PanelControl.css') }}">
@@ -13,8 +14,12 @@
         <!-- Botón para agregar una nueva red -->
         <div class="d-flex justify-content-between mb-4">
             <button class="btn btn-success" onclick="showAddForm()">Agregar Red</button>
+        <!-- Botón para agregar una nueva red -->
+        <div class="d-flex justify-content-between mb-4">
+            <button class="btn btn-success" onclick="showAddForm()">Agregar Red</button>
         </div>
 
+        <!-- Tabla de redes -->
         <!-- Tabla de redes -->
         <table class="table table-hover">
             <thead class="table-light">
@@ -28,9 +33,11 @@
                     <th>Consumo promedio mensual</th>
                     <th>Aprox. Monto a pagar</th>
                     <th>Acciones</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="network-table">
+                <!-- Aquí se rellenará la tabla con datos dinámicos -->
                 <!-- Aquí se rellenará la tabla con datos dinámicos -->
             </tbody>
         </table>
