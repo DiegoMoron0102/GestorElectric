@@ -37,3 +37,7 @@ __pycache__/informes.cpython-312.pyc
 __pycache__/autenticacion.cpython-312.pyc
 *.pyc
 chuno-6384b-firebase-adminsdk-3tk2c-e0d37f9726.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+branch_structure.json
