@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block title %}Panel de Control - Redes{% endblock %}
-{% block title %}Panel de Control - Redes{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/PanelControl.css') }}">
@@ -9,17 +8,13 @@
 
 {% block content %}
     <div class="container mt-4">
-        <h2 class="mb-4 text-primary">Panel de Control - Redes</h2>
+        <h2 class="mb-4 text-primary">Panel de Control - Mis Redes</h2>
 
-        <!-- Botón para agregar una nueva red -->
-        <div class="d-flex justify-content-between mb-4">
-            <button class="btn btn-success" onclick="showAddForm()">Agregar Red</button>
         <!-- Botón para agregar una nueva red -->
         <div class="d-flex justify-content-between mb-4">
             <button class="btn btn-success" onclick="showAddForm()">Agregar Red</button>
         </div>
 
-        <!-- Tabla de redes -->
         <!-- Tabla de redes -->
         <table class="table table-hover">
             <thead class="table-light">
@@ -33,17 +28,14 @@
                     <th>Consumo promedio mensual</th>
                     <th>Aprox. Monto a pagar</th>
                     <th>Acciones</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="network-table">
-                <!-- Aquí se rellenará la tabla con datos dinámicos -->
                 <!-- Aquí se rellenará la tabla con datos dinámicos -->
             </tbody>
         </table>
 
         <!-- Formulario para agregar o editar redes -->
-       <!-- Formulario modal para agregar o editar redes -->
         <div id="network-modal" class="modal">
             <div class="modal-content">
                 <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -74,14 +66,10 @@
                         <label for="consumo_mensual">Consumo promedio mensual</label>
                         <input type="number" class="form-control" id="consumo_mensual" required>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="monto_aprox">Aprox. Monto a pagar</label>
-                        <input type="number" class="form-control" id="monto_aprox" required>
-                    </div>
                     <button type="submit" class="btn btn-primary">Guardar Red</button>
                 </form>
             </div>
-</div>
+        </div>
 
     </div>
 {% endblock %}
@@ -89,6 +77,7 @@
 {% block extra_js %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // Obtener redes desde el servidor
         // Obtener redes desde el servidor
         function getNetworks() {
             fetch('/redes')
@@ -118,39 +107,36 @@
         }
 
         // Mostrar formulario para agregar una nueva red
-                // Mostrar el modal para agregar una nueva red
-                function showAddForm() {
-                    $("#networkForm")[0].reset();  // Limpiar el formulario
-                    $("#id").val('');  // Asegurarse de que el campo ID esté vacío
-                    $("#network-modal").show();  // Mostrar el modal
-                }
+        function showAddForm() {
+            $("#networkForm")[0].reset();  // Limpiar el formulario
+            $("#id").val('');  // Asegurarse de que el campo ID esté vacío
+            $("#network-modal").show();  // Mostrar el modal
+        }
 
-                // Cerrar el modal
-                function closeModal() {
-                    $("#network-modal").hide();  // Ocultar el modal
-                }
+        // Cerrar el modal
+        function closeModal() {
+            $("#network-modal").hide();  // Ocultar el modal
+        }
 
-                // Editar una red existente
-                function editNetwork(id) {
-                    fetch(`/redes/${id}`)
-                    .then(response => response.json())
-                    .then(network => {
-                        $("#network-modal").show();  // Mostrar el modal
-                        $("#id").val(network.id);
-                        $("#fecha_registro").val(network.fecha_registro);
-                        $("#fecha_instalacion").val(network.fecha_instalacion);
-                        $("#nro_medidor").val(network.nro_medidor);
-                        $("#plano_instalacion").val(network.plano_instalacion);
-                        $("#direccion").val(network.direccion);
-                        $("#consumo_mensual").val(network.consumo_mensual);
-                        $("#monto_aprox").val(network.monto_aprox);
-                    });
-                }
+        // Editar una red existente
+        function editNetwork(id) {
+            fetch(`/redes/${id}`)
+            .then(response => response.json())
+            .then(network => {
+                // Mostrar el modal para editar la red
+                $("#network-modal").show();  // Mostrar el modal
 
-                $(document).ready(function() {
-                    // Ocultar el modal al cargar la página
-                    $("#network-modal").hide();
-                });
+                // Cargar los datos de la red en el formulario
+                $("#id").val(network.id);
+                $("#fecha_registro").val(network.fecha_registro);
+                $("#fecha_instalacion").val(network.fecha_instalacion);
+                $("#nro_medidor").val(network.nro_medidor);
+                $("#plano_instalacion").val(network.plano_instalacion);
+                $("#direccion").val(network.direccion);
+                $("#consumo_mensual").val(network.consumo_mensual);
+                $("#monto_aprox").val(network.monto_aprox);
+            });
+        }
 
         // Agregar o actualizar una red
         function addOrUpdateNetwork() {
@@ -185,24 +171,7 @@
             .then(data => {
                 alert(data.message);
                 getNetworks();
-                $("#network-form").hide();
-            });
-        }
-
-        // Editar una red existente
-        function editNetwork(id) {
-            fetch(`/redes/${id}`)
-            .then(response => response.json())
-            .then(network => {
-                $("#network-form").show();
-                $("#id").val(network.id);
-                $("#fecha_registro").val(network.fecha_registro);
-                $("#fecha_instalacion").val(network.fecha_instalacion);
-                $("#nro_medidor").val(network.nro_medidor);
-                $("#plano_instalacion").val(network.plano_instalacion);
-                $("#direccion").val(network.direccion);
-                $("#consumo_mensual").val(network.consumo_mensual);
-                $("#monto_aprox").val(network.monto_aprox);
+                $("#network-modal").hide();  // Ocultar el modal después de guardar
             });
         }
 
@@ -223,6 +192,10 @@
         // Cargar redes al cargar la página
         $(document).ready(function() {
             getNetworks();
+
+            // Asegurarse de que el modal esté oculto al cargar la página
+            $("#network-modal").hide();
         });
+
     </script>
 {% endblock %}

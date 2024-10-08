@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Panel de Control - Plataforma de Gestión de Redes Eléctricas{% endblock %}
+{% block title %}Panel de Control - Redes{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/PanelControl.css') }}">
@@ -9,90 +9,84 @@
 {% block content %}
     <div class="container mt-4">
         <h2 class="mb-4 text-primary">Panel de Control - Redes Clientes</h2>
-        
-        <!-- Filtros y búsqueda -->
-        <div class="row mb-3">
-            <div class="col-md-3">
-                <select class="form-select" id="filter">
-                    <option value="id_cli">ID Cliente</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" id="search" placeholder="Búsqueda">
-            </div>
-            <div class="col-md-3">
-                <button class="btn btn-primary" id="filter-btn">Filtro</button>
-            </div>
-        </div>
-
-        <!-- Botón para agregar red -->
+         
+        <!-- Campo para seleccionar la empresa para filtrar -->
         <div class="d-flex justify-content-between mb-4">
             <button class="btn btn-success" onclick="showAddForm()">Agregar Red</button>
+        </div>
+
+         <!-- Campo de búsqueda para filtrar empresas en tiempo real -->
+        <div class="d-flex justify-content-between mb-4">
+            <input type="text" id="empresa-input" class="form-control w-25" placeholder="Escribe el nombre de la empresa">
         </div>
 
         <!-- Tabla de redes -->
         <table class="table table-hover">
             <thead class="table-light">
                 <tr>
-                    <th>Empresa</th>
+                    <th>ID RED</th>
                     <th>Fecha de registro</th>
                     <th>Fecha de última instalación</th>
                     <th>Nro Medidor</th>
                     <th>Plano de instalación</th>
-                    <th>ID Usuario</th>
+                    <th>Dirección</th>
                     <th>Consumo promedio mensual</th>
                     <th>Aprox. Monto a pagar</th>
-                    <th>Editar</th>
-                    <th>Borrar</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="network-table">
-                <!-- Aquí se rellenará la tabla -->
+                <!-- Aquí se rellenará la tabla con datos dinámicos -->
             </tbody>
         </table>
 
-        <!-- Formulario para agregar o editar una red -->
-        <div id="network-form" style="display:none;" class="mt-5">
-            <h3>Agregar/Editar Red</h3>
-            <input type="hidden" id="id">
-            <div class="form-group mb-3">
-                <label for="fecha_registro">Fecha de registro</label>
-                <input type="date" class="form-control" id="fecha_registro">
+        <!-- Paginación -->
+        <nav aria-label="Paginación de redes">
+            <ul class="pagination justify-content-center" id="pagination">
+                <!-- Botones de paginación generados dinámicamente -->
+            </ul>
+        </nav>
+
+        <!-- Formulario para agregar o editar redes -->
+        <div id="network-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3>Agregar/Editar Red</h3>
+                <form id="networkForm" onsubmit="event.preventDefault(); addOrUpdateNetwork();">
+                    <input type="hidden" id="id">
+                    <div class="form-group mb-3">
+                        <label for="fecha_registro">Fecha de registro</label>
+                        <input type="date" class="form-control" id="fecha_registro" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="fecha_instalacion">Fecha de última instalación</label>
+                        <input type="date" class="form-control" id="fecha_instalacion" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nro_medidor">Nro Medidor</label>
+                        <input type="text" class="form-control" id="nro_medidor" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="plano_instalacion">Plano de instalación</label>
+                        <input type="text" class="form-control" id="plano_instalacion" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" class="form-control" id="direccion" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="consumo_mensual">Consumo promedio mensual</label>
+                        <input type="number" class="form-control" id="consumo_mensual" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Red</button>
+                </form>
             </div>
-            <div class="form-group mb-3">
-                <label for="fecha_instalacion">Fecha de última instalación</label>
-                <input type="date" class="form-control" id="fecha_instalacion">
-            </div>
-            <div class="form-group mb-3">
-                <label for="nro_medidor">Nro Medidor</label>
-                <input type="text" class="form-control" id="nro_medidor">
-            </div>
-            <div class="form-group mb-3">
-                <label for="plano_instalacion">Plano de instalación</label>
-                <input type="text" class="form-control" id="plano_instalacion">
-            </div>
-            <div class="form-group mb-3">
-                <label for="direccion">Dirección</label>
-                <input type="text" class="form-control" id="direccion">
-            </div>
-            <div class="form-group mb-3">
-                <label for="consumo_mensual">Consumo promedio mensual</label>
-                <input type="number" class="form-control" id="consumo_mensual">
-            </div>
-            <div class="form-group mb-3">
-                <label for="monto_aprox">Aprox. Monto a pagar</label>
-                <input type="number" class="form-control" id="monto_aprox">
-            </div>
-            <button class="btn btn-primary" onclick="addNetwork()">Agregar Red</button>
-            <button class="btn btn-primary" onclick="updateNetwork()">Guardar Cambios</button>
         </div>
+
     </div>
 {% endblock %}
 
 {% block extra_js %}
-<<<<<<< Updated upstream
-    <script src="{{ url_for('static', filename='js/PanelControl.js') }}"></script>
-=======
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         let redesCache = [];  // Almacenaremos todas las redes aquí
@@ -150,7 +144,7 @@
             redes.forEach(red => {
                 const redRow = `
                     <tr>
-                        <td>${red.empresa}</td>
+                        <td>${red.id}</td>
                         <td>${red.fecha_registro}</td>
                         <td>${red.fecha_instalacion}</td>
                         <td>${red.nro_medidor}</td>
@@ -293,5 +287,4 @@
             }
         }
     </script>
->>>>>>> Stashed changes
 {% endblock %}
