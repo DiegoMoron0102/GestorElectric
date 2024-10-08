@@ -47,14 +47,13 @@ def get_networks():
         print(f"Error al obtener las redes: {e}")
         return jsonify({'error': 'Hubo un problema al obtener las redes.'}), 500
 
-# Ruta para obtener una red específica por su ID
 @redes_bp.route('/redes/<id>', methods=['GET'])
 def get_network(id):
     try:
         # Obtener el documento de la red en Firestore
         network_doc = db.collection('redes').document(id).get()
 
-        if not network_doc.exists():
+        if not network_doc.exists:
             return jsonify({'message': 'Red no encontrada'}), 404
 
         # Convertir el documento a un diccionario y devolverlo como JSON
