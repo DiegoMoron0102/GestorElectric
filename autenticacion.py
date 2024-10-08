@@ -5,15 +5,18 @@ from flask import Blueprint, request, session, redirect, url_for, flash, render_
 
 # Configuración de Pyrebase
 firebase_config = {
-    "apiKey": "AIzaSyC15IpGvyLiadlVbBb-hM8d-j0R2ooBG9M",
-    "authDomain": "gestorelectric-5d20a.firebaseapp.com",
+    "apiKey": "AIzaSyCIeYBM8_pmHTB8M5WrKtiYs43STF-Sx2U",
+    "authDomain": "chuno-6384b.firebaseapp.com",
     "databaseURL": "https://chuno-6384b-default-rtdb.firebaseio.com",
-    "projectId": "gestorelectric-5d20a",
-    "storageBucket": "gestorelectric-5d20a.appspot.com",
-    "messagingSenderId": "581989440987",
-    "appId": "1:581989440987:web:419be3a9d0e94362365bfe",
-    "measurementId": "G-MD8L67NYB1"
+    "projectId": "chuno-6384b",
+    "storageBucket": "chuno-6384b.appspot.com",
+    "messagingSenderId": "961285732641",
+    "appId": "1:961285732641:web:041aafd7d44b7c0051e660",
+    "measurementId": "G-W41SD9B2W8"
 }
+
+
+
 
 firebase = pyrebase.initialize_app(firebase_config)
 auth = firebase.auth()
@@ -21,7 +24,7 @@ auth = firebase.auth()
 # Verificar si Firebase Admin ya ha sido inicializado
 if not firebase_admin._apps:
     print("Inicializando Firebase Admin SDK...")
-    cred = credentials.Certificate('gestorelectric-5d20a-firebase-adminsdk-z48lc-10fa512203.json')
+    cred = credentials.Certificate('chuno-6384b-firebase-adminsdk-3tk2c-e0d37f9726.json')
 
     firebase_admin.initialize_app(cred)
     print("Firebase Admin SDK inicializado correctamente.")
